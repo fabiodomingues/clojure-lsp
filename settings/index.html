@@ -1,0 +1,1760 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Language Server Protocol Implementation for Clojure">
+      
+      
+      
+      
+        <link rel="canonical" href="https://clojure-lsp.io/settings/">
+      
+      <link rel="shortcut icon" href="../images/logo-light.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+    
+    
+      
+        <title>Settings - Clojure LSP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.75751829.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/layout.css">
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-189476519-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#settings" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://clojure-lsp.io" title="Clojure LSP" class="md-header-nav__button md-logo" aria-label="Clojure LSP">
+      
+  <img src="../images/logo-light.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Clojure LSP
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Settings
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/clojure-lsp/clojure-lsp/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clojure-lsp/clojure-lsp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link md-tabs__link--active">
+        Home
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../features/" class="md-tabs__link">
+      Features
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../installation/" class="md-tabs__link">
+      Installation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/what-is-it/" class="md-tabs__link">
+        Outside editor (API)
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="https://github.com/sponsors/clojure-lsp" class="md-tabs__link">
+      Support Us
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../CHANGELOG/" class="md-tabs__link">
+      Changelog
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://clojure-lsp.io" title="Clojure LSP" class="md-nav__button md-logo" aria-label="Clojure LSP">
+      
+  <img src="../images/logo-light.svg" alt="logo">
+
+    </a>
+    Clojure LSP
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/clojure-lsp/clojure-lsp/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clojure-lsp/clojure-lsp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Home
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Home" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon"></span>
+        Home
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Settings
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Settings
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project" class="md-nav__link">
+    Project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global" class="md-nav__link">
+    Global
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initializationoptions" class="md-nav__link">
+    InitializationOptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classpath-config-paths" class="md-nav__link">
+    Classpath config paths
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-settings" class="md-nav__link">
+    All settings
+  </a>
+  
+    <nav class="md-nav" aria-label="All settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classpath-scan" class="md-nav__link">
+    Classpath scan
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostics-linter" class="md-nav__link">
+    Diagnostics (linter)
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnostics (linter)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clj-kondo" class="md-nav__link">
+    clj-kondo
+  </a>
+  
+    <nav class="md-nav" aria-label="clj-kondo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-clj-kondo-linters" class="md-nav__link">
+    Custom clj-kondo linters
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom clj-kondo linters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clojure-lspunused-public-var" class="md-nav__link">
+    clojure-lsp/unused-public-var
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clj-depend" class="md-nav__link">
+    clj-depend
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-linter" class="md-nav__link">
+    Disable linter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-paths-discovery" class="md-nav__link">
+    Source paths discovery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clean" class="md-nav__link">
+    Clean
+  </a>
+  
+    <nav class="md-nav" aria-label="Clean">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatically-after-ns-refactor" class="md-nav__link">
+    automatically-after-ns-refactor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ns-inner-blocks-indentation" class="md-nav__link">
+    ns-inner-blocks-indentation
+  </a>
+  
+    <nav class="md-nav" aria-label="ns-inner-blocks-indentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#next-line" class="md-nav__link">
+    next-line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#same-line" class="md-nav__link">
+    same-line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep" class="md-nav__link">
+    keep
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ns-import-classes-indentation" class="md-nav__link">
+    ns-import-classes-indentation
+  </a>
+  
+    <nav class="md-nav" aria-label="ns-import-classes-indentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#next-line_1" class="md-nav__link">
+    next-line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#same-line_1" class="md-nav__link">
+    same-line
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort" class="md-nav__link">
+    sort
+  </a>
+  
+    <nav class="md-nav" aria-label="sort">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ns" class="md-nav__link">
+    ns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#require" class="md-nav__link">
+    require
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    import
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-classes" class="md-nav__link">
+    import-classes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refer" class="md-nav__link">
+    refer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snippets" class="md-nav__link">
+    Snippets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-support" class="md-nav__link">
+    Java support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stub-generation" class="md-nav__link">
+    Stub generation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-settings" class="md-nav__link">
+    Changing settings
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../clients/" class="md-nav__link">
+      Clients (Editors)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../building/" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../development/" class="md-nav__link">
+      Development
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../troubleshooting/" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../capabilities/" class="md-nav__link">
+      Capabilities
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../features/" class="md-nav__link">
+      Features
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
+      Outside editor (API)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Outside editor (API)" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Outside editor (API)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/what-is-it/" class="md-nav__link">
+      What is clojure-lsp API?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/api/" class="md-nav__link">
+      API (JVM)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/cli/" class="md-nav__link">
+      CLI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/ci/" class="md-nav__link">
+      CI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/lein-plugin/" class="md-nav__link">
+      Lein plugin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/bb-pod/" class="md-nav__link">
+      Babashka pod
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/sponsors/clojure-lsp" class="md-nav__link">
+      Support Us
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../CHANGELOG/" class="md-nav__link">
+      Changelog
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#project" class="md-nav__link">
+    Project
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#global" class="md-nav__link">
+    Global
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initializationoptions" class="md-nav__link">
+    InitializationOptions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classpath-config-paths" class="md-nav__link">
+    Classpath config paths
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#all-settings" class="md-nav__link">
+    All settings
+  </a>
+  
+    <nav class="md-nav" aria-label="All settings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classpath-scan" class="md-nav__link">
+    Classpath scan
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostics-linter" class="md-nav__link">
+    Diagnostics (linter)
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnostics (linter)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clj-kondo" class="md-nav__link">
+    clj-kondo
+  </a>
+  
+    <nav class="md-nav" aria-label="clj-kondo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-clj-kondo-linters" class="md-nav__link">
+    Custom clj-kondo linters
+  </a>
+  
+    <nav class="md-nav" aria-label="Custom clj-kondo linters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clojure-lspunused-public-var" class="md-nav__link">
+    clojure-lsp/unused-public-var
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clj-depend" class="md-nav__link">
+    clj-depend
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disable-linter" class="md-nav__link">
+    Disable linter
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-paths-discovery" class="md-nav__link">
+    Source paths discovery
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clean" class="md-nav__link">
+    Clean
+  </a>
+  
+    <nav class="md-nav" aria-label="Clean">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#automatically-after-ns-refactor" class="md-nav__link">
+    automatically-after-ns-refactor
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ns-inner-blocks-indentation" class="md-nav__link">
+    ns-inner-blocks-indentation
+  </a>
+  
+    <nav class="md-nav" aria-label="ns-inner-blocks-indentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#next-line" class="md-nav__link">
+    next-line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#same-line" class="md-nav__link">
+    same-line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#keep" class="md-nav__link">
+    keep
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ns-import-classes-indentation" class="md-nav__link">
+    ns-import-classes-indentation
+  </a>
+  
+    <nav class="md-nav" aria-label="ns-import-classes-indentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#next-line_1" class="md-nav__link">
+    next-line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#same-line_1" class="md-nav__link">
+    same-line
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort" class="md-nav__link">
+    sort
+  </a>
+  
+    <nav class="md-nav" aria-label="sort">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ns" class="md-nav__link">
+    ns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#require" class="md-nav__link">
+    require
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import" class="md-nav__link">
+    import
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#import-classes" class="md-nav__link">
+    import-classes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#refer" class="md-nav__link">
+    refer
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snippets" class="md-nav__link">
+    Snippets
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-support" class="md-nav__link">
+    Java support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stub-generation" class="md-nav__link">
+    Stub generation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#changing-settings" class="md-nav__link">
+    Changing settings
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/clojure-lsp/clojure-lsp/edit/master/docs/settings.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">#</a></h1>
+<p><code>clojure-lsp</code> settings are picked up only on server start (but they can be <a href="#changing-settings">changed</a> on runtime) and can be configured in 4 ways:</p>
+<ul>
+<li><a href="#project">Project configuration</a></li>
+<li><a href="#global">Global configuration</a></li>
+<li><a href="#initialization-options">LSP InitializationOptions</a></li>
+<li><a href="#classpath-config-paths">Classpath config paths</a></li>
+</ul>
+<h3 id="project">Project<a class="headerlink" href="#project" title="Permanent link">#</a></h3>
+<p><code>clojure-lsp</code> will look for project specific settings in a file called <code>.lsp/config.edn</code>. It will search from your project root folder up the directory structure so you can have multiple projects share the same settings.</p>
+<p>Example:
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:cljfmt</span> <span class="p">{</span><span class="ss">:indents</span> <span class="p">{</span><span class="o">#</span><span class="nv">re</span> <span class="s">&quot;.*&quot;</span> <span class="kd">ns </span><span class="p">[[</span><span class="ss">:inner</span> <span class="mi">0</span><span class="p">]</span> <span class="p">[</span><span class="ss">:inner</span> <span class="mi">1</span><span class="p">]]}}</span>
+ <span class="ss">:auto-add-ns-to-new-files?</span> <span class="nv">false</span><span class="p">}</span>
+</code></pre></div></p>
+<hr />
+<h3 id="global">Global<a class="headerlink" href="#global" title="Permanent link">#</a></h3>
+<p>For global settings which should work for all the projects using <code>clojure-lsp</code>, you just need to add the same configs to <code>~/.config/clojure-lsp/config.edn</code> or <code>$XDG_CONFIG_HOME/clojure-lsp/config.edn</code>.</p>
+<p>Note: <code>~/.lsp/config.edn</code> is considered too but deprecated.</p>
+<p>For an example of a global <code>config.edn</code>, check <a href="https://github.com/ericdallo/dotfiles/blob/master/.config/clojure-lsp/config.edn">here</a>.</p>
+<hr />
+<h3 id="initializationoptions">InitializationOptions<a class="headerlink" href="#initializationoptions" title="Permanent link">#</a></h3>
+<p>This is specific for a client, which it sends to <code>clojure-lsp</code> on startup, check <a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#initialize">LSP spec for more information</a>. This is useful if you are changing a default for a client/editor that will affect all users of that editor.</p>
+<p>This is an <a href="https://github.com/emacs-lsp/lsp-mode/blob/master/clients/lsp-clojure.el#L205">example how Emacs <code>lsp-mode</code></a> pass custom information.</p>
+<p>Another example, for neovim users, using <a href="https://github.com/neoclide/coc.nvim">coc.nvim</a> and <a href="https://github.com/NoahTheDuke/coc-clojure">coc-clojure</a> can be found <a href="https://github.com/dharrigan/vimconfig/blob/master/coc-settings.json">here</a></p>
+<p>If you are using a client which defines InitializationOptions as a json object, you can use json types instead:</p>
+<ul>
+<li>keyword -&gt; string or colon-prefixed string (<code>"incremental"</code> or <code>":incremental"</code>)</li>
+<li>map -&gt; object (<code>{"unused-public-ns": {"level": "info"}}</code>)</li>
+<li>set -&gt; array (<code>["src" "test"]</code>)</li>
+<li>vector -&gt; array (<code>["src" "test"]</code>)</li>
+</ul>
+<h3 id="classpath-config-paths">Classpath config paths<a class="headerlink" href="#classpath-config-paths" title="Permanent link">#</a></h3>
+<p>When starting the server, clojure-lsp will search for a specific path <code>clojure-lsp.exports/&lt;group-id&gt;/&lt;artifact-id&gt;/config.edn</code> for extra configurations in the classpath, only if you set the setting <code>:classpath-config-paths</code> containing that <code>group/artifact</code>. Example:</p>
+<p>Lib <code>my-org/my-lib</code> could have a clojure-lsp config edn that makes sense for the usages of that lib, making available on the classpath:</p>
+<p><code>my-lib/resources/clojure-lsp.exports/my-org/my-lib/config.edn</code>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:cljfmt</span> <span class="p">{</span><span class="ss">:indents</span> <span class="p">{</span><span class="nv">foo</span> <span class="p">[[</span><span class="ss">:block</span> <span class="mi">0</span><span class="p">]]}}}</span>
+</code></pre></div></p>
+<p>and then if your project use/has the <code>my-org/my-lib</code> inside your classpath, you could add the setting</p>
+<p><code>your-project/.lsp/config.edn</code>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:classpath-config-paths</span> <span class="p">[</span><span class="s">&quot;my-org/my-lib&quot;</span><span class="p">]}</span>
+</code></pre></div></p>
+<p>And then clojure-lsp will merge the configuration from the lib with the other configurations from your project.</p>
+<p>This is useful if you have some rule to apply to clojure-lsp for multiple projects, mostly using via API for linting for example, and want to move the common configuration to some place instead of adding to each project that needs that.</p>
+<h2 id="all-settings">All settings<a class="headerlink" href="#all-settings" title="Permanent link">#</a></h2>
+<p><strong>You can find all settings and its default values <a href="https://github.com/clojure-lsp/clojure-lsp/blob/master/docs/all-available-settings.edn">here</a></strong> and below the docs for each one:</p>
+<table>
+<thead>
+<tr>
+<th>name</th>
+<th>description</th>
+<th>default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:clean</code></td>
+<td>Settings related to <code>clean-ns</code> refactoring. Check <a href="#clean">Clean</a> settings below.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>:additional-snippets</code></td>
+<td>Additional user snippets to be available during completing, check the snippets section below</td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td><code>:api :exit-on-errors?</code></td>
+<td>Whether to exit the clojure-lsp process during api/cli call if any error is found, like classpath scan failure</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:auto-add-ns-to-new-files?</code></td>
+<td>Whether to automatically add the <code>ns</code> form in new blank files.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:cache-path</code></td>
+<td>Where to store the project's analysis cache, used to speed up next <code>clojure-lsp</code> startup. A path relative to project root or an absolute path.</td>
+<td><code>.lsp/.cache</code></td>
+</tr>
+<tr>
+<td><code>:classpath-config-paths</code></td>
+<td>List of extra configurations to load from classpath, for more info, check <a href="#classpath-config-paths">Classpath config paths</a> section.</td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td><code>:cljfmt-config-path</code></td>
+<td>Where to find cljfmt configuration for formatting. A path relative to project root or an absolute path. Use <code>#re</code> for regex inside the cljfmt configuration file.</td>
+<td><code>.cljfmt.edn</code></td>
+</tr>
+<tr>
+<td><code>:cljfmt</code></td>
+<td>If no <code>:cljfmt-config-path</code> is provided, used this for formatting, json encoded configuration for <a href="https://github.com/weavejester/cljfmt">cljfmt</a></td>
+<td><code>{}</code></td>
+</tr>
+<tr>
+<td><code>:code-lens</code> <code>:segregate-test-references</code></td>
+<td>Segregate main references from test references with option to disable</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:completion</code> <code>:analysis-type</code></td>
+<td>The type for analysis to be performed during the completion, accepted values are <code>fast-but-stale</code> which won't wait for remaining analysis to complete to process the completion and <code>slow-but-accurate</code> which will wait for any changes on document to then process the completion items.</td>
+<td><code>:fast-but-stale</code></td>
+</tr>
+<tr>
+<td><code>:completion</code> <code>:additional-edits-warning-text</code></td>
+<td>A warning to show when the completion will perform additional edits, such as requiring a new alias. Appears in the completion items' documentation.</td>
+<td><code>nil</code></td>
+</tr>
+<tr>
+<td><code>:copy-kondo-configs?</code></td>
+<td>Whether to copy clj-kondo hooks configs exported by libs on classpath during startup lint.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:dependency-scheme</code></td>
+<td>Defines the format that the client and server should use for URLs of dependencies in jars. The two valid values are <code>"jar"</code> and <code>"zipfile"</code>. Different editors may handle these URLs differently. For example, in nvim when a <code>"zipfile"</code> URI is opened, the file will be editable, but <code>"jar"</code> URIs will not be. (This can be powerful, but if you edit a jar in your .m2 directory, you may break other projects.) <code>"jar"</code> will make urls compatible with java's JarURLConnection. Clients that can't extract the jar natively can make an LSP extension request of <code>clojure/dependencyContents</code> with the jar uri and the server will return the jar entry's contents, an approach <a href="https://github.com/redhat-developer/vscode-java/blob/a24945453092e1c39267eac9367c759a6c7b0497/src/extension.ts#L290-L298">used by some Java clients</a></td>
+<td><code>"zipfile"</code></td>
+</tr>
+<tr>
+<td><code>:document-formatting?</code></td>
+<td>if true or not present, document formatting is provided.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:document-range-formatting?</code></td>
+<td>if true or not present, document range formatting is provided.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:hover</code> <code>:arity-on-same-line?</code></td>
+<td>Whether to keep the arity on the same line of the function on hover, useful for Emacs users.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>:hover</code> <code>:clojuredocs</code></td>
+<td>Whether to get clojuredocs information on hover, the clojuredocs content is cached.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:hover</code> <code>:hide-file-location?</code></td>
+<td>Whether to show the full filename and path on hover.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>:source-paths-ignore-regex</code></td>
+<td>list of regex to filter source-paths. By default, source-paths are retrieved from classpath, and usually the classpath contains folders that are not directly project code or it's auto-generated like cljs <code>resources</code> or <code>target</code> folders but it's inside your project. Replace old <code>:ignore-classpath-directories</code> setting.</td>
+<td><code>["target.*"]</code></td>
+</tr>
+<tr>
+<td><code>:paths-ignore-regex</code></td>
+<td>list of regex to filter paths to be analyzed. Useful for excluding huge files or folders that may affect final analysis size and performance, like huge edn files.</td>
+<td><code>[]</code></td>
+</tr>
+<tr>
+<td><code>:java</code> <code>:download-jdk-source?</code></td>
+<td>Whether to download JDK source from <code>:java :jdk-source-download-uri</code> and cache after startup for JDK classes java support.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>:java</code> <code>:home-path</code></td>
+<td>Whether to use this path to find JDK source and cache after startup for JDK classes java support.</td>
+<td>nil</td>
+</tr>
+<tr>
+<td><code>:java</code> <code>:jdk-source-uri</code></td>
+<td>URI containing the JDK source to be used. If <code>:download-jdk-source?</code> is enabled and URI is <em>NOT</em> <code>file://</code> then download the source. Check <code>https://github.com/clojure-lsp/jdk-source</code>for more sources.</td>
+<td><code>https://raw.githubusercontent.com/clojure-lsp/jdk-source/main/openjdk-19/reduced/source.zip</code></td>
+</tr>
+<tr>
+<td><code>:java</code> <code>:decompile-jar-as-project?</code></td>
+<td>Whether to decompile the whole jar as a java project when finding the definition of a java class, useful to navigate to other classes from that java class.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:keep-parens-when-threading?</code></td>
+<td>Whether to keep parenthesis when threading single arity functions.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>:lint-project-files-after-startup?</code></td>
+<td>Whether to async lint all project only files after startup to make features like <a href="https://emacs-lsp.github.io/lsp-mode/page/main-features/#project-errors-on-modeline">List project errors</a> work.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:diagnostics :range-type</code></td>
+<td>which range use for diagnostics, <code>:full</code> makes the range be the whole affected diagnostic while <code>:simple</code> makes the range be the first character of the diagnostic.</td>
+<td><code>:full</code></td>
+</tr>
+<tr>
+<td><code>:linters</code></td>
+<td>clojure-lsp custom linters, check the diagnostics settings section below</td>
+<td></td>
+</tr>
+<tr>
+<td><code>:log-path</code></td>
+<td>A absolute path to a file where clojure-lsp should log.</td>
+<td>A JVM tmp path, usually <code>/tmp/clojure-lsp.*.out</code></td>
+</tr>
+<tr>
+<td><code>:notify-references-on-file-change</code></td>
+<td>Whether to update diagnostics of the changed references when editing files, avoiding outdated diagnostics in other files.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:project-specs</code></td>
+<td>A vector of a map with <code>:project-path</code> and <code>:classpath-cmd</code>, defining how <code>clojure-lsp</code> should find your project classpath. The <code>:project-path</code> should be a file and the <code>:classpath-cmd</code> the command to run to get the classpath</td>
+<td>Check <a href="#classpath-scan"><code>Classpath scan</code></a> section below</td>
+</tr>
+<tr>
+<td><code>:semantic-tokens?</code></td>
+<td>Whether to enable LSP semantic tokens server support for syntax highlighting.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:source-aliases</code></td>
+<td>Used for <code>deps.edn</code> or <code>project.clj</code> projects, the aliases which clojure-lsp should get the source-paths besides the root level <code>:paths</code> and <code>:extra-paths</code>. Check the <a href="#source-paths-discovery">Source paths discovery</a> section below.</td>
+<td><code>#{:dev :test}</code></td>
+</tr>
+<tr>
+<td><code>:source-paths</code></td>
+<td>project-local directories to look for clj/cljc/cljs files, if using <code>deps.edn</code>, <code>project.clj</code> or <code>bb.edn</code>, use <code>:source-aliases</code> instead.</td>
+<td><code>#{"src" "test"}</code></td>
+</tr>
+<tr>
+<td><code>:stubs</code></td>
+<td>Stub generation related settings, check the <a href="#stub-generation">Stub generation</a> section below.</td>
+<td></td>
+</tr>
+<tr>
+<td><code>:text-document-sync-kind</code></td>
+<td>The sync kind during document changes, if client should send whole buffer or just related changes. Should be <code>:full</code> or <code>:incremental</code></td>
+<td><code>:full</code></td>
+</tr>
+<tr>
+<td><code>:use-metadata-for-privacy?</code></td>
+<td>Whether to use <code>^:private</code> metadata for refactorings instead of <code>defn-</code></td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="classpath-scan">Classpath scan<a class="headerlink" href="#classpath-scan" title="Permanent link">#</a></h3>
+<p>clojure-lsp needs to analyze the whole project and its dependencies to understand your code for most features, during the startup clojure-lsp will try to find the classpath of your project to pass to clj-kondo later.</p>
+<p>You can configure how clojure-lsp should find the classpath with the <code>project-specs</code> setting, but keep in mind that usually the <a href="https://github.com/clojure-lsp/clojure-lsp/blob/master/lib/src/clojure_lsp/classpath.clj#L169">default</a> is enough, it will also consider the <code>:source-aliases</code> setting if any to find the classpath using those aliases.</p>
+<p>Supported project types at the moment are:</p>
+<ul>
+<li><code>leiningen</code>: If a <code>project.clj</code> is found at the project root, clojure-lsp will run <code>lein classpath</code> with <code>:source-aliases</code> specified if any.</li>
+<li><code>deps</code>: If a <code>deps.edn</code> is found at the project root, clojure-lsp will run <code>clojure -Spath</code> with <code>:source-aliases</code> specified if any.</li>
+<li><code>boot</code>: If a <code>build.boot</code> is found at the project root, clojure-lsp will run <code>boot show --fake-classpath</code>.</li>
+<li><code>shadow-cljs</code>: If a <code>shadow-cljs.edn</code> is found at the project root, clojure-lsp will run <code>npx shadow-cljs classpath</code>.</li>
+<li><code>babashka</code>: If a <code>bb.edn</code> is found at the project root, clojure-lsp will run <code>bb print-deps --format classpath</code>.</li>
+</ul>
+<p>Note that it's possible to have more than one project type at the same time e.g. deps + babashka, clojure-lsp will merge the classpath and everything should work fine.</p>
+<p>Make sure to have these programs available on the <code>PATH</code> environment variable used by your editor, otherwise clojure-lsp will warn about a classpath scan fail, causing a lot of features to not work properly.</p>
+<p>Alternatively, you can configure the <code>project-specs</code> specific for your project, for example:</p>
+<p><code>.lsp/config.edn</code>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:project-specs</span> <span class="p">[{</span><span class="ss">:project-path</span> <span class="s">&quot;deps.edn&quot;</span>
+                  <span class="ss">:classpath-cmd</span> <span class="p">[</span><span class="s">&quot;clojure&quot;</span> <span class="s">&quot;-A:my-custom-alias&quot;</span> <span class="s">&quot;-Spath&quot;</span><span class="p">]}]}</span>
+</code></pre></div></p>
+<p>Note that clojure-lsp will make this scan to save the cache when:</p>
+<ul>
+<li>The project has no cache (<code>.lsp/.cache</code>)</li>
+<li>The project deps file (<code>project.clj</code> for example) changed.</li>
+<li>The clj-kondo config has changed.</li>
+</ul>
+<h3 id="diagnostics-linter">Diagnostics (linter)<a class="headerlink" href="#diagnostics-linter" title="Permanent link">#</a></h3>
+<p>Default: Check <code>:linters</code> in <a href="https://github.com/clojure-lsp/clojure-lsp/blob/master/docs/all-available-settings.edn">all-available-settings.edn</a>.</p>
+<h4 id="clj-kondo">clj-kondo<a class="headerlink" href="#clj-kondo" title="Permanent link">#</a></h4>
+<p><code>clojure-lsp</code> uses <a href="https://github.com/clj-kondo/clj-kondo">clj-kondo</a> under the hood to lint the code and retrieve the analysis to
+make most of features work, you don't have to install clj-kondo to
+make it work.</p>
+<p><code>clojure-lsp</code> will use a specific clj-kondo version that can be retrieved via <code>clojure-lsp --version</code>, but make sure you have it
+properly configured in your <code>.clj-kondo/config.edn</code> file.</p>
+<p>It has the possible key/values:</p>
+<ul>
+<li><code>:clj-kondo</code></li>
+<li><code>:level</code> with available values: <code>:off</code>, <code>:on</code> with default value of <code>:on</code></li>
+<li><code>:report-duplicates</code> which will show all linters of the same symbol instead of showing only the first spot. Available values: <code>true</code>, <code>false</code> with default value of <code>true</code></li>
+<li><code>ns-exclude-regex</code> which will exclude the diagnostics/findings for namespaces that match this regex.</li>
+</ul>
+<p>Example:</p>
+<p><code>.lsp/config.edn</code>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:linters</span> <span class="p">{</span><span class="ss">:clj-kondo</span> <span class="p">{</span><span class="ss">:level</span> <span class="ss">:on</span>
+                       <span class="ss">:report-duplicates</span> <span class="nv">true</span>
+                       <span class="ss">:ns-exclude-regex</span> <span class="s">&quot;some-ns.*&quot;</span><span class="p">}}}</span>
+</code></pre></div></p>
+<details>
+<summary>Note for vim users</summary>
+
+If you are a (neo)vim user and have [ale](https://github.com/dense-analysis/ale) installed as a plugin, you
+**should not** have this configured as a linter `let g:ale_linters = {'clojure': ['clj-kondo']}` in your vimrc. Having this
+linter enabled via `ale` will only conflict with the built-in clj-kondo bundled with clojure-lsp.
+
+</details>
+
+<p>Also, clojure-lsp by default pass <code>copy-configs</code> flag as <code>true</code> to clj-kondo to copy configurations exported from libs on classpath, to disable this behavior, set <code>copy-kondo-configs?</code> setting to false.</p>
+<p>For more information about all clj-kondo available configurations,
+check the <a href="https://github.com/clj-kondo/clj-kondo/blob/master/doc/config.md">clj-kondo configuration section</a></p>
+<h5 id="custom-clj-kondo-linters">Custom clj-kondo linters<a class="headerlink" href="#custom-clj-kondo-linters" title="Permanent link">#</a></h5>
+<p>Clojure-lsp register custom linters in clj-kondo, for specifically those linters, configurations should be done on clj-kondo config files, e.g. (<code>&lt;project&gt;/.clj-kondo/config.edn</code>). Note that configuring these custom linters via clj-kondo's <a href="https://github.com/clj-kondo/clj-kondo/blob/master/doc/config.md#metadata-config">ns metadata config</a> is <em>not</em> supported. Below are the custom linters used:</p>
+<h6 id="clojure-lspunused-public-var">clojure-lsp/unused-public-var<a class="headerlink" href="#clojure-lspunused-public-var" title="Permanent link">#</a></h6>
+<p>A custom linter that reports public functions/vars not used over the project.</p>
+<p>It has the possible key/values:</p>
+<ul>
+<li><code>:level</code> with available values: <code>:info</code>, <code>:warning</code>, <code>:error</code> or <code>:off</code> with default value of <code>:info</code>.</li>
+<li><code>:exclude</code> a whole namespace with <code>#{my-ns}</code> or a specific var <code>#{my-ns/foo}</code>.</li>
+<li><code>:exclude-regex</code> same as above but with support for regex, like <code>#{"my-ns/f.*"}</code>.</li>
+<li><code>:exclude-when-defined-by</code> excludes this linter when your var is defined by a macro for example, like <code>#{my-ns/deftest}</code>.</li>
+<li><code>:exclude-when-defined-by-regex</code> same as above but with support for regex, like <code>#{"my-ns/.*"}</code>.</li>
+<li><code>:exclude-when-contains-meta</code> excludes this linter when your var has any of these metas, like <code>#{:my-meta}</code>.</li>
+</ul>
+<p>Example:</p>
+<p><code>.clj-kondo/config.edn</code>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:linters</span> <span class="p">{</span><span class="ss">:clojure-lsp/unused-public-var</span> <span class="p">{</span><span class="ss">:level</span> <span class="ss">:warning</span>
+                                           <span class="ss">:exclude</span> <span class="o">#</span><span class="p">{</span><span class="nv">my-ns/foo</span>
+                                                      <span class="nv">my-ns/bar</span>
+                                                      <span class="nv">other-ns</span>
+                                                      <span class="nv">my-func</span><span class="p">}</span>
+                                           <span class="ss">:exclude-regex</span> <span class="o">#</span><span class="p">{</span><span class="s">&quot;my-integration-tests.*&quot;</span><span class="p">}</span>
+                                           <span class="ss">:exclude-when-defined-by</span> <span class="o">#</span><span class="p">{</span><span class="nv">my-ns/defflow</span><span class="p">}</span>
+                                           <span class="ss">:exclude-when-defined-by-regex</span> <span class="o">#</span><span class="p">{</span><span class="s">&quot;my.custom/macro-.*&quot;</span><span class="p">}</span>
+                                           <span class="ss">:exclude-when-contains-meta</span> <span class="o">#</span><span class="p">{</span><span class="ss">:my-cool-meta</span><span class="p">}}}}</span>
+</code></pre></div></p>
+<h4 id="clj-depend">clj-depend<a class="headerlink" href="#clj-depend" title="Permanent link">#</a></h4>
+<p>clojure-lsp uses <a href="https://github.com/clj-depend/clj-depend">clj-depend</a> when any clj-depend config is found either on clojure-lsp config or as a <code>.clj-depend/config.edn</code> file.</p>
+<h4 id="disable-linter">Disable linter<a class="headerlink" href="#disable-linter" title="Permanent link">#</a></h4>
+<p>It's not recommended to disable a linter as it provides helpful smart checks/suggestions for your code, even so it's possible via the following config:</p>
+<p><code>.lsp/config.edn</code>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:linters</span> <span class="p">{</span><span class="ss">:clj-kondo</span> <span class="p">{</span><span class="ss">:level</span> <span class="ss">:off</span><span class="p">}</span>
+           <span class="ss">:clj-depend</span> <span class="p">{</span><span class="ss">:level</span> <span class="ss">:off</span><span class="p">}}}</span>
+</code></pre></div></p>
+<p>For information on how to troubleshoot the linter, check the <a href="../troubleshooting/">troubleshooting section</a></p>
+<h3 id="source-paths-discovery">Source paths discovery<a class="headerlink" href="#source-paths-discovery" title="Permanent link">#</a></h3>
+<p>Some features require know the available source paths of your project, where your code lives, clojure-lsp has some settings for that.</p>
+<ul>
+<li>
+<p>By default, clojure-lsp will infer source-paths from the classpath, excluding files that are jar and not under project-root, this usually works for most cases, if not, check next items. </p>
+</li>
+<li>
+<p>You can specify a <code>source-aliases</code> setting, making clojure-lsp use those alias when conmputing the classpath, e.g. <code>#{:src :test :my-alias}</code></p>
+</li>
+<li>
+<p>If that is not enough, for example you have source-paths that are not included on any project profile (not recommended), you can manually specify via the <code>:source-paths</code> settings. e.g <code>["src" "test" "my/other/folder"]</code>.</p>
+</li>
+</ul>
+<h3 id="clean">Clean<a class="headerlink" href="#clean" title="Permanent link">#</a></h3>
+<p>Default: Check <code>:clean</code> in <a href="https://github.com/clojure-lsp/clojure-lsp/blob/master/docs/all-available-settings.edn">all-available-settings.edn</a>.</p>
+<h4 id="automatically-after-ns-refactor">automatically-after-ns-refactor<a class="headerlink" href="#automatically-after-ns-refactor" title="Permanent link">#</a></h4>
+<p>Whether to call clean-ns on the namespace after applying any refactor to it like adding missing require/imports/refers.</p>
+<h4 id="ns-inner-blocks-indentation">ns-inner-blocks-indentation<a class="headerlink" href="#ns-inner-blocks-indentation" title="Permanent link">#</a></h4>
+<p>How to indent ns children forms like require,import.</p>
+<h5 id="next-line"><code>next-line</code><a class="headerlink" href="#next-line" title="Permanent link">#</a></h5>
+<p>Keep first child on the next line of <code>:require</code>/<code>:import</code> and next children following the same indentation. Recommended by <a href="https://stuartsierra.com/2016/08/27/how-to-ns">how-to-ns</a> guide too.
+Check <code>;; better</code> on <a href="https://github.com/bbatsov/clojure-style-guide#line-break-ns-declaration">Clojure Style Guide</a>.</p>
+<h5 id="same-line"><code>same-line</code><a class="headerlink" href="#same-line" title="Permanent link">#</a></h5>
+<p>Keep first child on the same line of <code>:require</code>/<code>:import</code> and next children following the same indentation.
+Check <code>;; good</code> on <a href="https://github.com/bbatsov/clojure-style-guide#line-break-ns-declaration">Clojure Style Guide</a>.</p>
+<h5 id="keep"><code>keep</code><a class="headerlink" href="#keep" title="Permanent link">#</a></h5>
+<p>Don't change indentation at all, keeping the one user selected first.</p>
+<h4 id="ns-import-classes-indentation">ns-import-classes-indentation<a class="headerlink" href="#ns-import-classes-indentation" title="Permanent link">#</a></h4>
+<p>How to indent classes inside package imports from :import form.
+Note: package imports with only one class will keep indentation: Ex: <code>[java.io File]</code></p>
+<h5 id="next-line_1"><code>next-line</code><a class="headerlink" href="#next-line_1" title="Permanent link">#</a></h5>
+<p>Keep the first class inside a package import on the next line and next children following the same indentation. Ex: </p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="ss">:import</span> 
+  <span class="p">[</span><span class="nv">java.io</span>
+    <span class="nv">File</span>
+    <span class="nv">Foo</span><span class="p">])</span>
+</code></pre></div>
+<h5 id="same-line_1"><code>same-line</code><a class="headerlink" href="#same-line_1" title="Permanent link">#</a></h5>
+<p>Keep the first class inside a package import on the same line and next children following the same indentation. Ex: </p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="ss">:import</span> 
+  <span class="p">[</span><span class="nv">java.io</span> <span class="nv">File</span>
+           <span class="nv">Foo</span><span class="p">])</span>
+</code></pre></div>
+<p>Also, check <code>:sort :import-classes</code> below for more customizations.</p>
+<h4 id="sort">sort<a class="headerlink" href="#sort" title="Permanent link">#</a></h4>
+<p>to disable a specific sort you can set it to nil, example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:clean</span> <span class="p">{</span><span class="ss">:sort</span> <span class="p">{</span><span class="ss">:import-classes</span> <span class="nv">nil</span><span class="p">}}}</span>
+</code></pre></div>
+<h5 id="ns"><code>ns</code><a class="headerlink" href="#ns" title="Permanent link">#</a></h5>
+<p>Whether to enable sort of <code>ns</code> children like require, import forms following <a href="https://github.com/bbatsov/clojure-style-guide#comprehensive-ns-declaration">Clojure Style Guide</a>.</p>
+<h5 id="require"><code>require</code><a class="headerlink" href="#require" title="Permanent link">#</a></h5>
+<p>Whether to enable sort of <code>:require</code> form. <code>true</code> to sort according to the Clojure Style Guide, <code>:lexicographically</code> to do a lexicographic sort that places unwrapped namespaces last.</p>
+<h5 id="import"><code>import</code><a class="headerlink" href="#import" title="Permanent link">#</a></h5>
+<p>Whether to enable sort of <code>:import</code> form.</p>
+<h5 id="import-classes"><code>import-classes</code><a class="headerlink" href="#import-classes" title="Permanent link">#</a></h5>
+<p>Whether to enable sort of package classes inside <code>:import</code> form.</p>
+<ul>
+<li><code>:classes-per-line</code>: the max classes allowed to keep in a single line, if more than this value, clojure-lsp will move all classes to <code>:next-line</code> or <code>:same-line</code> following <code>:ns-import-classes-indentation</code>, Possivel values: any positive number or <code>-1</code> to keep all classes in the same line.</li>
+</ul>
+<h5 id="refer"><code>refer</code><a class="headerlink" href="#refer" title="Permanent link">#</a></h5>
+<p>Whether to enable sort of <code>:refer</code> form.</p>
+<ul>
+<li><code>:max-line-length</code>: the max refers to keep at same line before breaking the line. Default <code>80</code>.</li>
+</ul>
+<h3 id="snippets">Snippets<a class="headerlink" href="#snippets" title="Permanent link">#</a></h3>
+<p>Besides the <strong>19</strong> built-in snippets, it's possible to configure custom additional snippets via <code>:additional-snippets</code> setting:</p>
+<ul>
+<li><code>:name</code> the name to use while completing to reach that snippet.</li>
+<li><code>:detail</code> Custom text to show along with the completion name.</li>
+<li><code>:snippet</code> The body of the snippet, besides any text it can contains:<ul>
+<li><code>$1</code>, <code>$2</code>, ... as the tabstops representing each place where user may change the content.</li>
+<li><code>$0</code> as the last tabstop.</li>
+<li><code>$current-form</code> to replace the current form in the snippet.</li>
+</ul>
+</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:additional-snippets</span> <span class="p">[{</span><span class="ss">:name</span> <span class="s">&quot;wrap-let-sexpr&quot;</span>
+                        <span class="ss">:detail</span> <span class="s">&quot;Wrap current sexpr in let&quot;</span>
+                        <span class="ss">:snippet</span> <span class="s">&quot;(let [$1] $0$current-form)&quot;</span><span class="p">}]}</span>
+</code></pre></div>
+<p>when completion is called on the code below with the cursor as <code>|</code>
+<div class="highlight"><pre><span></span><code><span class="nv">wrap|</span><span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">2</span><span class="p">)</span>
+</code></pre></div></p>
+<p>It should return a completion item that after applied should result in:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">|</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">2</span><span class="p">))</span>
+</code></pre></div>
+<h3 id="java-support">Java support<a class="headerlink" href="#java-support" title="Permanent link">#</a></h3>
+<p>At the moment, clojure-lsp supports find definition of java classes only, methods, completion and other features are not supported yet.</p>
+<p>When a find-definition of a java class is triggered, clojure-lsp checks the following:</p>
+<ul>
+<li>If the java source(<code>.java</code>) is available on classpath, clojure-lsp just return that file location.</li>
+<li>If the java source is not available, only the <code>.class</code>, clojure-lsp decompiles it.</li>
+<li>If <code>:java :decompile-jar-as-project?</code> is enabled, clojure-lsp decompiles the whole jar at the global cache folder (<code>~/.cache/clojure-lsp/java</code>)</li>
+<li>If <code>:java :decompile-jar-as-project?</code> is disabled, clojure-lsp decompiles the class file at the local cache folder (<code>.lsp/.cache/java</code>)</li>
+<li>If the java class is from JDK (e.g. <code>java.util.UUID</code>), clojure-lsp tries a few things to be able to sucessfully find the definition, following this waterfall decision:<ul>
+<li>Most JRE installations contains the java source code in a <code>src.zip</code>, clojure-lsp tries to find it via <code>:java :home-path</code> setting if provided, <code>JAVA_HOME</code> env var or <code>java</code> command on <code>PATH</code>, if found clojure-lsp extracts to its global cache config (XDG_CONFIG or <code>~/.config/clojure-lsp</code>) to be used in other projects.</li>
+<li>If <code>src.zip</code> is not found or user specified a custom <code>:java :jdk-source-uri</code>, clojure-lsp tries to download the source from that uri, only if <code>:java :download-jdk-source?</code> is enabled, disabled by default, extracting to the global cache dir later.</li>
+</ul>
+</li>
+</ul>
+<h3 id="stub-generation">Stub generation<a class="headerlink" href="#stub-generation" title="Permanent link">#</a></h3>
+<p>It's possible to configure clojure-lsp to generate and analyze stubs for specific namespaces available on your project classpath, this is useful for closed source dependencies like <code>datomic.api</code>, with that clojure-lsp will be able to make most features work with those dependencies.
+The available settings inside <code>:stubs</code> are:</p>
+<ul>
+<li><code>:generation</code> for auto stubs generation:<ul>
+<li><code>:namespaces</code> the namespaces to generate and analyze stubs, empty by default disabling stub generation.</li>
+<li><code>:output-dir</code> the output where to generate the stubs, by default <code>.lsp/.cache/stubs</code></li>
+<li><code>:java-command</code> the path to java command to spawn the stub process, default use <code>java</code> from <code>$PATH</code>.</li>
+</ul>
+</li>
+<li><code>:extra-dirs</code>, dirs to analyze to consider as part of manual generated stubs. Empty by default.</li>
+</ul>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:stubs</span> <span class="p">{</span><span class="ss">:generation</span> <span class="p">{</span><span class="ss">:namespaces</span> <span class="o">#</span><span class="p">{</span><span class="s">&quot;datomic.api&quot;</span><span class="p">}}}}</span>
+</code></pre></div>
+<p>This should generate stubs for <code>datomic.api</code> namespace only on <code>.lsp/.cache/stubs</code> and clojure-lsp should analyze that during startup to provide completion, hover and other features.</p>
+<p>Or to use manual generated stubs:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:stubs</span> <span class="p">{</span><span class="ss">:extra-dirs</span> <span class="p">[</span><span class="s">&quot;.my-stubs&quot;</span><span class="p">]}}</span>
+</code></pre></div>
+<p>clojure-lsp will generate no stubs with that, but analyze that folder and consider it as manual generated stubs.</p>
+<h3 id="changing-settings">Changing settings<a class="headerlink" href="#changing-settings" title="Permanent link">#</a></h3>
+<p><code>clojure-lsp</code> supports <code>workspace/didChangeConfiguration</code> commands to change the server settings while it is running, everything inside the <code>:settings</code> map can be changed, but not outside it (the project root for example).</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 1, 2023</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href=".." class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Overview
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../clients/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Clients (Editors)
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/clojure-lsp/clojure-lsp" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://clojurians.slack.com/archives/CPABC1H61" target="_blank" rel="noopener" title="clojurians.slack.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1c0-25.9 21.16-47.06 47.06-47.06h47.06v47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V315.1zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06H164.9zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06H164.9zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06h-47.06V196.9zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06V196.9zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06v-47.06h47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06 0-25.9 21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06H283.1z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

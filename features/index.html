@@ -1,0 +1,1940 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Language Server Protocol Implementation for Clojure">
+      
+      
+      
+      
+        <link rel="canonical" href="https://clojure-lsp.io/features/">
+      
+      <link rel="shortcut icon" href="../images/logo-light.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+    
+    
+      
+        <title>Features - Clojure LSP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.75751829.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/layout.css">
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-189476519-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#features" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://clojure-lsp.io" title="Clojure LSP" class="md-header-nav__button md-logo" aria-label="Clojure LSP">
+      
+  <img src="../images/logo-light.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Clojure LSP
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Features
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/clojure-lsp/clojure-lsp/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clojure-lsp/clojure-lsp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        Home
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Features
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../installation/" class="md-tabs__link">
+      Installation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/what-is-it/" class="md-tabs__link">
+        Outside editor (API)
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="https://github.com/sponsors/clojure-lsp" class="md-tabs__link">
+      Support Us
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../CHANGELOG/" class="md-tabs__link">
+      Changelog
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://clojure-lsp.io" title="Clojure LSP" class="md-nav__button md-logo" aria-label="Clojure LSP">
+      
+  <img src="../images/logo-light.svg" alt="logo">
+
+    </a>
+    Clojure LSP
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/clojure-lsp/clojure-lsp/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clojure-lsp/clojure-lsp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+    
+    <label class="md-nav__link" for="nav-1">
+      Home
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Home" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon"></span>
+        Home
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../settings/" class="md-nav__link">
+      Settings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../clients/" class="md-nav__link">
+      Clients (Editors)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../building/" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../development/" class="md-nav__link">
+      Development
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../troubleshooting/" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../capabilities/" class="md-nav__link">
+      Capabilities
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Features
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Features
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lsp-features" class="md-nav__link">
+    LSP features
+  </a>
+  
+    <nav class="md-nav" aria-label="LSP features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-a-functionvar-definition" class="md-nav__link">
+    Find a function/var definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-defprotocoldefmulti-implementations" class="md-nav__link">
+    Find defprotocol/defmulti implementations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-a-functionvar-declaration-in-the-ns" class="md-nav__link">
+    Find a function/var declaration in the ns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-all-references-of-a-function-var-keyword-or-namespace-alias" class="md-nav__link">
+    Find all references of a function, var, keyword or namespace alias
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-all-workspaceproject-symbols" class="md-nav__link">
+    Show all workspace/project symbols
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-all-symbols-on-current-file" class="md-nav__link">
+    Show all symbols on current file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rename-symbols" class="md-nav__link">
+    Rename symbols
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-highlight-on-hover-showing-symbol-usages" class="md-nav__link">
+    Document highlight on hover showing symbol usages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-and-clojuredocs-integration" class="md-nav__link">
+    Documentation and clojuredocs integration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-support" class="md-nav__link">
+    Java support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+    <nav class="md-nav" aria-label="Completion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snippets" class="md-nav__link">
+    Snippets
+  </a>
+  
+    <nav class="md-nav" aria-label="Snippets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-snippets" class="md-nav__link">
+    Custom snippets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-actions" class="md-nav__link">
+    Code actions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-lenses-showing-symbol-references" class="md-nav__link">
+    Code lenses showing symbol references
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-a-whole-file-or-range" class="md-nav__link">
+    Format a whole file or range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signature-help" class="md-nav__link">
+    Signature help
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantic-tokens" class="md-nav__link">
+    Semantic tokens
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#call-hierarchy" class="md-nav__link">
+    Call hierarchy
+  </a>
+  
+    <nav class="md-nav" aria-label="Call hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incoming" class="md-nav__link">
+    Incoming
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outgoing" class="md-nav__link">
+    Outgoing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-tree" class="md-nav__link">
+    Test Tree
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostics-linter" class="md-nav__link">
+    Diagnostics (linter)
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnostics (linter)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clojure-lspunused-public-var" class="md-nav__link">
+    clojure-lsp/unused-public-var
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clj-depend" class="md-nav__link">
+    clj-depend
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stub-generation" class="md-nav__link">
+    Stub generation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute-command" class="md-nav__link">
+    Execute command
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clojure-lsp-extra-commands" class="md-nav__link">
+    clojure-lsp extra commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dev" class="md-nav__link">
+    Dev
+  </a>
+  
+    <nav class="md-nav" aria-label="Dev">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-information" class="md-nav__link">
+    Server information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cursor-information" class="md-nav__link">
+    Cursor information
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
+      Outside editor (API)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Outside editor (API)" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Outside editor (API)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/what-is-it/" class="md-nav__link">
+      What is clojure-lsp API?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/api/" class="md-nav__link">
+      API (JVM)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/cli/" class="md-nav__link">
+      CLI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/ci/" class="md-nav__link">
+      CI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/lein-plugin/" class="md-nav__link">
+      Lein plugin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/bb-pod/" class="md-nav__link">
+      Babashka pod
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/sponsors/clojure-lsp" class="md-nav__link">
+      Support Us
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../CHANGELOG/" class="md-nav__link">
+      Changelog
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lsp-features" class="md-nav__link">
+    LSP features
+  </a>
+  
+    <nav class="md-nav" aria-label="LSP features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#find-a-functionvar-definition" class="md-nav__link">
+    Find a function/var definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-defprotocoldefmulti-implementations" class="md-nav__link">
+    Find defprotocol/defmulti implementations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-a-functionvar-declaration-in-the-ns" class="md-nav__link">
+    Find a function/var declaration in the ns
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#find-all-references-of-a-function-var-keyword-or-namespace-alias" class="md-nav__link">
+    Find all references of a function, var, keyword or namespace alias
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-all-workspaceproject-symbols" class="md-nav__link">
+    Show all workspace/project symbols
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#show-all-symbols-on-current-file" class="md-nav__link">
+    Show all symbols on current file
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rename-symbols" class="md-nav__link">
+    Rename symbols
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#document-highlight-on-hover-showing-symbol-usages" class="md-nav__link">
+    Document highlight on hover showing symbol usages
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-and-clojuredocs-integration" class="md-nav__link">
+    Documentation and clojuredocs integration
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java-support" class="md-nav__link">
+    Java support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#completion" class="md-nav__link">
+    Completion
+  </a>
+  
+    <nav class="md-nav" aria-label="Completion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#snippets" class="md-nav__link">
+    Snippets
+  </a>
+  
+    <nav class="md-nav" aria-label="Snippets">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-snippets" class="md-nav__link">
+    Custom snippets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-actions" class="md-nav__link">
+    Code actions
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#code-lenses-showing-symbol-references" class="md-nav__link">
+    Code lenses showing symbol references
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format-a-whole-file-or-range" class="md-nav__link">
+    Format a whole file or range
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signature-help" class="md-nav__link">
+    Signature help
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semantic-tokens" class="md-nav__link">
+    Semantic tokens
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#call-hierarchy" class="md-nav__link">
+    Call hierarchy
+  </a>
+  
+    <nav class="md-nav" aria-label="Call hierarchy">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incoming" class="md-nav__link">
+    Incoming
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#outgoing" class="md-nav__link">
+    Outgoing
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-tree" class="md-nav__link">
+    Test Tree
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diagnostics-linter" class="md-nav__link">
+    Diagnostics (linter)
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagnostics (linter)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#clojure-lspunused-public-var" class="md-nav__link">
+    clojure-lsp/unused-public-var
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clj-depend" class="md-nav__link">
+    clj-depend
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stub-generation" class="md-nav__link">
+    Stub generation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute-command" class="md-nav__link">
+    Execute command
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clojure-lsp-extra-commands" class="md-nav__link">
+    clojure-lsp extra commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dev" class="md-nav__link">
+    Dev
+  </a>
+  
+    <nav class="md-nav" aria-label="Dev">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-information" class="md-nav__link">
+    Server information
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cursor-information" class="md-nav__link">
+    Cursor information
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/clojure-lsp/clojure-lsp/edit/master/docs/features.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="features">Features<a class="headerlink" href="#features" title="Permanent link">#</a></h1>
+<p>Below you can find all available features that clojure-lsp provides with examples using <a href="https://emacs-lsp.github.io/lsp-mode/">Emacs lsp-mode</a> as the client.</p>
+<ul>
+<li><a href="#lsp-features">Built in LSP features</a></li>
+<li><a href="#clojure-lsp-extra-commands">clojure-lsp extra commands</a></li>
+</ul>
+<h2 id="lsp-features">LSP features<a class="headerlink" href="#lsp-features" title="Permanent link">#</a></h2>
+<h3 id="find-a-functionvar-definition">Find a function/var definition<a class="headerlink" href="#find-a-functionvar-definition" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/find-definition.gif" /></p>
+<h3 id="find-defprotocoldefmulti-implementations">Find defprotocol/defmulti implementations<a class="headerlink" href="#find-defprotocoldefmulti-implementations" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/find-implementation.gif" /></p>
+<h3 id="find-a-functionvar-declaration-in-the-ns">Find a function/var declaration in the ns<a class="headerlink" href="#find-a-functionvar-declaration-in-the-ns" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/find-declaration.gif" /></p>
+<h3 id="find-all-references-of-a-function-var-keyword-or-namespace-alias">Find all references of a function, var, keyword or namespace alias<a class="headerlink" href="#find-all-references-of-a-function-var-keyword-or-namespace-alias" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/find-references.gif" /></p>
+<h3 id="show-all-workspaceproject-symbols">Show all workspace/project symbols<a class="headerlink" href="#show-all-workspaceproject-symbols" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/workspace-symbols.gif" /></p>
+<h3 id="show-all-symbols-on-current-file">Show all symbols on current file<a class="headerlink" href="#show-all-symbols-on-current-file" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/document-symbols.gif" /></p>
+<h3 id="rename-symbols">Rename symbols<a class="headerlink" href="#rename-symbols" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/rename.gif" /></p>
+<p>Also, it's possible to live rename symbols on the same buffer with <code>linkedEditingRange</code> feature.</p>
+<h3 id="document-highlight-on-hover-showing-symbol-usages">Document highlight on hover showing symbol usages<a class="headerlink" href="#document-highlight-on-hover-showing-symbol-usages" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/document-highlight.gif" /></p>
+<h3 id="documentation-and-clojuredocs-integration">Documentation and clojuredocs integration<a class="headerlink" href="#documentation-and-clojuredocs-integration" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/hover-clojuredocs.png" /></p>
+<h3 id="java-support">Java support<a class="headerlink" href="#java-support" title="Permanent link">#</a></h3>
+<p>To understand what is supported and how to configure it, check the <a href="../settings/#java-support">settings section</a>.</p>
+<p><img alt="" src="../images/features/java-find-definition.gif" /></p>
+<h3 id="completion">Completion<a class="headerlink" href="#completion" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/completion.gif" /></p>
+<h4 id="snippets">Snippets<a class="headerlink" href="#snippets" title="Permanent link">#</a></h4>
+<p><a href="https://microsoft.github.io/language-server-protocol/specifications/specification-current/#snippet_syntax">Snippets</a> are templates that make it easier to enter repeating code patterns, such as common functions/forms, they are available during completion. Tabstops are defined as <code>$number</code> with <code>$0</code> as last tabstop.</p>
+<details>
+<summary><strong>Check all available snippets here</strong></summary>
+
+<table>
+<thead>
+    <tr>
+        <th>name</th>
+        <th>description</th>
+        <th>raw content</th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td><code>comment</code></td>
+        <td>Insert comment block</td>
+        <td><code>(comment\n  ${0:body}\n  )</code></td>
+    </tr>
+    <tr>
+        <td><code>comment-heading</code></td>
+        <td>Insert comment Header</td>
+        <td><code>;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n;; ${1:Namespace summary title}\n;;\n;; ${2:Brief description}\n;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n\n$0</code></td>
+    </tr>
+    <tr>
+        <td><code>comment-separator</code></td>
+        <td>Insert comment separator</td>
+        <td><code> ;; ${1:Namespace summary title}\n;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;\n\n$0</code></td>
+    </tr>
+    <tr>
+        <td><code>rich-comment</code></td>
+        <td>Insert rich comment</td>
+        <td>
+<code>
+(comment
+  $0
+#_())
+</code></td>
+    </tr>
+    <tr>
+        <td><code>rich-comment-rdd</code></td>
+        <td>Insert rich comment rdd block</td>
+        <td>
+<code>#_{:clj-kondo/ignore [:redefined-var]}\n(comment\n $0 #_())</code></td>
+    </tr>
+    <tr>
+        <td><code>rich-comment-hotload</code></td>
+        <td>Insert rich comment library hotload</td>
+        <td>
+<code>#_{:clj-kondo/ignore [:redefined-var]}\n(comment\n ;; Add-lib library for hot-loading\n (require '[clojure.tools.deps.alpha.repl :refer [add-libs]])\n (add-libs '{${1:domain/library-name} {:mvn/version \"${2:1.0.0}\"}$3})\n $0\n) </code></td>
+    </tr>
+    <tr>
+        <td><code>condp</code></td>
+        <td>Insert condp</td>
+        <td><code>(condp ${1:pred} ${2:expr}\n $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>def</code></td>
+        <td>Insert def</td>
+        <td><code>(def ${1:name} $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>def-</code></td>
+        <td>Insert def private</td>
+        <td><code>(def ^:private ${1:name} $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>def-doc</code></td>
+        <td>Insert def with docstring</td>
+        <td><code>(def ${1:name}\n  \"${2:docstring}\"\n  $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>defmethod</code></td>
+        <td>Insert defmethod</td>
+        <td><code>(defmethod ${1:name} ${2:match}\n [${3:args}]\n $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>defmulti</code></td>
+        <td>Insert defmulti</td>
+        <td><code>(defmulti ${1:name} ${2:dispatch-fn})</code></td>
+    </tr>
+    <tr>
+        <td><code>defn</code></td>
+        <td>Insert public defn</td>
+        <td><code>(defn ${1:name} [$2]\n  $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>defn-doc</code></td>
+        <td>Insert public defn with docstring</td>
+        <td><code>(defn ${1:name}\n  \"${2:docstring}\"\n   [${3:args}]\n  $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>defn-</code></td>
+        <td>Insert private defn</td>
+        <td><code>(defn%s ${1:name} [$2]\n  $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>defprotocol</code></td>
+        <td>Insert defprotocol</td>
+        <td><code>(defprotocol ${1:Name}\n $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>defrecord</code></td>
+        <td>Insert defrecord</td>
+        <td><code>(defrecord ${1:Name} [${2:fields}]\n ${3:Protocol}\n $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>deftype</code></td>
+        <td>Insert deftype</td>
+        <td><code>(deftype ${1:Name} [${2:fields}]\n ${3:Protocol}\n $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>fn</code></td>
+        <td>Insert fn</td>
+        <td><code>(fn [${1:arg-list}] $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>for</code></td>
+        <td>Insert for</td>
+        <td><code>(for [${1:item} ${2:coll}]\n  $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>if</code></td>
+        <td>Insert if</td>
+        <td><code>(if ${1:test-expr}\n ${2:then-expr}\n ${3:else-expr})</code></td>
+    </tr>
+    <tr>
+        <td><code>kwargs</code></td>
+        <td>Insert keyword args</td>
+        <td><code>{:keys [${1:keys}] :or {${2:defaults}}}</code></td>
+    </tr>
+    <tr>
+        <td><code>let</code></td>
+        <td>Insert let</td>
+        <td><code>(let [$0])</code></td>
+    </tr>
+    <tr>
+        <td><code>letfn</code></td>
+        <td>Insert letfn</td>
+        <td><code>(letfn [(${1:name} [${2:args}]\n $0)])</code></td>
+    </tr>
+    <tr>
+        <td><code>ns</code></td>
+        <td>Insert ns</td>
+        <td><code>(ns ${1:name}\n  $0:references})</code></td>
+    </tr>
+    <tr>
+        <td><code>ns-doc</code></td>
+        <td>Insert ns with docstring</td>
+        <td><code>(ns ${1:name}\n  \"${2:docstring}\"\n  ${0:references})</code></td>
+    </tr>
+    <tr>
+        <td><code>require</code></td>
+        <td>Insert ns :require</td>
+        <td><code>(:require [${1:namespace}])$0</code></td>
+    </tr>
+    <tr>
+        <td><code>require-as</code></td>
+        <td>Insert ns require with :as alias</td>
+        <td><code>(:require [${1:namespace} :as ${2:alias}]$3)</code></td>
+    </tr>
+    <tr>
+        <td><code>require-refer</code></td>
+        <td>Insert ns :require with :refer</td>
+        <td><code>(:require [${1:namespace} :refer [$2]]$3)</code></td>
+    </tr>
+    <tr>
+        <td><code>require-rdd</code></td>
+        <td>Insert require for rich comment experiments</td>
+        <td><code>(require '[${1:namespace} :as ${2:alias}]$3)$0</code></td>
+    </tr>
+    <tr>
+        <td><code>req-as</code></td>
+        <td>Insert single require dep :as alias</td>
+        <td><code>[${1:namespace} :as ${2:alias}]</code></td>
+    </tr>
+    <tr>
+        <td><code>req-refer</code></td>
+        <td>Insert single require dep with :refer</td>
+        <td><code>[${1:namespace} :refer [$2]]</code></td>
+    </tr>
+    <tr>
+        <td><code>import</code></td>
+        <td>Insert import</td>
+        <td><code>(:import [${1:package}])</code></td>
+    </tr>
+    <tr>
+        <td><code>use</code></td>
+        <td>Insert require refer preferred over use</td>
+        <td><code>(:require [${1:namespace} :refer [$2]])</code></td>
+    </tr>
+    <tr>
+        <td><code>deps-alias</code></td>
+        <td>Insert alias with extra path & deps</td>
+        <td>
+<code>:${1:category/name}\n {:extra-paths [\"${2:path}\"]\n :extra-deps {${3:deps-maven or deps-git}}}$0</code></td>
+    </tr>
+    <tr>
+        <td><code>deps-maven</code></td>
+        <td>Insert maven dependency</td>
+        <td><code>${1:domain/library-name} {:mvn/version \"${2:1.0.0}\"}$0</code></td>
+    </tr>
+    <tr>
+        <td><code>deps-git</code></td>
+        <td>Insert git dependency</td>
+        <td>
+<code>${1:domain/library-name}\n {:git/sha \"${2:git-sha-value}\"}$0 </code></td>
+    </tr>
+    <tr>
+        <td><code>deps-git-tag</code></td>
+        <td>Insert git tag dependency</td>
+        <td>
+<code>${1:domain/library-name}\n {:git/tag \"${2:git-tag-value}\"\n :git/sha \"${3:git-sha-value}\"}$0</code></td>
+    </tr>
+    <tr>
+        <td><code>deps-git-url</code></td>
+        <td>Insert git URL dependency</td>
+        <td>
+<code>${1:domain/library-name}\n {:git/url \"https://github.com/$1\"\n :git/sha \"${2:git-sha-value}\"}$0</code></td>
+    </tr>
+    <tr>
+        <td><code>deps-local</code></td>
+        <td>Insert local dependency</td>
+        <td>
+<code> ${1:domain/library-name} {:local/root \"${2:/path/to/project/root}\"}$0 </code></td>
+    </tr>
+    <tr>
+        <td><code>deftest</code></td>
+        <td>Insert deftest clojure.test</td>
+        <td>
+<code>(deftest ${1:name}-test\n  (testing \"${2:Context of the test assertions}\"\n  (is (= ${3:assertion-values}))$4)) $0</code></td>
+    </tr>
+    <tr>
+        <td><code>testing</code></td>
+        <td>Insert testing clojure.test</td>
+        <td>
+<code>(testing \"${1:Context of the test assertions}\"\n  $0)</code></td>
+    </tr>
+    <tr>
+        <td><code>is</code></td>
+        <td>Insert is clojure.test</td>
+        <td><code>(is (= ${1:assertion-values}))</code></td>
+    </tr>
+</tbody>
+</table>
+
+</details>
+
+<h5 id="custom-snippets">Custom snippets<a class="headerlink" href="#custom-snippets" title="Permanent link">#</a></h5>
+<p>User can register additional custom snippets. For more information, check the <a href="../settings/#snippets">snippets config documentation</a>.</p>
+<h3 id="code-actions">Code actions<a class="headerlink" href="#code-actions" title="Permanent link">#</a></h3>
+<p>See <a href="#clojure-lsp-extra-commands">below</a> for screenshots.</p>
+<h3 id="code-lenses-showing-symbol-references">Code lenses showing symbol references<a class="headerlink" href="#code-lenses-showing-symbol-references" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/code-lens.png" /></p>
+<h3 id="format-a-whole-file-or-range">Format a whole file or range<a class="headerlink" href="#format-a-whole-file-or-range" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/format-buffer.gif" /></p>
+<h3 id="signature-help">Signature help<a class="headerlink" href="#signature-help" title="Permanent link">#</a></h3>
+<p><img alt="" src="../images/features/signature-help.gif" /></p>
+<h3 id="semantic-tokens">Semantic tokens<a class="headerlink" href="#semantic-tokens" title="Permanent link">#</a></h3>
+<p>The LSP server is the best to say what is the semantic value of a token on the editor, semantic tokens allows server return to client all tokens of a buffer and how client show apply highlight.</p>
+<p>Note: server return the semantic token (e.g. <code>function</code>) and the client/editor apply the color that matches the user's theme.</p>
+<p><img alt="" src="../images/features/semantic-tokens.png" /></p>
+<h3 id="call-hierarchy">Call hierarchy<a class="headerlink" href="#call-hierarchy" title="Permanent link">#</a></h3>
+<p>Show the incoming or outgoing call hierarchy of a function/variable as a lazy tree</p>
+<h5 id="incoming">Incoming<a class="headerlink" href="#incoming" title="Permanent link">#</a></h5>
+<p>Show functions that call the current one recursively</p>
+<p><img alt="" src="../images/features/call-hierarchy-incoming.png" /></p>
+<h5 id="outgoing">Outgoing<a class="headerlink" href="#outgoing" title="Permanent link">#</a></h5>
+<p>Show functions that the current one call, recursively</p>
+<p><img alt="" src="../images/features/call-hierarchy-outgoing.png" /></p>
+<h3 id="test-tree">Test Tree<a class="headerlink" href="#test-tree" title="Permanent link">#</a></h3>
+<p>Show the tests tree hierarchy of a file</p>
+<p><img alt="" src="../images/features/test-tree.png" /></p>
+<h3 id="diagnostics-linter">Diagnostics (linter)<a class="headerlink" href="#diagnostics-linter" title="Permanent link">#</a></h3>
+<p>All linters besides the ones below come from <a href="https://github.com/clj-kondo/clj-kondo">clj-kondo</a> that clojure-lsp calls under the hood to lint the code and retrieve the analysis to
+make most of features work.</p>
+<p>Every linter configuration should be done on clj-kondo side, so anything related to unresolved symbols or unknown macros are probably related to wrong clj-kondo for the project. For more information on how to configure clj-kondo check <a href="https://github.com/clj-kondo/clj-kondo/blob/master/doc/config.md#unrecognized-macros">here</a>.</p>
+<p>Below you can find the custom linters implemented on clojure-lsp side that uses the <code>:custom-lint-fn</code> from clj-kondo:</p>
+<h4 id="clojure-lspunused-public-var">clojure-lsp/unused-public-var<a class="headerlink" href="#clojure-lspunused-public-var" title="Permanent link">#</a></h4>
+<p><img alt="" src="../images/features/unused-public-var.png" /></p>
+<p>For more information on how to configure it, check the <a href="../settings/#diagnostics-linter">diagnostics settings section</a>.</p>
+<h4 id="clj-depend">clj-depend<a class="headerlink" href="#clj-depend" title="Permanent link">#</a></h4>
+<p>Clojure-lsp has a optional integration with <a href="https://github.com/clj-depend/clj-depend">clj-depend</a>, making it easier to configure namespaces relationship.</p>
+<p>For more information on how to configure it, check the <a href="../settings/#diagnostics-linter">diagnostics settings section</a>.</p>
+<h3 id="stub-generation">Stub generation<a class="headerlink" href="#stub-generation" title="Permanent link">#</a></h3>
+<p>It's possible to configure clojure-lsp to generate and analyze stubs for specific namespaces available on your project classpath, this is useful for closed source dependencies like <code>datomic.api</code>, with that clojure-lsp will be able to make most features work with those dependencies.
+For more information check the <a href="../settings/#stub-generation">stubs settings section</a>.</p>
+<h3 id="execute-command">Execute command<a class="headerlink" href="#execute-command" title="Permanent link">#</a></h3>
+<p>Commands that client can request. Most code actions use these commands as actions.</p>
+<h2 id="clojure-lsp-extra-commands">clojure-lsp extra commands<a class="headerlink" href="#clojure-lsp-extra-commands" title="Permanent link">#</a></h2>
+<p><strong>Note: Most of these are available via code actions and clients or users may choose to use the code action menu to execute them instead of mapping.</strong></p>
+<p>All functions in clojure-lsp have a two-letter mnemonic shortcut. E.g. <code>tf</code> for <code>thread-first-all</code>. We <strong>strongly</strong> suggest that client authors and users use these shortcuts keys when choosing to map these commands to key chords or menus; this allows for users to maintain muscle memory and familiarity as they switch between clients and editors. Thank you to <a href="https://github.com/clojure-emacs/clj-refactor.el#usage">clj-refactor</a> for this system and other tools that adhere to it.</p>
+<p>LSP clients will allow you to bind these commands to shortcuts or menu items using LSP's <code>workspace/executeCommand</code> and passing a map with <code>"command"</code> and <code>"arguments"</code> keys.</p>
+<p>Arguments:
+- <code>file-uri</code>: Absolute file uri. e.x. <code>file:///home/user/project/src/main.clj</code>
+- <code>row</code>: line-number of the cursor, 0 based.
+- <code>col</code>: col-number of the cursor, 0 based.
+- <code>name</code>: Used when introducing a name, usually a string for a valid clojure symbol.
+- <code>filename</code>: Filename path. e.x. <code>src/utils.clj</code></p>
+<table>
+<thead>
+<tr>
+<th>Shortcut</th>
+<th>Command</th>
+<th>Name</th>
+<th>Arguments</th>
+<th>Available via code action</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ab</td>
+<td>drag-param-backward</td>
+<td>Drag param backward</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/drag-param.gif"><img alt="Screen recording of Drag param forward and backward" src="../images/features/drag-param.gif" /></a></td>
+</tr>
+<tr>
+<td>af</td>
+<td>drag-param-forward</td>
+<td>Drag param forward</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/drag-param.gif"><img alt="Screen recording of Drag param forward and backward" src="../images/features/drag-param.gif" /></a></td>
+</tr>
+<tr>
+<td>ai</td>
+<td>add-missing-import</td>
+<td>Add import to namespace</td>
+<td><code>[file-uri,row,col[,name]]</code></td>
+<td>✅</td>
+<td><a href="../images/features/add-common-import.gif"><img alt="Screen recording of Add import to namespace" src="../images/features/add-common-import.gif" /></a></td>
+</tr>
+<tr>
+<td>am</td>
+<td>add-missing-libspec</td>
+<td>Add missing require</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/add-missing-require.gif"><img alt="Screen recording of Add missing require" src="../images/features/add-missing-require.gif" /></a></td>
+</tr>
+<tr>
+<td>as</td>
+<td>add-require-suggestion</td>
+<td>Add require suggestion</td>
+<td><code>[file-uri,row,col,ns,alias,refer]</code></td>
+<td>✅</td>
+<td><a href="../images/features/add-alias-suggestion.gif"><img alt="Screen recording of Add require suggestion" src="../images/features/add-alias-suggestion.gif" /></a></td>
+</tr>
+<tr>
+<td>cc</td>
+<td>cycle-coll</td>
+<td>Cycle collection <code>(#{}, {}, [], ())</code></td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td>ck</td>
+<td>cycle-keyword-auto-resolve</td>
+<td>Cycle keyword auto-resolve</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/cycle-keyword-auto-resolve.gif"><img alt="Screen recording of Cycle keyword auto resolve" src="../images/features/cycle-keyword-auto-resolve.gif" /></a></td>
+</tr>
+<tr>
+<td>cn</td>
+<td>clean-ns</td>
+<td>Clean namespace</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/clean-ns.gif"><img alt="Screen recording of Clean namespace" src="../images/features/clean-ns.gif" /></a></td>
+</tr>
+<tr>
+<td>cp</td>
+<td>cycle-privacy</td>
+<td>Cycle privacy of def/defn</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td>ct</td>
+<td>create-test</td>
+<td>Create test</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td>df</td>
+<td>demote-fn</td>
+<td>Demote fn to #()</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/demote-fn.gif"><img alt="Screen recording of Promote fn to defn" src="../images/features/demote-fn.gif" /></a></td>
+</tr>
+<tr>
+<td>db</td>
+<td>drag-backward</td>
+<td>Drag backward</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/drag.gif"><img alt="Screen recording of Drag forward and backward" src="../images/features/drag.gif" /></a></td>
+</tr>
+<tr>
+<td>df</td>
+<td>drag-forward</td>
+<td>Drag forward</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/drag.gif"><img alt="Screen recording of Drag forward and backward" src="../images/features/drag.gif" /></a></td>
+</tr>
+<tr>
+<td>dk</td>
+<td>destructure-keys</td>
+<td>Destructure keys</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/destructure-keys.gif"><img alt="Screen recording of Destructure keys" src="../images/features/destructure-keys.gif" /></a></td>
+</tr>
+<tr>
+<td>ed</td>
+<td>extract-to-def</td>
+<td>Extract to def</td>
+<td><code>[file-uri,row,col,name]</code></td>
+<td>✅</td>
+<td><a href="../images/features/extract-to-def.gif"><img alt="Screen recording of Extract to def" src="../images/features/extract-to-def.gif" /></a></td>
+</tr>
+<tr>
+<td>ef</td>
+<td>extract-function</td>
+<td>Extract function</td>
+<td><code>[file-uri,row,col,name]</code></td>
+<td>✅</td>
+<td><a href="../images/features/extract-function.gif"><img alt="Screen recording of Extract function" src="../images/features/extract-function.gif" /></a></td>
+</tr>
+<tr>
+<td>el</td>
+<td>expand-let</td>
+<td>Expand let</td>
+<td><code>[file-uri,row,col]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>fe</td>
+<td>create-function</td>
+<td>Create function from example</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/create-private-function.gif"><img alt="Screen recording of Create function from example" src="../images/features/create-private-function.gif" /></a></td>
+</tr>
+<tr>
+<td>ga</td>
+<td>get-in-all</td>
+<td>Move all expressions to get/get-in</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/thread-get.gif"><img alt="Screen recording of Threading get" src="../images/features/thread-get.gif" /></a></td>
+</tr>
+<tr>
+<td>gl</td>
+<td>get-in-less</td>
+<td>Remove one element from get/get-in</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/thread-get.gif"><img alt="Screen recording of Threading get" src="../images/features/thread-get.gif" /></a></td>
+</tr>
+<tr>
+<td>gm</td>
+<td>get-in-more</td>
+<td>Move another expression to get/get-in</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/thread-get.gif"><img alt="Screen recording of Threading get" src="../images/features/thread-get.gif" /></a></td>
+</tr>
+<tr>
+<td>gn</td>
+<td>get-in-none</td>
+<td>Unwind whole get/get-in</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/thread-get.gif"><img alt="Screen recording of Threading get" src="../images/features/thread-get.gif" /></a></td>
+</tr>
+<tr>
+<td>il</td>
+<td>introduce-let</td>
+<td>Introduce let</td>
+<td><code>[file-uri,row,col,name]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>is</td>
+<td>inline-symbol</td>
+<td>Inline Symbol</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/inline-symbol.gif"><img alt="Screen recording of Inline symbol" src="../images/features/inline-symbol.gif" /></a></td>
+</tr>
+<tr>
+<td>ma</td>
+<td>resolve-macro-as</td>
+<td>Resolve macro as</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/resolve-macro-as.gif"><img alt="Screen recording of Resolve macro as" src="../images/features/resolve-macro-as.gif" /></a></td>
+</tr>
+<tr>
+<td>mf</td>
+<td>move-form</td>
+<td>Move form</td>
+<td><code>[file-uri,row,col,filename]</code></td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td>ml</td>
+<td>move-to-let</td>
+<td>Move expression to let</td>
+<td><code>[file-uri,row,col,name]</code></td>
+<td>✅</td>
+<td><a href="../images/features/move-to-let.gif"><img alt="Screen recording of Move expression to let" src="../images/features/move-to-let.gif" /></a></td>
+</tr>
+<tr>
+<td>pf</td>
+<td>promote-fn</td>
+<td>Promote #() to fn, or fn to defn</td>
+<td><code>[file-uri,row,col,fn-name]</code></td>
+<td>✅</td>
+<td><a href="../images/features/promote-fn.gif"><img alt="Screen recording of Promote fn to defn" src="../images/features/promote-fn.gif" /></a></td>
+</tr>
+<tr>
+<td>rr</td>
+<td>replace-refer-all-with-refer</td>
+<td>Replace ':refer :all' with ':refer [...]'</td>
+<td><code>[file-uri,row,col,refers]</code></td>
+<td>✅</td>
+<td><a href="../images/features/replace-refer-all-with-refer.gif"><img alt="Screen recording of Replace refer all with refer" src="../images/features/replace-refer-all-with-refer.gif" /></a></td>
+</tr>
+<tr>
+<td>ra</td>
+<td>replace-refer-all-with-alias</td>
+<td>Replace ':refer :all' with alias</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/replace-refer-all-with-alias.gif"><img alt="Screen recording of Replace refer all with alias" src="../images/features/replace-refer-all-with-alias.gif" /></a></td>
+</tr>
+<tr>
+<td>rk</td>
+<td>restructure-keys</td>
+<td>Restructure keys</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/restructure-keys.gif"><img alt="Screen recording of Restructure keys" src="../images/features/restructure-keys.gif" /></a></td>
+</tr>
+<tr>
+<td>sc</td>
+<td>change-coll</td>
+<td>Switch collection to <code>{}, (), #{}, []</code></td>
+<td><code>[file-uri,row,col,"map"/"list"/"set"/"vector"]</code></td>
+<td>✅</td>
+<td><a href="../images/features/change-coll.gif"><img alt="Screen recording of Switch collection" src="../images/features/change-coll.gif" /></a></td>
+</tr>
+<tr>
+<td>sl</td>
+<td>sort-clauses</td>
+<td>Sort map/vector/list/set/clauses</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/sort-clauses.gif"><img alt="Screen recording of Sort clauses" src="../images/features/sort-clauses.gif" /></a></td>
+</tr>
+<tr>
+<td>tf</td>
+<td>thread-first-all</td>
+<td>Thread first all</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td><a href="../images/features/thread-first-all.gif"><img alt="Screen recording of Thread first all" src="../images/features/thread-first-all.gif" /></a></td>
+</tr>
+<tr>
+<td>th</td>
+<td>thread-first</td>
+<td>Thread first expression</td>
+<td><code>[file-uri,row,col]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tl</td>
+<td>thread-last-all</td>
+<td>Thread last all</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td>tt</td>
+<td>thread-last</td>
+<td>Thread last expression</td>
+<td><code>[file-uri,row,col]</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ua</td>
+<td>unwind-all</td>
+<td>Unwind whole thread</td>
+<td><code>[file-uri,row,col]</code></td>
+<td>✅</td>
+<td></td>
+</tr>
+<tr>
+<td>uw</td>
+<td>unwind-thread</td>
+<td>Unwind thread once</td>
+<td><code>[file-uri,row,col]</code></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="dev">Dev<a class="headerlink" href="#dev" title="Permanent link">#</a></h2>
+<h5 id="server-information">Server information<a class="headerlink" href="#server-information" title="Permanent link">#</a></h5>
+<p>Return basic information about the server.</p>
+<h5 id="cursor-information">Cursor information<a class="headerlink" href="#cursor-information" title="Permanent link">#</a></h5>
+<p>Return debug information about the element at point.</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 1, 2023</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../capabilities/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Capabilities
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../installation/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Installation
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/clojure-lsp/clojure-lsp" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://clojurians.slack.com/archives/CPABC1H61" target="_blank" rel="noopener" title="clojurians.slack.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1c0-25.9 21.16-47.06 47.06-47.06h47.06v47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V315.1zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06H164.9zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06H164.9zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06h-47.06V196.9zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06V196.9zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06v-47.06h47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06 0-25.9 21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06H283.1z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

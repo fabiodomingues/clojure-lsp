@@ -1,0 +1,1062 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Language Server Protocol Implementation for Clojure">
+      
+      
+      
+      
+        <link rel="canonical" href="https://clojure-lsp.io/development/">
+      
+      <link rel="shortcut icon" href="../images/logo-light.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+    
+    
+      
+        <title>Development - Clojure LSP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.75751829.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/layout.css">
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-189476519-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#clojure-lsp-development" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://clojure-lsp.io" title="Clojure LSP" class="md-header-nav__button md-logo" aria-label="Clojure LSP">
+      
+  <img src="../images/logo-light.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Clojure LSP
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Development
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/clojure-lsp/clojure-lsp/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clojure-lsp/clojure-lsp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link md-tabs__link--active">
+        Home
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../features/" class="md-tabs__link">
+      Features
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../installation/" class="md-tabs__link">
+      Installation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/what-is-it/" class="md-tabs__link">
+        Outside editor (API)
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="https://github.com/sponsors/clojure-lsp" class="md-tabs__link">
+      Support Us
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../CHANGELOG/" class="md-tabs__link">
+      Changelog
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://clojure-lsp.io" title="Clojure LSP" class="md-nav__button md-logo" aria-label="Clojure LSP">
+      
+  <img src="../images/logo-light.svg" alt="logo">
+
+    </a>
+    Clojure LSP
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/clojure-lsp/clojure-lsp/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clojure-lsp/clojure-lsp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" checked>
+    
+    <label class="md-nav__link" for="nav-1">
+      Home
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Home" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon"></span>
+        Home
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../settings/" class="md-nav__link">
+      Settings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../clients/" class="md-nav__link">
+      Clients (Editors)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../building/" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Development
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Development
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-clojure-way" class="md-nav__link">
+    The Clojure Way
+  </a>
+  
+    <nav class="md-nav" aria-label="The Clojure Way">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visual-studio-code-with-calva" class="md-nav__link">
+    Visual Studio Code with Calva
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emacs-with-cider" class="md-nav__link">
+    Emacs with CIDER
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vim-with-cocnvim-and-fireplace" class="md-nav__link">
+    Vim with coc.nvim and Fireplace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neovim-with-conjure" class="md-nav__link">
+    Neovim with Conjure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#your-favorite-editor" class="md-nav__link">
+    Your Favorite Editor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-profiling" class="md-nav__link">
+    Debugging &amp; Profiling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    Testing
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-tests" class="md-nav__link">
+    Writing tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../troubleshooting/" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../capabilities/" class="md-nav__link">
+      Capabilities
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../features/" class="md-nav__link">
+      Features
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
+      Outside editor (API)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Outside editor (API)" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Outside editor (API)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/what-is-it/" class="md-nav__link">
+      What is clojure-lsp API?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/api/" class="md-nav__link">
+      API (JVM)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/cli/" class="md-nav__link">
+      CLI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/ci/" class="md-nav__link">
+      CI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/lein-plugin/" class="md-nav__link">
+      Lein plugin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/bb-pod/" class="md-nav__link">
+      Babashka pod
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/sponsors/clojure-lsp" class="md-nav__link">
+      Support Us
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../CHANGELOG/" class="md-nav__link">
+      Changelog
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#the-clojure-way" class="md-nav__link">
+    The Clojure Way
+  </a>
+  
+    <nav class="md-nav" aria-label="The Clojure Way">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visual-studio-code-with-calva" class="md-nav__link">
+    Visual Studio Code with Calva
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#emacs-with-cider" class="md-nav__link">
+    Emacs with CIDER
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vim-with-cocnvim-and-fireplace" class="md-nav__link">
+    Vim with coc.nvim and Fireplace
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neovim-with-conjure" class="md-nav__link">
+    Neovim with Conjure
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#your-favorite-editor" class="md-nav__link">
+    Your Favorite Editor
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debugging-profiling" class="md-nav__link">
+    Debugging &amp; Profiling
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#testing" class="md-nav__link">
+    Testing
+  </a>
+  
+    <nav class="md-nav" aria-label="Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#writing-tests" class="md-nav__link">
+    Writing tests
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/clojure-lsp/clojure-lsp/edit/master/docs/development.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="clojure-lsp-development">clojure-lsp Development<a class="headerlink" href="#clojure-lsp-development" title="Permanent link">#</a></h1>
+<p>There are several ways of finding and fixing a bug or implementing a new feature:</p>
+<ul>
+<li><a href="#the-clojure-way">The Clojure Way</a></li>
+<li>Create a test for your bug/feature, then implement the code following the test (TDD).</li>
+<li>Build <code>clojure-lsp[.bat]</code> using <code>bb debug-cli</code> each time you have made changes, and test it manually in your client. This is the slowest option.</li>
+</ul>
+<p>Whichever development path you choose: For final testing, it is good to rebuild the binary with <code>bb debug-cli</code>.</p>
+<p>There are two custom LSP methods <code>clojure/serverInfo/log</code> and <code>clojure/cursorInfo/log</code>. They can assist in debugging.</p>
+<h2 id="the-clojure-way">The Clojure Way<a class="headerlink" href="#the-clojure-way" title="Permanent link">#</a></h2>
+<p>With a <strong>clojure-lsp + <a href="https://nrepl.org">nREPL</a></strong> powered Clojure editor you can modify your editor session's clojure-lsp server using the Clojure REPL.</p>
+<p>Here's demo video: https://www.youtube.com/watch?v=4UvT0yqBDw8</p>
+<p>These are the steps:</p>
+<ol>
+<li><code>bb debug-cli</code> - to build a <code>clojure-lsp[.bat]</code> executable that includes cider-nrepl in the jar. This executable will be saved at the root of the project.</li>
+<li>Configure your editor to use this <code>clojure-lsp[.bat]</code> executable</li>
+<li>Have your editor restart its clojure-lsp server</li>
+<li>Issue the clojure-lsp <code>serverInfo</code> command</li>
+<li>Find the <code>port</code> entry in the output</li>
+<li>Connect your editors nREPL client to this port</li>
+<li>Hack away!</li>
+</ol>
+<p><strong>Seeing is believing.</strong> An easy way to convince yourself that you can actually change clojure-lsp mid-flight is to:</p>
+<ol>
+<li>Modify the <code>server-info</code> function in <code>src/clojure_lsp/handlers.clj</code><ul>
+<li>Say, you add a <code>:foo :bar</code> entry to the map returned</li>
+</ul>
+</li>
+<li>Evaluate the new <code>server-info</code> function definition</li>
+<li>Issue the clojure-lsp <code>serverInfo</code> command</li>
+<li>Find <code>:foo :bar</code> in the output</li>
+</ol>
+<p>You have just modified the LSP server powering your editor while it was running! This is the Clojure way. No recompiling and restarting and reloading. That is some other, non-Clojure, way.</p>
+<p>The details in how to perform these steps can vary a bit between the various Clojure editors/plugins.</p>
+<h3 id="visual-studio-code-with-calva">Visual Studio Code with Calva<a class="headerlink" href="#visual-studio-code-with-calva" title="Permanent link">#</a></h3>
+<ul>
+<li>
+<p>This project comes with <a href="https://calva.io">Calva</a> configuration to use the <code>clojure-lsp[.bat]</code> executable built in step 1 above. You can skip step 2, unless are running on MS-Widnows, in which case you should update the setting in <code>.vscode/settings.json</code> to add the <code>.bat</code> extension, i.e. <code>"calva.clojureLspPath": "./clojure-lsp.bat"</code>.</p>
+</li>
+<li>
+<p>To restart the clojure-lsp server, use the VS Code command <strong>Developer: Reload Window</strong></p>
+</li>
+<li>The <strong>Hack away!</strong> step needs to start with you issuing the command <strong>Calva: Load Current File and Dependencies</strong>.</li>
+</ul>
+<h3 id="emacs-with-cider">Emacs with CIDER<a class="headerlink" href="#emacs-with-cider" title="Permanent link">#</a></h3>
+<ul>
+<li>To configure Emacs to use the nREPL-enabled executable, run <code>(setq lsp-clojure-custom-server-command '("~/path/to/clojure-lsp/clojure-lsp"))</code>, adjusting the path as necessary. If you add this to your Emacs config, you can skip this step in the future.</li>
+<li>To restart the clojure-lsp server, execute the Emacs command <code>lsp-workspace-restart</code>.</li>
+<li>To find the server info, execute <code>lsp-clojure-server-info</code>.</li>
+<li>To connect the nREPL client, run <code>cider-connect-clj</code>, with "localhost" and the port.</li>
+</ul>
+<p>If you re-connect regulary, you may want to add this Emacs shortcut:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">lsp-clojure-nrepl-connect</span> <span class="p">()</span>
+  <span class="s">&quot;Connect to the running nrepl debug server of clojure-lsp.&quot;</span>
+  <span class="p">(</span><span class="k">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">info</span> <span class="p">(</span><span class="nv">lsp-clojure-server-info-raw</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nb">save-match-data</span>
+      <span class="p">(</span><span class="nv">when-let</span> <span class="p">(</span><span class="nv">port</span> <span class="p">(</span><span class="k">and</span> <span class="p">(</span><span class="nf">string-match</span> <span class="s">&quot;\&quot;port\&quot;:\\([0-9]+\\)&quot;</span> <span class="nv">info</span><span class="p">)</span>
+                           <span class="p">(</span><span class="nv">match-string</span> <span class="mi">1</span> <span class="nv">info</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nv">cider-connect-clj</span> <span class="o">`</span><span class="p">(</span><span class="nb">:host</span> <span class="s">&quot;localhost&quot;</span>
+                             <span class="nb">:port</span> <span class="o">,</span><span class="nv">port</span><span class="p">))))))</span>
+</code></pre></div>
+<h3 id="vim-with-cocnvim-and-fireplace">Vim with coc.nvim and Fireplace<a class="headerlink" href="#vim-with-cocnvim-and-fireplace" title="Permanent link">#</a></h3>
+<ul>
+<li>Change <code>coc-settings.json</code> (<code>:CocConfig</code>) <code>clojure-lsp: {command: "~/path/to/clojure-lsp/clojure-lsp"}</code>, adjusting the past as necessary.</li>
+<li>To restart the clojure-lsp server use <code>:CocRestart</code></li>
+<li>To find the server info, <code>:echo CocRequest('clojure-lsp', 'clojure/serverInfo/raw')['port']</code></li>
+<li>To find the server log, <code>:echo CocRequest('clojure-lsp', 'clojure/serverInfo/raw')['log-path']</code></li>
+<li>To connect the nREPL client, run <code>:Connect &lt;port&gt;</code></li>
+</ul>
+<p>If you re-connect regulary, you may want to add something like this to your vimrc:</p>
+<div class="highlight"><pre><span></span><code>&quot; Copies the log-path to your clipboard
+nnoremap &lt;silent&gt; crsl :call setreg(&#39;*&#39;, CocRequest(&#39;clojure-lsp&#39;, &#39;clojure/serverInfo/raw&#39;)[&#39;log-path&#39;])&lt;CR&gt;
+&quot; Connects to nrepl
+nnoremap &lt;silent&gt; crsp :execute &#39;Connect&#39; CocRequest(&#39;clojure-lsp&#39;, &#39;clojure/serverInfo/raw&#39;)[&#39;port&#39;]&lt;CR&gt;
+</code></pre></div>
+<h3 id="neovim-with-conjure">Neovim with Conjure<a class="headerlink" href="#neovim-with-conjure" title="Permanent link">#</a></h3>
+<ul>
+<li>Change the lsp <a href="https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#clojure_lsp">config</a> <code>cmd</code> to "~/path/to/clojure-lsp/clojure-lsp", adjusting the path as necessary.</li>
+<li>To <a href="https://neovim.io/doc/user/lsp.html#lsp-faq">restart</a> the LSP:</li>
+<li>To stop the clojure-lsp server, use <code>:lua vim.lsp.stop_client(vim.lsp.get_active_clients())</code></li>
+<li>To start the clojure-lsp server, use <code>:edit</code></li>
+<li>To find the server info or the log file, use <code>:lua clients = vim.lsp.get_active_clients() for k, client_data in ipairs(clients) do id = client_data.id end client = vim.lsp.get_client_by_id(id) result = client.request_sync("clojure/serverInfo/raw", {}, 5000, 15) print('port = ' .. result.result.port) print('log-path = ' .. result.result['log-path'])</code></li>
+<li>To connect the nREPL client, run <code>:ConjureConnect &lt;port&gt;</code></li>
+</ul>
+<h3 id="your-favorite-editor">Your Favorite Editor<a class="headerlink" href="#your-favorite-editor" title="Permanent link">#</a></h3>
+<p>TBD. PR welcome.</p>
+<h2 id="debugging-profiling">Debugging &amp; Profiling<a class="headerlink" href="#debugging-profiling" title="Permanent link">#</a></h2>
+<p>The nREPL includes tools for debugging and profiling clojure-lsp. See <code>cli/dev/clojure_lsp/debug.clj</code>.</p>
+<p>If you're interested in using the profiling tools in that file, you'll need to be familiar with <a href="https://github.com/hugoduncan/criterium">criterium</a> and <a href="http://clojure-goes-fast.com/blog/profiling-tool-async-profiler/">clj-async-profiler</a>.</p>
+<p>Note that the performance of clojure-lsp is highly dependent on the size of its db. If you load a repl with <code>-A:build</code>, you'll have access to the debugging tools, but the db will be nearly empty. Follow the [steps][#the-clojure-way] above to connect to an nREPL which has a populated db.</p>
+<h2 id="testing">Testing<a class="headerlink" href="#testing" title="Permanent link">#</a></h2>
+<p>Run <code>bb tasks</code> for a list of available dev tasks.</p>
+<p>The codebase consists of the <code>lib/</code> library and the <code>cli/</code> program which depends on it.</p>
+<ol>
+<li><code>bb test-lib</code>,</li>
+<li><code>bb test-cli</code>, and</li>
+<li><code>bb test</code> (for both of the above).</li>
+</ol>
+<p><code>cli/</code> produces a standalone <code>.jar</code> file that can be converted to a self contained <code>clojure-lsp[.bat]</code> script or a <code>clojure-lsp[.exe]</code> binary executable file.</p>
+<ol>
+<li><code>bb prod-jar</code> -&gt; <code>cli\</code> standalone jar,</li>
+<li><code>bb prod-cli</code> -&gt; executable script with embedded <code>cli/</code> jar,</li>
+<li><code>bb debug-cli</code> -&gt; same as <code>prod-cli</code> but includes support for <code>cider-nrepl</code> and <code>clj-async-profile</code>, and</li>
+<li><code>bb native-cli</code> -&gt; binary executable produced with <code>graalvm</code>.</li>
+</ol>
+<p>There are also <code>cli/</code> integration tests. They require <code>./clojure[.bat|.exe]</code> to have already been built with one of the above cli tasks (__NOTE:__always ensure that you rebuild the <code>cli/</code> executable every time you make changes to <code>lib/</code> or <code>cli/</code> source code so tha the integration tests use an up to date executable).</p>
+<ol>
+<li><code>bb integration-tests</code></li>
+</ol>
+<p>The same development version can be used to lint all of the source code.</p>
+<ol>
+<li><code>bb lint</code></li>
+</ol>
+<h3 id="writing-tests">Writing tests<a class="headerlink" href="#writing-tests" title="Permanent link">#</a></h3>
+<p>A test should be able to run on all JDK versions in scope starting with 1.8 and across <code>GNU/Linux</code>, <code>macos</code> and <code>MS-Windows</code> operating systems.</p>
+<p>The test author should be aware of the following important differences between *nix and windows:</p>
+<ol>
+<li>Line endings<ol>
+<li>On *nix: the single Line Feed (LF) char, i.e. <code>\n</code>.</li>
+<li>On windows: the Carriage Return (CR) followed by the LF char (CRLF), i.e. <code>\r\n</code>.</li>
+</ol>
+</li>
+<li>Paths<ol>
+<li>On *nix: Use <code>/</code> as the path separator, absolute paths start with <code>/</code>.</li>
+<li>On windows: use <code>\</code> as the path separator, absolute paths start either with a drive letter followed by <code>:\</code>, i.e. <code>[A-Za-Z]:\</code> (e.g. <code>c:\temp</code> and <code>D:\src</code>) or with a double <code>\\</code> indicating a network path (e.g. <code>\\computer39\temp</code>).</li>
+</ol>
+</li>
+</ol>
+<p>Below are a few <strong>hints</strong> to assist with writing test that work accross the different platforms.</p>
+<ol>
+<li>Line Endings<ol>
+<li>When comparing strings, Use <code>clojure-lsp.test-helper/string=</code> with <code>\n</code> in your expected result.<ol>
+<li>e.g. use <code>(is (h/strings= "one\n" result)</code> instead of <code>(is (= "one\r\n" result))</code> or <code>(is (= "one\n" result))</code>.</li>
+</ol>
+</li>
+<li>Use <code>h/str-includes?</code> with <code>\n</code> in the string to search for instead of <code>clojure.string/includes?</code>.<ol>
+<li>e.g. <code>(is (h/str-includes? (slurp "path") "something\n"))</code> instead of <code>(is (str/includes? (slurp "path") "something\n"))</code> or <code>(is (str/includes? (slurp "path") "something\r\n"))</code>.</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Paths<ol>
+<li>Always use <code>babashka.fs/canonicalize</code> when converting a relative path to an absolute path. Avoiding using any of java File/Path absolute or canonical equivalent fns. This ensures that the drive letter on windows is always in capitals (e.g. <code>D:\</code> instead of <code>d:\</code>). This is also the convention used throughout the codebase and it works as well with both existing and non-existing files.</li>
+<li>Use <code>clojure-lsp.test-helper/file-path</code>, <code>clojure-lsp.test-helper/file-&gt;uri</code> with *nix paths. They are converted to the format expected by the OS.<ol>
+<li>e.g. <code>(load-code (h/file-path "/aaa.clj")  "(ns aaa)")</code> instead of <code>(load-code "/aaa.clj" "(ns aaa)")</code> or <code>(load-code "c:\\aaa.clj" "(ns aaa)")</code></li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 1, 2023</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../building/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Building
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../troubleshooting/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Troubleshooting
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/clojure-lsp/clojure-lsp" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://clojurians.slack.com/archives/CPABC1H61" target="_blank" rel="noopener" title="clojurians.slack.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1c0-25.9 21.16-47.06 47.06-47.06h47.06v47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V315.1zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06H164.9zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06H164.9zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06h-47.06V196.9zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06V196.9zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06v-47.06h47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06 0-25.9 21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06H283.1z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,3693 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Language Server Protocol Implementation for Clojure">
+      
+      
+      
+      
+        <link rel="canonical" href="https://clojure-lsp.io/CHANGELOG/">
+      
+      <link rel="shortcut icon" href="../images/logo-light.svg">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.4">
+    
+    
+      
+        <title>Changelog - Clojure LSP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.15aa0b43.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.75751829.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../stylesheets/layout.css">
+    
+    
+      
+        
+<script>window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)},ga.l=+new Date,ga("create","UA-189476519-1","auto"),ga("set","anonymizeIp",!0),ga("send","pageview"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){if(this.value){var e=document.location.pathname;ga("send","pageview",e+"?q="+this.value)}})}),document.addEventListener("DOMContentSwitch",function(){ga("send","pageview",document.location.pathname)})</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://clojure-lsp.io" title="Clojure LSP" class="md-header-nav__button md-logo" aria-label="Clojure LSP">
+      
+  <img src="../images/logo-light.svg" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Clojure LSP
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/clojure-lsp/clojure-lsp/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clojure-lsp/clojure-lsp
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        Home
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../features/" class="md-tabs__link">
+      Features
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../installation/" class="md-tabs__link">
+      Installation
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/what-is-it/" class="md-tabs__link">
+        Outside editor (API)
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="https://github.com/sponsors/clojure-lsp" class="md-tabs__link">
+      Support Us
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="./" class="md-tabs__link md-tabs__link--active">
+      Changelog
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://clojure-lsp.io" title="Clojure LSP" class="md-nav__button md-logo" aria-label="Clojure LSP">
+      
+  <img src="../images/logo-light.svg" alt="logo">
+
+    </a>
+    Clojure LSP
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/clojure-lsp/clojure-lsp/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    clojure-lsp/clojure-lsp
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+    
+    <label class="md-nav__link" for="nav-1">
+      Home
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Home" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon"></span>
+        Home
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../settings/" class="md-nav__link">
+      Settings
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../clients/" class="md-nav__link">
+      Clients (Editors)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../building/" class="md-nav__link">
+      Building
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../development/" class="md-nav__link">
+      Development
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../troubleshooting/" class="md-nav__link">
+      Troubleshooting
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../capabilities/" class="md-nav__link">
+      Capabilities
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../features/" class="md-nav__link">
+      Features
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="../installation/" class="md-nav__link">
+      Installation
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
+      Outside editor (API)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Outside editor (API)" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Outside editor (API)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/what-is-it/" class="md-nav__link">
+      What is clojure-lsp API?
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/api/" class="md-nav__link">
+      API (JVM)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/cli/" class="md-nav__link">
+      CLI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/ci/" class="md-nav__link">
+      CI
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/lein-plugin/" class="md-nav__link">
+      Lein plugin
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="../api/bb-pod/" class="md-nav__link">
+      Babashka pod
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="https://github.com/sponsors/clojure-lsp" class="md-nav__link">
+      Support Us
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Changelog
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Changelog
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unreleased" class="md-nav__link">
+    Unreleased
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230806-002806" class="md-nav__link">
+    2023.08.06-00.28.06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230701-223541" class="md-nav__link">
+    2023.07.01-22.35.41
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230504-193801" class="md-nav__link">
+    2023.05.04-19.38.01
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230419-124329" class="md-nav__link">
+    2023.04.19-12.43.29
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230227-131212" class="md-nav__link">
+    2023.02.27-13.12.12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230226-234605" class="md-nav__link">
+    2023.02.26-23.46.05
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230126-110816" class="md-nav__link">
+    2023.01.26-11.08.16
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20221209-155110" class="md-nav__link">
+    2022.12.09-15.51.10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20221103-001457" class="md-nav__link">
+    2022.11.03-00.14.57
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20221005-163951" class="md-nav__link">
+    2022.10.05-16.39.51
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220901-152731" class="md-nav__link">
+    2022.09.01-15.27.31
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220724-182543" class="md-nav__link">
+    2022.07.24-18.25.43
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220629-193213" class="md-nav__link">
+    2022.06.29-19.32.13
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220622-140950" class="md-nav__link">
+    2022.06.22-14.09.50
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220531-173550" class="md-nav__link">
+    2022.05.31-17.35.50
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220523-131811" class="md-nav__link">
+    2022.05.23-13.18.11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220503-123540" class="md-nav__link">
+    2022.05.03-12.35.40
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220418-005932" class="md-nav__link">
+    2022.04.18-00.59.32
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220331-200020" class="md-nav__link">
+    2022.03.31-20.00.20
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220331-142114" class="md-nav__link">
+    2022.03.31-14.21.14
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220326-184708" class="md-nav__link">
+    2022.03.26-18.47.08
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220325-120259" class="md-nav__link">
+    2022.03.25-12.02.59
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220223-121212" class="md-nav__link">
+    2022.02.23-12.12.12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220201-200232" class="md-nav__link">
+    2022.02.01-20.02.32
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220201-165314" class="md-nav__link">
+    2022.02.01-16.53.14
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220122-013109" class="md-nav__link">
+    2022.01.22-01.31.09
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220120-141243" class="md-nav__link">
+    2022.01.20-14.12.43
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220103-194610" class="md-nav__link">
+    2022.01.03-19.46.10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220103-154119" class="md-nav__link">
+    2022.01.03-15.41.19
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211220-003656" class="md-nav__link">
+    2021.12.20-00.36.56
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211201-122816" class="md-nav__link">
+    2021.12.01-12.28.16
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211116-165214" class="md-nav__link">
+    2021.11.16-16.52.14
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211102-152447" class="md-nav__link">
+    2021.11.02-15.24.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211020-164947" class="md-nav__link">
+    2021.10.20-16.49.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211020-130411" class="md-nav__link">
+    2021.10.20-13.04.11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210930-152801" class="md-nav__link">
+    2021.09.30-15.28.01
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210930-122816" class="md-nav__link">
+    2021.09.30-12.28.16
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210913-222535" class="md-nav__link">
+    2021.09.13-22.25.35
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210913-193200" class="md-nav__link">
+    2021.09.13-19.32.00
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210904-171144" class="md-nav__link">
+    2021.09.04-17.11.44
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210903-004246" class="md-nav__link">
+    2021.09.03-00.42.46
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210824-144156" class="md-nav__link">
+    2021.08.24-14.41.56
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210816-190230" class="md-nav__link">
+    2021.08.16-19.02.30
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210816-144754" class="md-nav__link">
+    2021.08.16-14.47.54
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210805-193609" class="md-nav__link">
+    2021.08.05-19.36.09
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210805-182554" class="md-nav__link">
+    2021.08.05-18.25.54
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210803-133303" class="md-nav__link">
+    2021.08.03-13.33.03
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210728-142406" class="md-nav__link">
+    2021.07.28-14.24.06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210719-144652" class="md-nav__link">
+    2021.07.19-14.46.52
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210712-123059" class="md-nav__link">
+    2021.07.12-12.30.59
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210705-203112" class="md-nav__link">
+    2021.07.05-20.31.12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210705-151214" class="md-nav__link">
+    2021.07.05-15.12.14
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210701-194902" class="md-nav__link">
+    2021.07.01-19.49.02
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210701-134618" class="md-nav__link">
+    2021.07.01-13.46.18
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210624-142411" class="md-nav__link">
+    2021.06.24-14.24.11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210624-012001" class="md-nav__link">
+    2021.06.24-01.20.01
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210621-143054" class="md-nav__link">
+    2021.06.21-14.30.54
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210614-170047" class="md-nav__link">
+    2021.06.14-17.00.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210601-161944" class="md-nav__link">
+    2021.06.01-16.19.44
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210527-174234" class="md-nav__link">
+    2021.05.27-17.42.34
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210522-165045" class="md-nav__link">
+    2021.05.22-16.50.45
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210514-152602" class="md-nav__link">
+    2021.05.14-15.26.02
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210506-194400" class="md-nav__link">
+    2021.05.06-19.44.00
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210427-201745" class="md-nav__link">
+    2021.04.27-20.17.45
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210423-154947" class="md-nav__link">
+    2021.04.23-15.49.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210413-124733" class="md-nav__link">
+    2021.04.13-12.47.33
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210407-163410" class="md-nav__link">
+    2021.04.07-16.34.10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210403-184355" class="md-nav__link">
+    2021.04.03-18.43.55
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210330-204234" class="md-nav__link">
+    2021.03.30-20.42.34
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210326-234107" class="md-nav__link">
+    2021.03.26-23.41.07
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210324-004155" class="md-nav__link">
+    2021.03.24-00.41.55
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210321-232919" class="md-nav__link">
+    2021.03.21-23.29.19
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210318-192341" class="md-nav__link">
+    2021.03.18-19.23.41
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210316-202806" class="md-nav__link">
+    2021.03.16-20.28.06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210314-232246" class="md-nav__link">
+    2021.03.14-23.22.46
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210306-170535" class="md-nav__link">
+    2021.03.06-17.05.35
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210305-133547" class="md-nav__link">
+    2021.03.05-13.35.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210301-191854" class="md-nav__link">
+    2021.03.01-19.18.54
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210227-233555" class="md-nav__link">
+    2021.02.27-23.35.55
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210226-135848" class="md-nav__link">
+    2021.02.26-13.58.48
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210224-142308" class="md-nav__link">
+    2021.02.24-14.23.08
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210221-210251" class="md-nav__link">
+    2021.02.21-21.02.51
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210219-230840" class="md-nav__link">
+    2021.02.19-23.08.40
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210219-001927" class="md-nav__link">
+    2021.02.19-00.19.27
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210217-170045" class="md-nav__link">
+    2021.02.17-17.00.45
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210214-194647" class="md-nav__link">
+    2021.02.14-19.46.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210213-180419" class="md-nav__link">
+    2021.02.13-18.04.19
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210212-031312" class="md-nav__link">
+    2021.02.12-03.13.12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210211-124306" class="md-nav__link">
+    2021.02.11-12.43.06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210210-030119" class="md-nav__link">
+    2021.02.10-03.01.19
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210209-182806" class="md-nav__link">
+    2021.02.09-18.28.06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210207-225126" class="md-nav__link">
+    2021.02.07-22.51.26
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210207-030431" class="md-nav__link">
+    2021.02.07-03.04.31
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210205-030534" class="md-nav__link">
+    2021.02.05-03.05.34
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210204-020858" class="md-nav__link">
+    2021.02.04-02.08.58
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210204-010921" class="md-nav__link">
+    2021.02.04-01.09.21
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210202-140223" class="md-nav__link">
+    2021.02.02-14.02.23
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210202-030646" class="md-nav__link">
+    2021.02.02-03.06.46
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210201-203752" class="md-nav__link">
+    2021.02.01-20.37.52
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210128-030316" class="md-nav__link">
+    2021.01.28-03.03.16
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210127-214742" class="md-nav__link">
+    2021.01.27-21.47.42
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210126-223527" class="md-nav__link">
+    2021.01.26-22.35.27
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210125-225605" class="md-nav__link">
+    2021.01.25-22.56.05
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210125-172205" class="md-nav__link">
+    2021.01.25-17.22.05
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210122-130428" class="md-nav__link">
+    2021.01.22-13.04.28
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210120-013932" class="md-nav__link">
+    2021.01.20-01.39.32
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210116-032820" class="md-nav__link">
+    2021.01.16-03.28.20
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210114-231554" class="md-nav__link">
+    2021.01.14-23.15.54
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210114-171910" class="md-nav__link">
+    2021.01.14-17.19.10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210114-124442" class="md-nav__link">
+    2021.01.14-12.44.42
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210114-023028" class="md-nav__link">
+    2021.01.14-02.30.28
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unreleased" class="md-nav__link">
+    Unreleased
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230806-002806" class="md-nav__link">
+    2023.08.06-00.28.06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230701-223541" class="md-nav__link">
+    2023.07.01-22.35.41
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230504-193801" class="md-nav__link">
+    2023.05.04-19.38.01
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230419-124329" class="md-nav__link">
+    2023.04.19-12.43.29
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230227-131212" class="md-nav__link">
+    2023.02.27-13.12.12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230226-234605" class="md-nav__link">
+    2023.02.26-23.46.05
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20230126-110816" class="md-nav__link">
+    2023.01.26-11.08.16
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20221209-155110" class="md-nav__link">
+    2022.12.09-15.51.10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20221103-001457" class="md-nav__link">
+    2022.11.03-00.14.57
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20221005-163951" class="md-nav__link">
+    2022.10.05-16.39.51
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220901-152731" class="md-nav__link">
+    2022.09.01-15.27.31
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220724-182543" class="md-nav__link">
+    2022.07.24-18.25.43
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220629-193213" class="md-nav__link">
+    2022.06.29-19.32.13
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220622-140950" class="md-nav__link">
+    2022.06.22-14.09.50
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220531-173550" class="md-nav__link">
+    2022.05.31-17.35.50
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220523-131811" class="md-nav__link">
+    2022.05.23-13.18.11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220503-123540" class="md-nav__link">
+    2022.05.03-12.35.40
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220418-005932" class="md-nav__link">
+    2022.04.18-00.59.32
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220331-200020" class="md-nav__link">
+    2022.03.31-20.00.20
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220331-142114" class="md-nav__link">
+    2022.03.31-14.21.14
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220326-184708" class="md-nav__link">
+    2022.03.26-18.47.08
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220325-120259" class="md-nav__link">
+    2022.03.25-12.02.59
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220223-121212" class="md-nav__link">
+    2022.02.23-12.12.12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220201-200232" class="md-nav__link">
+    2022.02.01-20.02.32
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220201-165314" class="md-nav__link">
+    2022.02.01-16.53.14
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220122-013109" class="md-nav__link">
+    2022.01.22-01.31.09
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220120-141243" class="md-nav__link">
+    2022.01.20-14.12.43
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220103-194610" class="md-nav__link">
+    2022.01.03-19.46.10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20220103-154119" class="md-nav__link">
+    2022.01.03-15.41.19
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211220-003656" class="md-nav__link">
+    2021.12.20-00.36.56
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211201-122816" class="md-nav__link">
+    2021.12.01-12.28.16
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211116-165214" class="md-nav__link">
+    2021.11.16-16.52.14
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211102-152447" class="md-nav__link">
+    2021.11.02-15.24.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211020-164947" class="md-nav__link">
+    2021.10.20-16.49.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20211020-130411" class="md-nav__link">
+    2021.10.20-13.04.11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210930-152801" class="md-nav__link">
+    2021.09.30-15.28.01
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210930-122816" class="md-nav__link">
+    2021.09.30-12.28.16
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210913-222535" class="md-nav__link">
+    2021.09.13-22.25.35
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210913-193200" class="md-nav__link">
+    2021.09.13-19.32.00
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210904-171144" class="md-nav__link">
+    2021.09.04-17.11.44
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210903-004246" class="md-nav__link">
+    2021.09.03-00.42.46
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210824-144156" class="md-nav__link">
+    2021.08.24-14.41.56
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210816-190230" class="md-nav__link">
+    2021.08.16-19.02.30
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210816-144754" class="md-nav__link">
+    2021.08.16-14.47.54
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210805-193609" class="md-nav__link">
+    2021.08.05-19.36.09
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210805-182554" class="md-nav__link">
+    2021.08.05-18.25.54
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210803-133303" class="md-nav__link">
+    2021.08.03-13.33.03
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210728-142406" class="md-nav__link">
+    2021.07.28-14.24.06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210719-144652" class="md-nav__link">
+    2021.07.19-14.46.52
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210712-123059" class="md-nav__link">
+    2021.07.12-12.30.59
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210705-203112" class="md-nav__link">
+    2021.07.05-20.31.12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210705-151214" class="md-nav__link">
+    2021.07.05-15.12.14
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210701-194902" class="md-nav__link">
+    2021.07.01-19.49.02
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210701-134618" class="md-nav__link">
+    2021.07.01-13.46.18
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210624-142411" class="md-nav__link">
+    2021.06.24-14.24.11
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210624-012001" class="md-nav__link">
+    2021.06.24-01.20.01
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210621-143054" class="md-nav__link">
+    2021.06.21-14.30.54
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210614-170047" class="md-nav__link">
+    2021.06.14-17.00.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210601-161944" class="md-nav__link">
+    2021.06.01-16.19.44
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210527-174234" class="md-nav__link">
+    2021.05.27-17.42.34
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210522-165045" class="md-nav__link">
+    2021.05.22-16.50.45
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210514-152602" class="md-nav__link">
+    2021.05.14-15.26.02
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210506-194400" class="md-nav__link">
+    2021.05.06-19.44.00
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210427-201745" class="md-nav__link">
+    2021.04.27-20.17.45
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210423-154947" class="md-nav__link">
+    2021.04.23-15.49.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210413-124733" class="md-nav__link">
+    2021.04.13-12.47.33
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210407-163410" class="md-nav__link">
+    2021.04.07-16.34.10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210403-184355" class="md-nav__link">
+    2021.04.03-18.43.55
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210330-204234" class="md-nav__link">
+    2021.03.30-20.42.34
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210326-234107" class="md-nav__link">
+    2021.03.26-23.41.07
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210324-004155" class="md-nav__link">
+    2021.03.24-00.41.55
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210321-232919" class="md-nav__link">
+    2021.03.21-23.29.19
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210318-192341" class="md-nav__link">
+    2021.03.18-19.23.41
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210316-202806" class="md-nav__link">
+    2021.03.16-20.28.06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210314-232246" class="md-nav__link">
+    2021.03.14-23.22.46
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210306-170535" class="md-nav__link">
+    2021.03.06-17.05.35
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210305-133547" class="md-nav__link">
+    2021.03.05-13.35.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210301-191854" class="md-nav__link">
+    2021.03.01-19.18.54
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210227-233555" class="md-nav__link">
+    2021.02.27-23.35.55
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210226-135848" class="md-nav__link">
+    2021.02.26-13.58.48
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210224-142308" class="md-nav__link">
+    2021.02.24-14.23.08
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210221-210251" class="md-nav__link">
+    2021.02.21-21.02.51
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210219-230840" class="md-nav__link">
+    2021.02.19-23.08.40
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210219-001927" class="md-nav__link">
+    2021.02.19-00.19.27
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210217-170045" class="md-nav__link">
+    2021.02.17-17.00.45
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210214-194647" class="md-nav__link">
+    2021.02.14-19.46.47
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210213-180419" class="md-nav__link">
+    2021.02.13-18.04.19
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210212-031312" class="md-nav__link">
+    2021.02.12-03.13.12
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210211-124306" class="md-nav__link">
+    2021.02.11-12.43.06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210210-030119" class="md-nav__link">
+    2021.02.10-03.01.19
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210209-182806" class="md-nav__link">
+    2021.02.09-18.28.06
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210207-225126" class="md-nav__link">
+    2021.02.07-22.51.26
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210207-030431" class="md-nav__link">
+    2021.02.07-03.04.31
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210205-030534" class="md-nav__link">
+    2021.02.05-03.05.34
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210204-020858" class="md-nav__link">
+    2021.02.04-02.08.58
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210204-010921" class="md-nav__link">
+    2021.02.04-01.09.21
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210202-140223" class="md-nav__link">
+    2021.02.02-14.02.23
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210202-030646" class="md-nav__link">
+    2021.02.02-03.06.46
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210201-203752" class="md-nav__link">
+    2021.02.01-20.37.52
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210128-030316" class="md-nav__link">
+    2021.01.28-03.03.16
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210127-214742" class="md-nav__link">
+    2021.01.27-21.47.42
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210126-223527" class="md-nav__link">
+    2021.01.26-22.35.27
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210125-225605" class="md-nav__link">
+    2021.01.25-22.56.05
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210125-172205" class="md-nav__link">
+    2021.01.25-17.22.05
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210122-130428" class="md-nav__link">
+    2021.01.22-13.04.28
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210120-013932" class="md-nav__link">
+    2021.01.20-01.39.32
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210116-032820" class="md-nav__link">
+    2021.01.16-03.28.20
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210114-231554" class="md-nav__link">
+    2021.01.14-23.15.54
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210114-171910" class="md-nav__link">
+    2021.01.14-17.19.10
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210114-124442" class="md-nav__link">
+    2021.01.14-12.44.42
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20210114-023028" class="md-nav__link">
+    2021.01.14-02.30.28
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/clojure-lsp/clojure-lsp/edit/master/docs/CHANGELOG.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">#</a></h1>
+<h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">#</a></h2>
+<h2 id="20230806-002806">2023.08.06-00.28.06<a class="headerlink" href="#20230806-002806" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix truncation of namespaced keywords #1640</li>
+<li>Add rewrite-clj node to cursor-info.</li>
+<li>Fixing semantic-tokens, collons not managed by lsp anymore. #1550</li>
+<li>Fix <code>:paths-ignore-regex</code> setting to consider settings reload.</li>
+<li>Bump clj-kondo to <code>2023.07.14-20230717.090255-3</code>. #1624</li>
+<li>Fix inconsistencies with <code>:defined-by-&gt;lint-as</code>.</li>
+<li>Improve memory usage during cache save, avoiding "Out of memory" exceptions.</li>
+<li>Prevent file rename when a namespace is defined in multiple files #1574</li>
+<li>Fix user formatting setting being override by :style/indent metadata in macros.</li>
+<li>Bump cljfmt to <code>0.11.2</code>. #1634</li>
+<li>Bump lsp4clj to <code>1.8.1</code>.</li>
+<li>
+<p>Added functionality to <code>workspace/didChangeConfiguration</code> so it changes configuration on runtime.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>
+<p>Avoid returning all known keywords on empty keywords completion for performance reasons.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Improve mem/cpu usage using less analysis for tasks.</li>
+</ul>
+<h2 id="20230701-223541">2023.07.01-22.35.41<a class="headerlink" href="#20230701-223541" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Update flake.nix to build with babashka. #1373</li>
+<li>Bump clj-kondo to <code>2023.06.02-20230630.144012-16</code>.</li>
+<li>Improve support for ClojureDart <code>.cljd</code> files. #1589</li>
+<li>Slightly reduce OutOfMemory exceptions that may happen with the JVM version.</li>
+<li>Support ignore unused-public-vars via <code>:linters :clojure-lsp/unused-public-var :exclude-when-contains-meta</code> clj-kondo setting.</li>
+<li>Fix restructure-keys when map has an <code>:or</code>. #1583</li>
+<li>Bump lsp4clj to <code>1.8.0</code>.</li>
+<li>Add post startup tasks progress feedbacks, like "Generating stubs", "Analyzing JDK source" and "Fetching Clojars".</li>
+<li>
+<p>Bump cljfmt to <code>0.10.6</code>. #1605</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>New code actions: <code>Replace ':refer :all' with ':refer [my-refer]'</code> and <code>Replace ':refer :all' with alias</code>. #1575</li>
+<li>Enhance java support for hover and completion of static class members.</li>
+<li>Improve <code>:paths-ignore-regex</code> to ignore features avoiding impact in huge files that are intented to be excluded.</li>
+<li>Fixed semantic-tokens for full qualified namespace</li>
+<li>Add <code>score</code> to completion items for a better completion client sorting. #1595</li>
+<li>Revamp keyword completion. #1599</li>
+<li>
+<p>Avoid LSP errors when cleaning a file without namespaces. #1603</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>New feature: Find all references via API and CLI. #1572</li>
+</ul>
+<h2 id="20230504-193801">2023.05.04-19.38.01<a class="headerlink" href="#20230504-193801" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>
+<p>Bump clj-kondo to <code>2023.04.15-20230503.152749-8</code></p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix edn tree to consider symbols. #1556</li>
+<li>Fix edn tree to consider vector root nodes. #1557</li>
+<li>
+<p>Fix edn tree to handle invalid edn code and not throw exceptions while typing code.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Avoid enabling unecessary analysis features for API/CLI lint, improving memory usage.</li>
+</ul>
+<h2 id="20230419-124329">2023.04.19-12.43.29<a class="headerlink" href="#20230419-124329" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix reflection issue in JDK19 with <code>Thread/sleep</code> #1520</li>
+<li>Bump clj-kondo to <code>2023.04.15-20230418.173453-3</code>, fixing analysis inconsistencies with <code>schema.core</code></li>
+<li>Ignore vars defined wrongly via config. #1510</li>
+<li>
+<p>Add support for <code>:output {:langs true}</code> in clj-kondo config to show <code>.cljc</code> language contexts</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix classpath issue message to properly ignore or retry after user input. #1500</li>
+<li>Decreate debounce time for calculating changes and diagnostics, improving UX in cost of performance, it doesn't seem to highly affect performance though.</li>
+<li>Add new setting to change diagnostics range type. #1530</li>
+<li>Spec compliance: avoid registering client capabilities if dynamic registration is not set. #1535</li>
+<li>Improve java support: using new <code>java-member-definitions</code> analysis, first feature is the allow completion of static members (fields and methods) for java classes.</li>
+<li>Show edn tree when in edn files via <code>documentSymbol</code> feature.</li>
+<li>Improve java db cache consistency + analysis performance.</li>
+</ul>
+<h2 id="20230227-131212">2023.02.27-13.12.12<a class="headerlink" href="#20230227-131212" title="Permanent link">#</a></h2>
+<ul>
+<li>Editor</li>
+<li>Fix exception on hover feature on graal images.</li>
+</ul>
+<h2 id="20230226-234605">2023.02.26-23.46.05<a class="headerlink" href="#20230226-234605" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Add new setting <code>:paths-ignore-regex</code> to allow ignore analyzing/linting specific paths, useful if you have folders or files that are not relevant to be linted and are huge which may affect performance.</li>
+<li>Bump clj-kondo. Fixes missing lint class constructors, making clojure-lsp show add import code action always.</li>
+<li>
+<p>Fix wrong ns rename for cljc files. #1508</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix cache issue: wrong external dependencies analysis when running clojure-lsp in editor after running on CLI, affecting navigation. #1473</li>
+<li>Bump lsp4clj fixing progress notifications during initialization for Calva.</li>
+<li>Allow go to definition of namespace even when the var is not known. Ex: <code>clojure.string/foo</code> will go to the definition of <code>clojure.string</code>. This is useful for cases where the var was not created yet but user wants to go to the ns to check the available functions or check the correct name of the function.</li>
+<li>Avoid basing results on old analysis.</li>
+<li>Add new setting <code>:completion :analysis-type</code> to choose between <code>:fast-but-stale</code>(default) or <code>:slow-but-accurate</code>, this should define whether completion should wait for changes that may still happening, this by default reverts the behavior introduced after #1425. #1487</li>
+<li>Fix <code>textDocument/hover</code> issue when doc metadata isn't a string literal.</li>
+<li>Follow references to other vars in doc metadata for use in <code>textDocument/hover</code>.</li>
+<li>Support <code>:arglists</code> meta when finding docs of functions via hover feature. #1504</li>
+<li>Enhance hover to search clojuredocs on CLJS. #1506</li>
+</ul>
+<h2 id="20230126-110816">2023.01.26-11.08.16<a class="headerlink" href="#20230126-110816" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump clj-kondo to <code>2023.01.20</code></li>
+<li>Avoid false-positives of unused-public-var for functions used in :gen-class that starts with <code>-</code> as convention. #1443</li>
+<li>New jar available on releases: <code>clojure-lsp-server.jar</code>, an Uberjar not aot-ed containing both clojure-lsp core + server code, improving startup time for JVM clients, for example for <code>lein-clojure-lsp</code>. Any lib using <code>clojure-lsp-standalone.jar</code> should consider switch to this new jar.</li>
+<li>Change <code>:source-paths-ignore-regex</code> default value to <code>["target.*"]</code>, removing resource folders. #1452</li>
+<li>Bump cljfmt to 0.9.2</li>
+<li>Bump lsp4clj to 1.7.0</li>
+<li>
+<p>Support <code>:style/indent</code> metadata for indentation with cljfmt #1420</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix add missing import code action when there are multiple options. #1422</li>
+<li>Only show completion items if no changed code is being processed, avoiding wrong completion items. #1425</li>
+<li>Improve semantic tokens for defprotocol, definterface coloring as <code>interface</code> tokens.</li>
+<li>Include reffered vars in completion. #1440</li>
+<li>Allow rename alias of function calls, renaming properly both function usages and alias definition.</li>
+<li>Add support for keyword analysis in edn files, allowing find-references, document highlight and other lsp features to keywords.</li>
+<li>find-definition and references for quoted symbols like <code>'clojure.core/inc</code> and symbols mentioned in <code>.edn</code> files. #1446</li>
+<li>
+<p>Show error messages when can't apply edits after commands. #1448</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Make diagnostics command print as json or edn. #1419</li>
+<li>Make possible starting a chan server with clojure-lsp components, useful to other clients extend.</li>
+<li>Consider edn files when linting project, allowing to format edn files. #1452</li>
+<li>Report diagnostics lines and columns as 1 based, not 0 like LSP, following clj-kondo standard. #1459</li>
+</ul>
+<h2 id="20221209-155110">2022.12.09-15.51.10<a class="headerlink" href="#20221209-155110" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix rename issue with VS-Code/Calva on MS-Windows. #1388</li>
+<li>Only publish progress on initialize if client provided a <code>workDoneProgress</code>. #1363</li>
+<li>Bump clj-kondo to <code>2022.12.08</code>.</li>
+<li>Avoid wrong clj-kondo configs in case clojure-lsp process is spawned from a different directory than project-root.</li>
+<li>
+<p>Fall back on CLJS var when finding definition from Clojure and nothing was found. #1403</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Show better icons for multimethods, var-arg fns, protocols, records, interfaces and types on <code>workspace/symbol</code> and <code>textDocument/documentSymbol</code>.</li>
+<li>Inlining the last binding of a let removes the let. #210</li>
+<li>Allow import java classes via code-actions <code>Add import 'x.y.Z'</code>.</li>
+<li>Make <code>add-import</code> command/code-action smarter, checking if there is already a package import to just include the classname instead of full import.</li>
+<li>Add new refactoring <code>cycle-keyword-auto-resolve</code>, e.g. <code>::bar</code> -&gt; <code>:foo/bar</code> and vice-versa. #1128</li>
+<li>Supporting find definition/references/implementations of <code>definterface</code>.</li>
+<li>
+<p>Avoid watching ignored source-paths, causing find-definition/references and other features go to wrong files.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Allow specify analysis type for <code>dump</code> command, default to analyze project only analysis. #1383</li>
+<li>Add <code>:result</code> to the dump command. #1390</li>
+<li>Important regression fix where clojure-lsp may do inconsistent lint when classpath scan fail without showing to user the error.</li>
+</ul>
+<h2 id="20221103-001457">2022.11.03-00.14.57<a class="headerlink" href="#20221103-001457" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump clj-kondo to <code>2022.11.02</code> avoiding breaking changes on custom hooks.</li>
+<li>
+<p>Bump graalvm to 22.3.0. #1345</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Add refactorings to change param order of <code>defn</code>/<code>defmacro</code>, also changing call sites. #1131</li>
+<li>Avoid shadowing existing locals when restructuring keys. #1229</li>
+<li>Let editors control whether the server's log includes traces of the messages they are exchanging. https://github.com/clojure-lsp/lsp4clj/issues/27</li>
+<li>Bump promesa to <code>9.0.470</code></li>
+<li>Bump lsp4clj to <code>1.5.0</code></li>
+<li>For users with fewer cores, avoid unnecessary waits for file analysis.</li>
+<li>Reduce CPU usage by aborting requests that the client won't use.</li>
+<li>Fix to mark some code actions as preferred, so editors can emphasize them. https://github.com/clojure-lsp/lsp4clj/issues/32</li>
+<li>Adds java classes completions, since clj-kondo now knows all java classes defined on external dependencies. #1329</li>
+<li>Fix completion to consider required namespaces without alias or refers. #1352</li>
+</ul>
+<h2 id="20221005-163951">2022.10.05-16.39.51<a class="headerlink" href="#20221005-163951" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Improve clj-depend merge config to overwrite <code>source-paths</code> only if it is nil or empty.  #1264</li>
+<li>Fix stubs generation issue on MS-Windows, coming out of enabling all integrations tests on windows. #1211</li>
+<li>Improve MS-Windows support by fixing various path, URI and line ending issues coming out of repairing the unit tests suite on windows. #1211</li>
+<li>End dep-graph-queries experiment; clojure-lsp now uses the dep-graph to optimize queries whenever possible</li>
+<li>Bump clj-kondo to <code>2022.10.05</code>. #1226 </li>
+<li>Fix issue with changes being reporting with spurious and incorrect line endings on MS-Windows text files. #1211</li>
+<li>Index internal data by URI instead of filename, to minimize conversion between these formats when running queries. #1207</li>
+<li>Add support to enable trace logs on server via <code>--trace</code> flag. (For latest Emacs's lsp-mode this can be enabled easyly via <code>lsp-clojure-trace-enable</code> variable)</li>
+<li>
+<p>Bump graalvm version for MS-Windows to 22.2.0, in sync with the other archs. #1211</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix to avoid error when checking code actions from an #_x uneval node. #1227</li>
+<li>Add support to decompile jar as a java project when finding the definition of a java class, allowing to have LSP features on that java project. #1187</li>
+<li>Add refactorings similar to <code>Sort map</code>: <code>Sort vector</code>, <code>Sort list</code>, <code>Sort set</code>, and <code>Sort clauses</code> for functions like <code>assoc</code>. #1155</li>
+<li>Support java class decompilation for zipfile scheme (vim users).</li>
+<li>Avoid keeping diagnostics of external closed files for Calva. https://github.com/BetterThanTomorrow/calva/issues/1864</li>
+<li>Lint opened files after a clojure-lsp or clj-kondo config file is saved on disk, avoiding users to re-edit files. #1247</li>
+<li>Allow find definition of java class usages where definition comes from clojure, like defrecords.</li>
+<li>Fix: wait for rename to apply before allowing another rename, to ensure suggested name is correct. #1270</li>
+<li>Process requests in parallel, to prevent typing lag and other performance problems introduced during migration away from lsp4j. #1240</li>
+<li>Fix: Avoid wrong ns require after <code>Create ns and require</code> code-action/command.</li>
+<li>Fix: Avoid errors when a file starts with a comment. #1252</li>
+<li>
+<p>Bump promesa to <code>9.0.462</code> and use it for parallel request processing.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Fix missing diagnostics when <code>--project-root</code> is different than current directory. #1245</li>
+<li>Add new <code>dump</code> feature, returning analysis, project information, dependency-graph and others. Check <code>clojure-lsp.api/dump</code> for more information. #744</li>
+<li>Improve CLI output avoiding logs from clj-kondo which are already available via verbose log.</li>
+</ul>
+<h2 id="20220901-152731">2022.09.01-15.27.31<a class="headerlink" href="#20220901-152731" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Remove dependency on lsp4j. https://github.com/clojure-lsp/lsp4clj/issues/8</li>
+<li>Fix extra space on :import when sorting classes. #1152</li>
+<li>Bump Graalvm from 22.0.0.2 to 22.2.0 improving binary performance/size. #1154</li>
+<li>Bump clj-kondo to <code>2022.08.03</code>.</li>
+<li>General release of dep-graph-queries, improving query performance. See prior release for feature details.</li>
+<li>Generate nightly builds for macos aarch64 (M1/M2) every push on master.</li>
+<li>Bump lsp4clj to <code>1.2.1</code>.</li>
+<li>Bump cljfmt to <code>0.9.0</code>.</li>
+<li>Fix issue with classpath clojure build tools invocation on MS-Windows. #1132</li>
+<li>
+<p>Bump babashka/fs to <code>0.1.11</code>.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Improve completion sorting, showing locals before functions and other completion items. #1158</li>
+<li>Fix hover to show current var definition docs instead of <code>def</code>/<code>defn</code>. #1157</li>
+<li>Improve hover for requires to show ns docstring. #1171</li>
+<li>Fix destructuring of things that have been destructured before. #1156</li>
+<li>Some completions require that a new alias be added to the ns form. Fix this feature for Calva users, and improve performance for all users. #1068</li>
+<li>Fix resolve-macro-as code action corner case. #1084</li>
+<li>Ensure line numbers provided by document-symbol correspond to the latest version of the file. #1178</li>
+<li>Avoid exceptions when clients use URIs that don't exist on disk.</li>
+<li>Fix documentation on completion items. #1181</li>
+<li>Fix rename of defrecords. #1165</li>
+<li>Fix to send all diagnostics to client at startup, even in very large projects. #1153</li>
+<li>Fix to preserve kebab-casing in server-info-raw. #1195</li>
+<li>Add refactoring <code>Restructure keys</code>, the inverse of <code>Destructure keys</code>. #1170</li>
+<li>Add refactorings to convert between <code>(:x m)</code> and <code>(get m :x)</code> or <code>(:y (:x m))</code> and <code>(get-in m [:x :y])</code>. #1172</li>
+<li>Add support to imported java class on completion. #1193</li>
+<li>Add new question to skip or retry classpath scan during startup if failed. </li>
+<li>Improve performance of processing of changed files outside editor calling clj-kondo in batch. #1205</li>
+<li>When renaming a keyword that is also a destructured key, rename its local usages too. #1192</li>
+</ul>
+<h2 id="20220724-182543">2022.07.24-18.25.43<a class="headerlink" href="#20220724-182543" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>
+<p>Bump <code>cljfmt</code> from 0.8.0 -&gt; 0.8.2</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Add clojure.core/fn to resolve-macro-as options. <a href="https://github.com/clojure-lsp/clojure-lsp/issues/1094">#1094</a></li>
+<li>Restore #995 Improve element selected on <code>textDocument/hover</code> (previously reverted) with a fix that keeps it working for Calva even after a syntax error is introduced.</li>
+<li>Improve call hierarchy performance by parsing less frequently. #1092</li>
+<li>Improve system wide performance by keeping a graph of dependencies between namespaces. #990 #1053
+    Enable setting <code>:experimental {:dep-graph-queries true}</code> to beta test this feature.</li>
+<li>Improve performance by adding second level of analysis indexing.</li>
+<li>Improve performance of things that need keyword definitions, like completion and custom lint.</li>
+<li>Fix hover showing previous function elements on some cases. #1098</li>
+<li>Fix: find definition will find registration of unnamespaced keyword.</li>
+<li>Fix to update unused-public-var lint on registered keywords as usages change in other files. #1018</li>
+<li>Fix to navigate to var defined by declare, when there aren't any later defs. #1107</li>
+<li>Fix to always go to the definition of the correct var imported by potemkin. #1020</li>
+<li>Fix to correctly rename namespaces. #1121</li>
+<li>Fix to correctly :keep require and import indent spacing. #1141</li>
+<li>Improve accuracy of progress reporting during uncached startup. #1134</li>
+<li>Add refactoring <code>Destructure keys</code> to destructure keywords. #905</li>
+<li>Add refactoring <code>Extract to def</code> to create a <code>def</code> from the thing under the cursor. #1136</li>
+<li>Include defmethods in document and workspace symbols. #1016</li>
+</ul>
+<h2 id="20220629-193213">2022.06.29-19.32.13<a class="headerlink" href="#20220629-193213" title="Permanent link">#</a></h2>
+<ul>
+<li>Editor</li>
+<li>Reverted #995 Improve element selected on <code>textDocument/hover</code>, as it caused clojure-lsp to stop working for Calva users after a syntax error was introduced. #1080</li>
+</ul>
+<h2 id="20220622-140950">2022.06.22-14.09.50<a class="headerlink" href="#20220622-140950" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>clojure-lsp has a flake.nix now, being able to be built using clj-nix. #999</li>
+<li>Remove <code>use-source-paths-from-classpath</code> setting, its value was already true and disabling it could cause false-positives.</li>
+<li>Add <code>compute-external-file-changes</code> setting as true by default, when enabled it will consider file changes outside editor like git branch changes and update analysis, avoiding the need to restart server when a file is changed outside editor, this will only work if client file-watchers is enabled. #1002</li>
+<li>Bump lsp4clj to 0.4.1.</li>
+<li>Remove deprecated disabled setting <code>:linters :clj-kondo :async-custom-lint?</code>. #1017</li>
+<li>Fix references and code lens of defrecord/deftype for cljs files. #1055</li>
+<li>Fix clean-ns to move reader conditionals to before normal requires. #1057</li>
+<li>Add new optional linter: <a href="https://github.com/clj-depend/clj-depend">clj-depend</a> integration. #957</li>
+<li>Add new setting <code>:source-paths-ignore-regex</code> to filter source-paths that are auto generated for example for cljs projects, the default value should be enought for most cases (<code>["resources.*" "target.*"]</code>), replacing old <code>ignore-classpath-directories</code>.</li>
+<li>
+<p>Bump clj-kondo to 2022.06.22.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Add support to rename namespace of namespaced keywords like re-frame events/subs. #978</li>
+<li>Improve performance of find-declaration feature. #1021</li>
+<li>Fix to avoid suggesting an alias from a clj file to a cljs file. #1024</li>
+<li>Find references of namespace usages now find all namespace usages on project, not only the definition. #1022</li>
+<li>Improve element selected on <code>textDocument/hover</code>, showing the function being called instead of the closest element found backwards. #995</li>
+<li>Fix drag from quoted symbols and other special nodes #969</li>
+<li>Drag requests two smaller edits, instead of one large edit, potentially avoiding flicker. #1043</li>
+<li>Drag is disabled between clauses, to avoid arbitrarily choosing one to move. #1030</li>
+<li>Cursor doesn't move within dragged clause. #1029</li>
+<li>Improve performance of drag forward.</li>
+<li>Avoid invalid cached analysis and document text after a rename. #1049</li>
+<li>Improve lint performance by only linting references files when usage is added or removed. #1019</li>
+<li>Extracted functions are private. #1039</li>
+<li>Fix errors when Emacs lock files are linted. #1054</li>
+</ul>
+<h2 id="20220531-173550">2022.05.31-17.35.50<a class="headerlink" href="#20220531-173550" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump clj-kondo to 2022.05.31</li>
+<li>Consider <code>.clj_kondo</code> files as clj files.</li>
+</ul>
+<h2 id="20220523-131811">2022.05.23-13.18.11<a class="headerlink" href="#20220523-131811" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Allow specify how many classes clojure-lsp should check before moving sorted package imported classes to next line. #966</li>
+<li>Allow <code>:linters</code> to be configured by LSP clients passing string keys/values. #977</li>
+<li>Support clj-kondo <code>:config-in-ns</code> and <code>:ns-groups</code> for <code>clojure-lsp/unused-public-var</code> linter. #981</li>
+<li>
+<p>Improve clean-ns correct positioning of multiple refers.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix powershell.exe command execution error on Windows</li>
+<li>Fix drag in <code>are</code> when <code>clojure.test</code> is aliased. #967</li>
+<li>Reduce time to calculate semantic tokens, reducing CPU usage in large files. #970</li>
+<li>Fix JDK global cache load when jdk source were already analyzed on previous sessions, fixing finding definition of jdk classes not working sometimes.</li>
+<li>Fix command move-form not working.</li>
+<li>Fix find definition of macros required by :require-macros on cljs files. #980</li>
+<li>Add support to completion keywords found on function definition <code>:keys</code> destructuring, improving completion on api calls.</li>
+<li>
+<p>Avoid duplicate parens when inserting snippets during completion. #982</p>
+</li>
+<li>
+<p>CLI/API</p>
+</li>
+<li>Make all cli features open files faster, improving speed of all CLI/API features. Fixes #985</li>
+</ul>
+<h2 id="20220503-123540">2022.05.03-12.35.40<a class="headerlink" href="#20220503-123540" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump clj-kondo to <code>2022.04.26-20220429.192438-2</code>.</li>
+<li>Decrease uncached startup time by 60-70%, by instructing clj-kondo to skip var definition bodies when analyzing deps. <a href="https://github.com/clj-kondo/clj-kondo/pull/1674">#1674</a></li>
+<li>Improve speed of alias/ns completions.</li>
+<li>Change alias/ns completions to return a label that matches the input.</li>
+<li>Support sorting classes inside package imports during <code>clean-ns</code>. #932</li>
+<li>Avoid saving duplicate source-paths, not calling clj-kondo to analyze same filenames multiple times, improving startup speed.</li>
+<li>
+<p>Improve progress report both on editor and CLI using new clj-kondo callback feature.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Support <code>workspace/willRenameFiles</code>, renaming namespaces and all its references when a file is renamed.</li>
+<li>Don't save cache when classpath lookup failed.</li>
+<li>Wait for editor to apply edits before requesting cursor re-positioning. Fixes cursor positioning after drag in Calva.</li>
+<li>
+<p>drag: Request edit only of changed clauses, not entire parent, reducing flicker.</p>
+</li>
+<li>
+<p>CLI/API</p>
+</li>
+<li>Bump lsp4clj to <code>0.3.0</code>.</li>
+</ul>
+<p>This release was supported by <a href="https://www.clojuriststogether.org/">Clojurists Together</a></p>
+<h2 id="20220418-005932">2022.04.18-00.59.32<a class="headerlink" href="#20220418-005932" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Improve settings documentation.</li>
+<li>Fix completion performance regression from previous release.</li>
+<li>Consider <code>.bb</code> and <code>.cljd</code> files as clj files. #906</li>
+<li>Bump to clojure 1.11.0</li>
+<li>Improve analysis query performance as a whole for lots of features. #916</li>
+<li>Bump clj-kondo to <code>2022.04.09-20220414.123207-3</code> fixing semantic tokens for <code>:require</code>, <code>:refer</code> and <code>:as</code>. <a href="https://github.com/clj-kondo/clj-kondo/issues/1609">#1609</a></li>
+<li>Move <code>lsp4clj</code> to outside clojure-lsp to its own repo/jar release.</li>
+<li>Fix local files outside source-paths not being linted even if opened/changed.</li>
+<li>Consider filename + lastModified as checksum for external files, avoiding analyzing it if analysis is already present.</li>
+<li>graalvm: Compile static linux with --musl for better compatibility. #868</li>
+<li>java: Use <code>XDG_CACHE_HOME</code> or <code>.cache/clojure-lsp</code> instead of config files for JDK cache.</li>
+<li>java: Cache JDK analysis globally avoiding high CPU usages after startup.</li>
+<li>
+<p>java: Add <code>:java :home-path</code> setting for easier way to specify java location for JDK source analysis. #907</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Introduce ALPHA move-form command. #566</li>
+<li>Rename "Move coll entry up/down" to "Drag forward/backward", matching Calva/Paredit terminology</li>
+<li>drag: clauses move intuitively in <code>clojure.test/are</code></li>
+<li>drag: top-level forms can be dragged #891</li>
+<li>Improve completion performance for most cases, reducing time to compute clj/cljs core symbols.</li>
+<li>completion: suggest functions defined in Clojure 1.10 and 1.11</li>
+<li>completion: Fix to no require extra ns when alias is already required. #920</li>
+<li>promote-fn: <em>new feature</em> Promote a fn to a top-level defn. #783 @mainej<ul>
+<li>promote-fn can also promote a literal #() to a fn</li>
+</ul>
+</li>
+<li>demote-fn: Demote a fn to a literal #()</li>
+<li><em>breaking</em> remove cycle-fn-literal, since the same refactorings can be performed with the more clearly named promote-fn and demote-fn</li>
+<li>drag: Fix to drag element-wise in destructured keys, not pair-wise. #927</li>
+<li>
+<p>test-tree: reduce CPU usage, especially during startup</p>
+</li>
+<li>
+<p>CLI</p>
+</li>
+<li>Reduce CPU and wall-clock time in cli commands clean-ns and diagnostics</li>
+</ul>
+<p>This release was supported by <a href="https://www.clojuriststogether.org/">Clojurists Together</a></p>
+<h2 id="20220331-200020">2022.03.31-20.00.20<a class="headerlink" href="#20220331-200020" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix URI resolver on java JDK logic.</li>
+<li>Fix zipfile scheme when finding external deps.</li>
+</ul>
+<h2 id="20220331-142114">2022.03.31-14.21.14<a class="headerlink" href="#20220331-142114" title="Permanent link">#</a></h2>
+<ul>
+<li>Add java class find-definition support, decompiling .class files when available. #762</li>
+<li>Add JDK source discoverability feature, searching for installed JDK for later analyze with clj-kondo and support java classes interop.</li>
+<li>Add <code>:java :download-jdk-source?</code> setting to download JDK source after startup if not cached before globally or found locally. Disabled by default.</li>
+<li>Avoid high CPU usage and freezes by more efficiently finding referenced files to notify on file change. #844 @mainej</li>
+<li>Bump clj-kondo to <code>2022.03.10-20220331.135739-32</code> improving java analysis and fixing a critical regression for re-frame. #888</li>
+</ul>
+<p>This release was supported by <a href="https://www.clojuriststogether.org/">Clojurists Together</a></p>
+<h2 id="20220326-184708">2022.03.26-18.47.08<a class="headerlink" href="#20220326-184708" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix unused-public-var not considering excluding comments, changing <code>async-custom-lint?</code> setting to false.</li>
+</ul>
+<h2 id="20220325-120259">2022.03.25-12.02.59<a class="headerlink" href="#20220325-120259" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix cljfmt settings merge during refresh/classpath configs merge to avoid multiple config vectors on same symbol.</li>
+<li>Fix install script for aarch64. #794</li>
+<li>Fix handling cljfmt config files that end in <code>.clj</code> https://github.com/weavejester/cljfmt/issues/190</li>
+<li>parser: more efficiently seek to cursor position, improving performance especially in large files. #793 @mainej</li>
+<li>Fix clean-ns not sorting properly node requires for cljs. #815</li>
+<li>Fix move-to-let to ensure locals don't move out of scope. #830</li>
+<li>Improve logic around require suggestions. #837</li>
+<li>Enhance move-to-let to introduce and expand let if an existing one doesn't exist. #829</li>
+<li>Bump <code>org.clojure/clojure</code> to <code>1.11.0</code>.</li>
+<li>Fix move-coll-entry to maintain cursor position instead of a range. #862</li>
+<li>
+<p>Clean ns automatically after adding missing require/imports, enabled by default under new <code>:clean :automatically-after-ns-refactor</code> flag. #558</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>extract-function: Fix wrong args when extracting from multi-arity fn. #683</li>
+<li>extract-function: Fix wrong args when extracting after a local usage. #812 @mainej</li>
+<li>move-coll-entry: clauses move intuitively in <code>assoc</code>, <code>case</code>, <code>cond</code>, and similar functions. #780 @mainej</li>
+<li>move-coll-entry: fix NPE when when invoked from top-level #803 @mainej</li>
+<li>Generate stubs async after startup, improving startup time. #788</li>
+<li>Improve and add lots of new snippets following practicalli config. #797</li>
+<li>Improve how watched new files are analyzed avoiding infinite loops and performance issues. #796</li>
+<li>Avoid infinite loops when several files are changed simultaneously. #796 @mainej</li>
+<li>Fix "incoming call hierarchy" not considering usages inside defmethods. #808</li>
+<li>range-formatting: more efficiently locate extent of range and reduce number of calls to cljfmt, improving performance especially when formatting large ranges. #795 @mainej</li>
+<li>cycle-fn-literal: <em>new feature</em> convert between function-literal syntaxes <code>(fn [] ...)</code> &lt;-&gt; <code>#(...)</code>. #774</li>
+<li>Add find-implementation feature to <code>defmulti</code> and <code>defmethod</code>. #751</li>
+<li>Make find-implementation of <code>defprotocol</code> names find its implementations and find-implementation on <code>deftype</code>/<code>defrecord</code> methods find other implementations.</li>
+<li>Add new code action <code>Introduce let</code> for existing command. #825</li>
+<li>Make find-implementations consider <code>reify</code>. #827</li>
+<li>Fix namespace on file creation when nested source-paths are available. #832</li>
+<li>unused-public-var: fix to show warnings on vars defined with declare. #840</li>
+<li>
+<p>unused-public-var: large performance improvements, especially for large projects. #861 @mainej</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Extract lsp4clj as a seperate library. #807 @Cyrik Supported by <a href="https://www.scarletcomply.com">Scarlet</a></li>
+<li>Fix inconsistency with clean-ns/format not copying kondo configs.</li>
+</ul>
+<p>This release was supported by <a href="https://www.clojuriststogether.org/">Clojurists Together</a></p>
+<h2 id="20220223-121212">2022.02.23-12.12.12<a class="headerlink" href="#20220223-121212" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Use <code>:source-aliases</code> setting during default deps.edn and lein project-spec aliases, avoiding the need to configure a whole project-spec just because of a additional alias.</li>
+<li>Exclude from unused-public-var linter vars with metadata <code>^:export</code>. #753</li>
+<li>Fix clean-ns multiple refers sort when there is a alias before the refers.</li>
+<li>Bump clj-kondo from <code>2022.01.15</code> to <code>2022.02.09</code> adding support for implementation analysis and more improvements.</li>
+<li>Medium performance improvement during startup when unused-public-var linter is disabled.</li>
+<li>Medium performance improvement during startup on unused-public-var calculation parallelizing calculations.</li>
+<li>Small performance improvement on code actions calcullation.</li>
+<li>Add <code>:use-source-paths-from-classpath</code> setting defaulting to true, which makes clojure-lsp do not manually discovery source-paths but get from classpath excluding jar files and paths outside project-root. #752 #551</li>
+<li>Improve completion performance when all clojure.core or cljs.core symbols are valid completions. #764, #771 @mainej</li>
+<li>Fix scenarios where the lint findings in individual files differed from what you'd expect based on the .clj-kondo/config.edn settings.</li>
+<li>Add <code>:exclude-regex</code> and <code>:exclude-when-definted-by-regex</code> to <code>:clojure-lsp/unused-public-var</code> linter.</li>
+<li>
+<p>Bump <code>org.clojure/clojure</code> to <code>1.11.0-rc1</code>.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix exception during code actions calculation when in a invalid code of a map with not even key-pairs.</li>
+<li>Don't return diagnostics for external files like files on jar dependencies, avoiding noise on lint when opening dependencies.</li>
+<li>Support finding implementations of defprotocol and references of defrecord/deftype, implementing LSP method <code>textDocument/implementation</code>. #656</li>
+<li>Make the actions and commands aware of when they were invoked from comments or whitespace. This will allow individual refactorings to be more deliberate about how they handle comments and whitespace. #716 @mainej</li>
+<li>Correctly position the cursor after calling move-coll-entry-down on an entry with leading comments. #758 @mainej</li>
+<li>Don't return completions when invoked from a comment, avoiding performance problems. #756</li>
+<li>Fix small anomalies in parameter names of extracted private functions. #759 @mainej</li>
+<li>Add semantic tokens for protocol implementations methods like defrecord and deftype.</li>
+<li>
+<p>Small performance improvevement on code lens calculation using transducers.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Small performance improvement to <code>format</code>, <code>clean-ns</code>, <code>diagnostics</code>, and <code>rename</code> via parallelizing parts of the logic.</li>
+<li>Fix edn-&gt;json parser of <code>serverInfo/raw</code> for Calva use cljfmt configuration. #763</li>
+<li>Add <code>:cljfmt-raw</code> config to <code>serverInfo/raw</code> for Calva. #768</li>
+<li>Add support for passing specific <code>--filenames</code> for most actions. #775</li>
+</ul>
+<p>This release was supported by <a href="https://www.clojuriststogether.org/">Clojurists Together</a></p>
+<h2 id="20220201-200232">2022.02.01-20.02.32<a class="headerlink" href="#20220201-200232" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix classpath hash regression introduced by last release</li>
+</ul>
+<h2 id="20220201-165314">2022.02.01-16.53.14<a class="headerlink" href="#20220201-165314" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Migrate project from depstar -&gt; tools.build. #711</li>
+<li>Improve classpath hash to consider invaliding cache when local root deps was changed.</li>
+<li>Replace datalevin cache db with transit. #703</li>
+<li>Bump Graalvm from 21.3.0 to 22.0.0.2 improving binary performance/size</li>
+<li>
+<p>Update <code>XDG_CONFIG_HOME</code> to clojure-lsp directory in doc/settings.md</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Support going to namespace definition on an alias. #706</li>
+<li>Add LSP <code>textDocument/declaration</code>, for now adding the making possible navigate to alias and namespaces declared on the namespace. #680</li>
+<li>Fix removal of file analysis on didClose for external files like jars. #717</li>
+<li>Fix cursor not moving when using code actions that move the cursor automatically.</li>
+<li>Fix additional-snippets to work on top-level forms as well.</li>
+<li>Fix resolve completion item not returning insertText. #719 @Cyrik</li>
+<li>Remove support for LSP <code>codeAction/resolve</code>. It added complexity and was not used in a way that improved performance of the action menu. #722, #725, #726</li>
+<li>Fix create public function refactoring not working when function is not a function call.</li>
+</ul>
+<h2 id="20220122-013109">2022.01.22-01.31.09<a class="headerlink" href="#20220122-013109" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix freezing in some cases during clojure-lsp startup linting. #708</li>
+</ul>
+<h2 id="20220120-141243">2022.01.20-14.12.43<a class="headerlink" href="#20220120-141243" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump clj-kondo to <code>2022.01.15</code>.</li>
+<li>Add <code>:classpath</code> to <code>serverInfo</code> command for downstream usages.</li>
+<li>Fix issues in <code>extract-function</code> that arise when operating over <code>.cljc</code> files.</li>
+<li>Add setting <code>:copy-kondo-configs?</code> to allow disable auto clj-kondo config copy, enabled by default. #694</li>
+<li>Lint unused public keywords, like unused re-frame events/subs. #691</li>
+<li>Fix rename of namespaced keywords -&gt; aliased keywords. #665</li>
+<li>Huge refactor on clojure-lsp codebase, spliting code into submodules, this made possible remove a lot of deps from API jar and help separate clojure-lsp features in the future. #658</li>
+<li>
+<p>Send testTree notification for all project test files after clojure-lsp start. #697</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Improve 'create function' refactor code action handling multiple cases. #682</li>
+<li>Fix 'resolve macro as ...' code action not working.</li>
+<li>Fix <code>showDocumentRequest</code> issues when triggered via some refactor code action.</li>
+<li>
+<p>Add new code actions + commands <code>Move coll entry down</code> and <code>Move coll entry up</code> to move entries within collections. #684, #701</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Make <code>format</code>, <code>clean-ns</code> and <code>rename</code> features not need to scan whole classpath, analyzing only project code improving performance a lot.</li>
+</ul>
+<h2 id="20220103-194610">2022.01.03-19.46.10<a class="headerlink" href="#20220103-194610" title="Permanent link">#</a></h2>
+<ul>
+<li>Catch clj-kondo prints to stdout and log to clojure-lsp log file avoiding crashes on some clients like vscode/Calva.</li>
+</ul>
+<h2 id="20220103-154119">2022.01.03-15.41.19<a class="headerlink" href="#20220103-154119" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>
+<p>Fix some analysis conflicts regarding <code>custom-async-lint?</code> feature introduced on latest release causing outdated analysis and some deadlocks.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix inline symbol code action regression from previous releases. #678</li>
+<li>Fix expand let refactor duplicating variables in some cases. #676</li>
+<li>
+<p>Add completion support to potemkin usages of a namespace.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Wait for db cache upsert before end proccess, avoiding the need to re-lint whole classpath on next api/cli runs.</li>
+<li>Fix the need to use <code>:raw? true</code> on babashka pod usage.</li>
+</ul>
+<h2 id="20211220-003656">2021.12.20-00.36.56<a class="headerlink" href="#20211220-003656" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump clj-kondo to <code>2021.12.19</code>, supporting auto-load configs, improving potemkin support, adding more linters and more.</li>
+<li>Merge <code>:cljfmt</code> settings with <code>:cljfmt-config-path</code> if file path exists.</li>
+<li>Avoid high CPU and lockup when clj-kondo throws exceptions. #671</li>
+<li>Allow absolute paths in deps.edn :local/root #672</li>
+<li>Fix clojure-lsp not loading for some mono-repo cases, improving local/root support for polylith projects. #673</li>
+<li>Avoid infinite loop because of cyclic dependencies on deps source-path discovery.</li>
+<li>
+<p>Add babashka pod. #555</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Change call hierarchy to return selection range of usage, not function definition.</li>
+<li>Return <code>edits</code> in <code>codeAction/resolve</code> responses rather than <code>commands</code>. #655</li>
+<li>Improve <code>:linters :clj-kondo :async-custom-lint?</code> to avoid infinite loops and default to <code>true</code>.</li>
+<li>Add new custom LSP feature <strong>Test Tree</strong>, which shows all test hierarchy of a file. #653</li>
+<li>Improve function name finding to consider other function definition types for some features. #666</li>
+<li>
+<p>Make <code>textDocument/hover</code> return the correct range from LSP spec, the element range instead of the element scope range.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Exit process if any error during classpath lookup. Opt-out via <code>:api :exit-on-errors?</code> flag.</li>
+</ul>
+<h2 id="20211201-122816">2021.12.01-12.28.16<a class="headerlink" href="#20211201-122816" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Add support for LSP method <code>textDocument/prepareRename</code> which it's the proper way to check if the rename will work correctly. #642</li>
+<li>Expose new custom method <code>clojure/cursorInfo/raw</code> for custom hack on current cursor information code. #645</li>
+<li>Support stub generation using <code>clj-easy/stub</code>, adding analysis and linting support for closed sources codes like Datomic. Check <code>:stubs</code> settings for more details. #637</li>
+<li>Handle config deep merge differently for collections, concating instead of overwriting.</li>
+<li>Fix unnecessary exception thrown on graal images during startup.</li>
+<li>Support <code>deps.edn</code> <code>:local/root</code> source-paths discovery, improving support for monorepo projects like <code>polylith</code>. #652</li>
+<li>New setting value for <code>:clean :sort :require</code>: <code>:lexicographic</code>. #654</li>
+<li>
+<p>Bump clj-kondo to <code>2021.10.20-20211126.151305-16</code>.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Support completion on aliased keywords. #649</li>
+<li>Add new <code>Sort map keys</code> refactoring code action. #651</li>
+<li>Add new <code>Create function</code> code action, allowing to create a function on a existing namespace or creating a new namespace + the function. #646</li>
+<li>Improve <code>Extract function</code> refactoring to consider comments above current function.</li>
+<li>Experimental: new <code>:linters :clj-kondo :async-custom-lint?</code> setting, when true, scan unused-public-vars async improving lint/analysis UI feedback for huge buffers (&gt; ~1000 lines). Default <code>false</code>.</li>
+</ul>
+<p>This release was supported by <a href="https://www.clojuriststogether.org/">Clojurists Together</a></p>
+<h2 id="20211116-165214">2021.11.16-16.52.14<a class="headerlink" href="#20211116-165214" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Improve rename feature to not heavily rely on valid source-paths for most cases.</li>
+<li>Fix setTrace exception logs for graalvm native images.</li>
+<li>Huge improvements on namespaces renames and namespaces references find. #573</li>
+<li>Fix/Remove warnings during datalevin access.</li>
+<li>Improve freezing for some MacOS cases. #631</li>
+<li>
+<p>Bump clj-kondo to <code>2021.10.20-20211116.110002-7</code> improving code parsing and other fixes.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix "Add require" code actions adding multiple requires instead of the selected.</li>
+<li>Improve "Add require" wording, making it easier to understand what each different action will do.</li>
+<li>Smart check all available refers to require, adding refer options to <code>Add require</code> code actions. #627</li>
+<li>Big improvements on keyword completions. #630</li>
+<li>Add setting <code>keep-parens-when-threading?</code> to keep parens for single arity functions when threading. #636</li>
+<li>Avoid adding duplicate requires when adding a new require via code action. #640</li>
+<li>Improve common known snippets to replace completion items, improving completion UX. #638</li>
+</ul>
+<p>This release was supported by <a href="https://www.clojuriststogether.org/">Clojurists Together</a></p>
+<h2 id="20211102-152447">2021.11.02-15.24.47<a class="headerlink" href="#20211102-152447" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump Graalvm from 21.2.0 to 21.3.0 improving binary performance/size</li>
+<li>Fix wrong parse of code when code contains namespaced maps like <code>#:foo{:bar 1}</code>. This issue was affecting a lot of features for example code actions.</li>
+<li>Bump datalevin from 0.5.26 to 0.5.27.</li>
+<li>Improve semantic tokens for dynamic vars, function definitions, namespaced and aliased keywords.</li>
+<li>
+<p>Fix bug where <code>:source-paths</code> settings could be hot-reloaded with wrong-value.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Deprecates setting <code>:show-docs-arity-on-same-line?</code> in favor of <code>:hover</code> <code>:arity-on-same-line?</code>.</li>
+<li>Add support to new LSP <code>LinkedEditingRange</code> feature. #341</li>
+<li>Improve suggested <code>Add require ...</code> code actions, this should make clojure-lsp smarter when user wants to add a missing require. #614</li>
+<li>Change <code>:notify-references-on-file-change</code> default from <code>false</code> to <code>true</code>, we had some performance improvements and I've been testing this for some time now and didn't see any new issues with that. This should improve a lot the UX when user change any code that is references on other files, updating the diagnostics for those files as well.</li>
+<li>Improve rename feature UX to output errors when it's not possible rename.</li>
+<li>Add support for <code>window/showDocument</code> LSP method, used on <code>create-test</code> command/code action after creating the test to show the test file.</li>
+<li>Add new <code>Unwind thread once</code> and <code>Unwind whole thread</code> code actions to undo a thread call.</li>
+<li>Improve code actions performance requesting async all actions.</li>
+<li>Add new LSP custom method <code>clojure/clojuredocs/raw</code> which takes a symbol and a namespace (both strings) and returns any Clojuredocs entry found, otherwise <code>null</code>.</li>
+<li>
+<p>Fix missing keywords rename/references for destructured keywords.</p>
+</li>
+<li>
+<p>CLI</p>
+</li>
+<li>Show error/warning message when a classpath scan fail during analysis. Fixes #626</li>
+<li>Add coloring to <code>diagnostics</code> output matching diagnostic severity.</li>
+</ul>
+<p>This release was supported by <a href="https://www.clojuriststogether.org/">Clojurists Together</a></p>
+<h2 id="20211020-164947">2021.10.20-16.49.47<a class="headerlink" href="#20211020-164947" title="Permanent link">#</a></h2>
+<ul>
+<li>Editor</li>
+<li>Hot fix clojuredocs on graalvm native image.</li>
+<li>Bump clj-kondo to <code>2021.10.20-20211020.123254-3</code> to fix a specific issue with cljs.</li>
+<li>Implement support to return to client LSP Errors, making user UX better since clojure-lsp can return specific errors for specific exceptions.</li>
+</ul>
+<h2 id="20211020-130411">2021.10.20-13.04.11<a class="headerlink" href="#20211020-130411" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Improve intialization feedback report messages.</li>
+<li>Consider <code>dev</code> and <code>test</code> alias for deps.edn projects as project-specs during classpath lookup. #586</li>
+<li>Avoid scanning source-paths twice, as it was being considered as part of external classpath as well.</li>
+<li>Change cache db from sqlite to datalevin for faster startup + better graalvm compatibility.</li>
+<li>Make the cache analysis save async to make startup faster.</li>
+<li>Support Auto refresh settings memoizing with a ttl of 1 second avoiding the need of restarting server when changing configs. #502</li>
+<li>Bump clj-kondo adding new <code>gen-class</code> linter and other fixes/improvements. Fixes #589</li>
+<li>Remove unused duplicate require if any. #527</li>
+<li>Fix crash on clean-ns when ns contains comments.</li>
+<li>
+<p>Improve project analysis filter to check source-paths. #597</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Add reference code lens for ns forms. #578</li>
+<li>Fix expand-let bug that occurs when a list form precedes let. #590</li>
+<li>Add new command to create test for function at point. #582</li>
+<li>Add new code action to create test for current function/var</li>
+<li>Add <code>private</code> to documentSymbol to make clear that a var or function is  <code>private</code>.</li>
+<li>Add new code action <code>Suppress xxx diagnostic</code>, adding clj-kondo comment code to ignore the diagnostic. #591</li>
+<li>Add more semantic tokens: aliases for macros, variable and function definitions.</li>
+<li>Add <a href="https://clojuredocs.org/">clojuredocs</a> information during symbol hover. #571</li>
+</ul>
+<p>This release was supported by <a href="https://www.clojuriststogether.org/">Clojurists Together</a></p>
+<h2 id="20210930-152801">2021.09.30-15.28.01<a class="headerlink" href="#20210930-152801" title="Permanent link">#</a></h2>
+<ul>
+<li>Editor</li>
+<li>Hot fix hover content wrong type hinting.</li>
+</ul>
+<h2 id="20210930-122816">2021.09.30-12.28.16<a class="headerlink" href="#20210930-122816" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Use lower-case for refer/import/require sorting. #560 #561</li>
+<li>Avoid removing comments when sorting/cleaning namespace. #559</li>
+<li>Break lines when sorting refers along with then new <code>:clean :sort :refer :max-line-length</code> setting with a default of <code>80</code>. #562</li>
+<li>Deprecate <code>lens-segregate-test-references</code> in favor to <code>:code-lens :segregate-test-references</code></li>
+<li>Check for a default <code>.cljfmt.edn</code> config file for cljfmt config settings if no <code>:cljfmt-config-path</code> was provided. #563</li>
+<li>Bump clj-kondo to <code>2021.09.25</code> fixing false-positives with potemkin import-var analysis.</li>
+<li>Re-scan whole project if any clj-kondo config changed for better consistence. #331</li>
+<li>Fix clojure-lsp not initializing when empty <code>project.clj</code>. #579</li>
+<li>
+<p>Support finding config in classpath via new setting<code>:classpath-config-paths ["my-org/my-lib"]</code>. #580</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix <code>resolve macro as</code> code action after regression introduced recently.</li>
+<li>Fix <code>unused-public-var</code> not being suppressed during project startup. #554</li>
+<li>Improve <code>hover</code> feature to return elements when inside a function call. #569</li>
+<li>Fix <code>create-private-function</code> command and code action to consider when new function is inside thread macros.</li>
+<li>Support <code>$/progress</code> LSP feature, sending notifications for client when server is starting, improving the feedback for the user.</li>
+<li>
+<p>Improve semantic tokens support for java classes and methods.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Support renaming namespaces as well with <code>rename</code> feature.</li>
+<li>Use relative paths instead of absolute paths on diff messages.</li>
+<li>Add <code>analyze-project!</code> to analyze whole project only and cache analysis, useful for REPL usage for example.</li>
+<li>Follow same exit status from clj-kondo for <code>diagnostics</code> feature. #572</li>
+<li>Improve start project feedback reporting the percentage and specific message.</li>
+</ul>
+<p>This release was supported by <a href="https://www.clojuriststogether.org/">Clojurists Together</a></p>
+<h2 id="20210913-222535">2021.09.13-22.25.35<a class="headerlink" href="#20210913-222535" title="Permanent link">#</a></h2>
+<ul>
+<li>Editor</li>
+<li>Rollback change on <code>didChangeWatchedFiles</code> for <code>:change</code> events, avoiding outdated changes overwriting newer changes.</li>
+</ul>
+<h2 id="20210913-193200">2021.09.13-19.32.00<a class="headerlink" href="#20210913-193200" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Create .clj-kondo folder if not exists in project root. #528</li>
+<li>Fix exception when <code>:clojure-lsp/unused-public-var</code> linter is <code>:off</code>. #546</li>
+<li>Bump clj-kondo to <code>2021.08.07-20210903.210340-28</code> to fix a false-positive with potemkin. https://github.com/clj-kondo/clj-kondo/issues/1370.</li>
+<li>Bump clj-kondo to <code>2021.08.07-20210909.131804-29</code> fixing issues with built-in clj-kondo cache not present on graalvm binaries. #548</li>
+<li>Exclude <code>cljs.test/deftest</code> from unused public vars linter.</li>
+<li>Migrate default db file from <code>.lsp/sqlite.db</code> to <code>.lsp/.cache/sqlite.db</code>, this is necessary as in the future we will replace sqlite with other db implementation, for users they just need to consider/gitignore the <code>.lsp/.cache</code> folder, this way any next change on db implementations or any other cache will not affect user.</li>
+<li>Auto migrate existing <code>.lsp/sqlite.db</code> to new <code>.lsp/.cache/sqlite.db</code> to avoid unnecessary project re-scan.</li>
+<li>
+<p>Deprecates <code>:sqlite-db-path</code> in place of <code>:cache-path</code>.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix <code>didChangeWatchedFiles</code> to correctly create the file on server, properly change file content and re-scan with clj-kondo, or remove file analysis. This should improve LSP analysis reliability when changing files outside the editor. #536</li>
+<li>Improve completion only showing valid local vars for current cursor.</li>
+<li>
+<p>Improve completion sorting adding priority to each item, showing most used symbols like variables and functions first before other completion items.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>New <code>diagnostics</code> command, which return all diagnostics found by clojure-lsp (using clj-kondo). Check the API section for more details.</li>
+</ul>
+<p>This release was supported by <a href="https://www.clojuriststogether.org/">Clojurists Together</a></p>
+<h2 id="20210904-171144">2021.09.04-17.11.44<a class="headerlink" href="#20210904-171144" title="Permanent link">#</a></h2>
+<ul>
+<li>Hotfix java classes not present on jar, required for clojure-lsp downstreams.</li>
+</ul>
+<h2 id="20210903-004246">2021.09.03-00.42.46<a class="headerlink" href="#20210903-004246" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Improve logging during startup for better troubleshooting.</li>
+<li>Refactor allowing calls to <code>clojure-lsp.main/run!</code> for manually passing args, useful for <code>lein-clojure-lsp</code> for example.</li>
+<li>Internal: Move graalvm configuration to sqlite-jdbc.</li>
+<li>Recognize <code>deftest</code> as function definition form for refactoring features like <code>extract-function</code>.</li>
+<li>
+<p>Bump Graalvm from 21.1.0 to 21.2.0</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>
+<p>Use clj-kondo custom lint for API as well, required for correct diagnostics API feature.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>
+<p>Fix regression, custom <code>source-paths</code> from initializationOptions were not being parsed correctly. #537</p>
+</li>
+<li>
+<p>Documentation</p>
+</li>
+<li>New domain for documentation and webpage https://clojure-lsp.io <img alt="🚀" class="twemoji" src="https://twemoji.maxcdn.com/v/latest/svg/1f680.svg" title=":rocket:" /></li>
+</ul>
+<h2 id="20210824-144156">2021.08.24-14.41.56<a class="headerlink" href="#20210824-144156" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix classpath scan when classpath has other things like new lines or warning message besides the classpath. Fixes #523</li>
+<li>Improve <code>clean-ns</code> to remove empty reader conditionals(<code>#?(:clj)</code> or <code>#?@(:clj [])</code> on ns form) after cleaning requires/imports.</li>
+<li>Fix <code>clean-ns</code> false-positives removals to cljc files when the alias/refer/import is being used inside a reader conditional.</li>
+<li>Add new setting <code>:linters :clj-kondo :ns-exclude-regex</code> which allows exclude diagnostics/findings for namespaces matching that regex.</li>
+<li>
+<p>Fix merge of configs resolved for projects with multiple configurations in parent folders and subprojects.</p>
+</li>
+<li>
+<p>Docs</p>
+</li>
+<li>Improved the settings docs with a new link to a file with all available clojure-lsp settings.</li>
+</ul>
+<h2 id="20210816-190230">2021.08.16-19.02.30<a class="headerlink" href="#20210816-190230" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix <code>clojure-lsp --version</code></li>
+</ul>
+<h2 id="20210816-144754">2021.08.16-14.47.54<a class="headerlink" href="#20210816-144754" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix wrong parse of source-paths for bb.edn when :paths contains symbols not only strings. #507</li>
+<li>
+<p>Bump clj-kondo to fix a issue with clojure-lsp running in a lein process.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix find-definition in jars for cljc files where the var is available on both cljs and clj files. #509</li>
+<li>Add clojure.core.async common vars to common-refers to be required via code action.</li>
+<li>Remove diagnostics when files are deleted, properly cleaning server. #513</li>
+<li>Don't add ns form to blank edn files. #515</li>
+<li>Fix initializationOptions parsing for some clients. #516</li>
+<li>Fix refactor 'add missing refer' when there is already that namespace with a alias but no refers.</li>
+<li>
+<p>Improve <code>:notify-references-on-file-change</code> performance and use-cases, still disabled by default for some time.</p>
+</li>
+<li>
+<p>API</p>
+</li>
+<li>Rollback printing only via CLI to work with API as well. (can be disabled via :raw? option)</li>
+<li>Support for release of lein-clojure-lsp</li>
+</ul>
+<h2 id="20210805-193609">2021.08.05-19.36.09<a class="headerlink" href="#20210805-193609" title="Permanent link">#</a></h2>
+<ul>
+<li>Bump clj-kondo to fix window path issues with analysis.</li>
+<li>Fix issue with references code lens for vim.</li>
+</ul>
+<h2 id="20210805-182554">2021.08.05-18.25.54<a class="headerlink" href="#20210805-182554" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix async project lint after startup for huge projects. #506</li>
+<li>Fix <code>:lint-project-files-after-startup?</code> to be considered before clojure-lsp lint unusued public vars.</li>
+<li>Fix excluded symbols for code lens, making clojure-lsp check clj-kondo config as well for the <code>:clojure-lsp/unused-public-var</code> excludes</li>
+</ul>
+<h2 id="20210803-133303">2021.08.03-13.33.03<a class="headerlink" href="#20210803-133303" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Parse correctly unescaped URIs sent from clients like vim avoiding errors on some features.</li>
+<li>Bump clj-kondo fixing analysis position issue with <code>declare</code>, making rename and other features work.</li>
+<li>Don't use PowerShell profiles on Windows when analyzing classpath. Fixes https://github.com/BetterThanTomorrow/calva/issues/1050</li>
+<li>
+<p>Support babashka classpath and source-paths discovery via bb.edn file. (needs babashka &gt;= 0.5.1)</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Add <code>:hover :hide-file-location?</code> settings option to disable displaying the source path on hover.</li>
+<li>Use new clj-kondo <code>:custom-lint-fn</code> for the <code>:unused-public-var</code>, this should improve performance and give the ability to suppress unused vars via code with <code>#_{:clj-kondo/ignore [:clojure-lsp/unused-public-var]}</code> or <code>#_:clj-kondo/ignore</code></li>
+</ul>
+<h2 id="20210728-142406">2021.07.28-14.24.06<a class="headerlink" href="#20210728-142406" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Minor fix on the analysis queries comparison.</li>
+<li>Improve GraalVM configuration to use direct/less configurations.</li>
+<li>
+<p>Bump clj-kondo 2021.06.18 -&gt; 2021.07.28 which adds support for macroexpanding.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix outgoing/incoming call hierarchy when vars are outside project/external jars.</li>
+<li>
+<p>Fix completion of aliases without var names typed yet, for example: <code>string/</code></p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Fix filename in diffs with dry option.</li>
+<li>Add coloring to diffs following git diff.</li>
+<li>Add <code>ns-exclude-regex</code> for commands that check whole project, allowing to exclude certain namespaces via regex.</li>
+</ul>
+<h2 id="20210719-144652">2021.07.19-14.46.52<a class="headerlink" href="#20210719-144652" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li><code>clean-ns</code> now sorts ns children forms according to the ClojureStyleGuide, at the moment moving require form before import form, enabled by default under flag <code>:clean :sort :ns</code> setting.</li>
+<li>Improve startup error handler and logging during project analysis. Related to #484</li>
+<li>Performance improvements using transducers on analysis queries.</li>
+<li>
+<p>Fixed auto-resolve source-paths for lein projects that get source-paths dynamically, clojure-lsp will use the default source-paths for these cases</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Improve hover output, both markdown and plain text forms.</li>
+<li>Allow calling thread-first/last and thread-first-all/last-all from within the list.</li>
+<li>
+<p>Improve resolve-macro-as messages and default excluded symbols.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Fix empty <code>XDG_CONFIG_HOME</code> not defaulting to <code>$HOME/.config</code> #474</li>
+<li>Improve verbose logging setting.</li>
+</ul>
+<h2 id="20210712-123059">2021.07.12-12.30.59<a class="headerlink" href="#20210712-123059" title="Permanent link">#</a></h2>
+<ul>
+<li>Editor</li>
+<li>Make semantic-tokens return no token for unknown symbols which has <code>:clj-kondo/unknown-namespace</code> on its analysis.</li>
+<li>Fix file uri location when hovering a symbol.</li>
+<li>Add reference code lens to keyword definitions, e.g. <code>re-frame.core/reg-sub</code>.</li>
+<li>
+<p>Add <code>semantic-tokens</code> debug information to <code>cursor-info</code> response.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Fix when ns form does not match filename. #466</li>
+<li>Fix errors with project-root on graalvm binary</li>
+<li>Improve API usage avoiding exceptions and returning just data instead.</li>
+<li>Improve analysis cache to multiple API calls.</li>
+<li>Add new <code>--raw</code> option allowing to display only raw data. Useful to integrate with other tools like reviewdog.</li>
+</ul>
+<h2 id="20210705-203112">2021.07.05-20.31.12<a class="headerlink" href="#20210705-203112" title="Permanent link">#</a></h2>
+<ul>
+<li>API/CLI</li>
+<li>Add <code>--verbose</code> option for debugging purposes.</li>
+<li>Fix usage as library parsing <code>:exec-args</code> correctly</li>
+</ul>
+<h2 id="20210705-151214">2021.07.05-15.12.14<a class="headerlink" href="#20210705-151214" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Add <code>:clean :sort</code> settings option to disable sorting during <code>clean-ns</code>.</li>
+<li>Add <code>:keep</code> value to <code>:ns-indent-blocks-indentation</code> setting to don't change indentation during <code>clean-ns</code>.</li>
+<li>Deprecate <code>install-latest-clojure-lsp.sh</code> in place of <code>install</code> new script.</li>
+<li>
+<p>Improve source paths discoverability for <code>leiningen</code> projects following the same rules as <code>deps.edn</code> projects. For more information, check the <a href="https://clojure-lsp.github.io/clojure-lsp/settings/#source-paths-discovery">settings section</a>.</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Add <code>--dry</code> option to commands, useful to print only diffs instead of making changes.</li>
+<li>Check the new <a href="https://github.com/marketplace/actions/setup-clojure-lsp">setup-clojure-lsp</a> Github Action to run clojure-lsp on CI.</li>
+<li>Add <code>format</code> feature using cljfmt.</li>
+<li>Now, every release is available in clojars as <code>com.github.clojure-lsp/clojure-lsp</code>.</li>
+</ul>
+<h2 id="20210701-194902">2021.07.01-19.49.02<a class="headerlink" href="#20210701-194902" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix --project-path option for API.</li>
+<li>Add --log-path option to API.</li>
+</ul>
+<h2 id="20210701-134618">2021.07.01-13.46.18<a class="headerlink" href="#20210701-134618" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix find-references and references lens for <code>defrecord</code>.</li>
+<li>Improve <code>clean-ns</code> refactoring following the Clojure style guide.</li>
+<li>Fix <code>clean-ns</code> corner case issue where it would replace the <code>:as</code> value with the <code>:refer</code> value.</li>
+<li>Deprecate <code>:keep-require-at-start?</code> in favor of <code>:clean :ns-inner-blocks-indentation</code> with default value of <code>:next-line</code>.</li>
+<li>Bump <code>org.xerial/sqlite-jdbc</code> from 3.34.0 to 3.36.0.</li>
+<li>Avoid adding duplicated namespace for new blank files.</li>
+<li>Add API / CLI support, form more information check the <a href="https://clojure-lsp.github.io/clojure-lsp/api/">API</a> section.</li>
+</ul>
+<h2 id="20210624-142411">2021.06.24-14.24.11<a class="headerlink" href="#20210624-142411" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix missing LSP 3.16 graalvm reflection configs. #452</li>
+</ul>
+<h2 id="20210624-012001">2021.06.24-01.20.01<a class="headerlink" href="#20210624-012001" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix graalvm reflect config for LSP 3.16 protocol. #449</li>
+<li>Use last definition when showing signature help. #446</li>
+<li>Create 2 new LSP custom methods: <code>clojure/serverInfo/raw</code> and <code>clojure/serverInfo/log</code> deprecating old commands <code>server-info</code> and <code>cursor-info</code>, check the documentation for more information.</li>
+<li>Add <code>:final-settings</code> to <code>serverInfo</code> methods. #450</li>
+</ul>
+<h2 id="20210621-143054">2021.06.21-14.30.54<a class="headerlink" href="#20210621-143054" title="Permanent link">#</a></h2>
+<ul>
+<li>Avoid removing whole require if unused refer but with used alias during clean-ns. #447</li>
+<li>Bump cljfmt 0.7.0 -&gt; 0.8.0. Fixes #266</li>
+<li>Bump clj-kondo 2021.06.01 -&gt; 2021.06.18</li>
+</ul>
+<h2 id="20210614-170047">2021.06.14-17.00.47<a class="headerlink" href="#20210614-170047" title="Permanent link">#</a></h2>
+<ul>
+<li>Improve source paths discoverability for <code>deps.edn</code> projects. Adds <code>:source-aliases</code> for customization. For more information, check the <a href="https://clojure-lsp.github.io/clojure-lsp/settings/#source-paths-discovery">settings section</a>.</li>
+</ul>
+<h2 id="20210601-161944">2021.06.01-16.19.44<a class="headerlink" href="#20210601-161944" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix graalvm issue on completionItem InsertTextMode</li>
+<li>Bump clj-kondo and rewrite-clj to latest releases.</li>
+</ul>
+<h2 id="20210527-174234">2021.05.27-17.42.34<a class="headerlink" href="#20210527-174234" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix corner case error with project paths with spaces or other special characters. #437</li>
+<li>Drastically improve didOpen performance, improving kondo findings parsing and making linting async avoiding blocking some editors. #435</li>
+<li>Fix <code>:auto-add-ns-to-new-files?</code> flag always being considered as <code>true</code>. #436</li>
+</ul>
+<h2 id="20210522-165045">2021.05.22-16.50.45<a class="headerlink" href="#20210522-165045" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix completion item kind of clojure core items. Fixes #426</li>
+<li>Fix graalvm reflect config for SublimeText - #430</li>
+<li>Improve code lens for segregated code lens when on test files.</li>
+</ul>
+<h2 id="20210514-152602">2021.05.14-15.26.02<a class="headerlink" href="#20210514-152602" title="Permanent link">#</a></h2>
+<ul>
+<li>Include non full qualified vars on unused-public-var exclude filter.</li>
+<li>Improve hover documentation: use correct markdown for docstrings; remove unnecessary new lines; add link to filename location.</li>
+<li>Rollback full text changes on last release and change approach for a temporary fix. #424</li>
+</ul>
+<h2 id="20210506-194400">2021.05.06-19.44.00<a class="headerlink" href="#20210506-194400" title="Permanent link">#</a></h2>
+<ul>
+<li>Quick fix full text changes to handle it sync for semantic tokens</li>
+<li>Segregate main references from test references with option to disable via <code>lens-segregate-test-references</code></li>
+</ul>
+<h2 id="20210427-201745">2021.04.27-20.17.45<a class="headerlink" href="#20210427-201745" title="Permanent link">#</a></h2>
+<ul>
+<li>Significantly improve the performance of workspace symbol filtering/searching. <a href="https://github.com/anonimitoraf/clj-flx/commit/61b2081b65b7d3be14851bac03ea508147c90054">See relevant commit</a>.</li>
+<li>Always sort refers when clean-ns.</li>
+<li>Add support for installing with homebrew on Linux.</li>
+<li>Bump clj-kondo to <code>2021.04.24-20210426.144134-2</code> adding support for finding re-frame by keyword. Fixes #411</li>
+<li>Fix find definition going to <code>declare</code> - Fixes #340</li>
+<li>Remove common already known clojure macros from <code>Resolve macro as</code> code action.</li>
+</ul>
+<h2 id="20210423-154947">2021.04.23-15.49.47<a class="headerlink" href="#20210423-154947" title="Permanent link">#</a></h2>
+<ul>
+<li>Improve resolve-macro-as command to check and log if couldn't resolve the macro.</li>
+<li>Improve workspace symbol filtering/searching. Now, the sole candidates shown are guaranteed to include all the characters contained in the filter/search string.</li>
+<li>Add more tokens to semantic tokens: keywords, functions/var usages, java classes, local variables.</li>
+<li>Bump Graalvm from 21.0.0 to 21.1.0</li>
+<li>Bump clj-kondo to 2021.04.23 fixing some keywords corner cases.</li>
+</ul>
+<h2 id="20210413-124733">2021.04.13-12.47.33<a class="headerlink" href="#20210413-124733" title="Permanent link">#</a></h2>
+<ul>
+<li>Add common snippets on completion. Check all available snippets <a href="https://clojure-lsp.github.io/clojure-lsp/features/#snippets">here</a>.</li>
+<li>Add support for custom snippets via <code>:additional-snippets</code>. Check <a href="https://clojure-lsp.github.io/clojure-lsp/features/#snippets">here</a> for more information. - Fixes #403</li>
+<li>Bump lsp4j from 0.11.0 -&gt; 0.12.0</li>
+</ul>
+<h2 id="20210407-163410">2021.04.07-16.34.10<a class="headerlink" href="#20210407-163410" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix renaming keywords in cljc files producing duplicate edits.</li>
+<li>After project startup, publish all project only diagnostics. This is a approach done by other LSPs to make work features like <a href="https://emacs-lsp.github.io/lsp-mode/page/main-features/#project-errors-on-modeline">Project errors</a>. Feature flag via <code>lint-project-files-after-startup?</code> with default <code>true</code>.</li>
+<li>Add experimental support for aarch64 linux native binary</li>
+<li>Fix formatting issues with a regression introduced on a previous release. - Fixes #339 and #396</li>
+</ul>
+<h2 id="20210403-184355">2021.04.03-18.43.55<a class="headerlink" href="#20210403-184355" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix textDocument/workspaceSymbols filter not working on native binaries.</li>
+<li>Report duplicate linters as default, can be disabled via <code>:linters :clj-kondo :report-duplicates</code> - Fixes #390</li>
+<li>Bump rewrite-clj to 1.0.605-alpha to fix exceptions when on clojure files with babashka interpreter on first line.</li>
+<li>Bump clj-kondo 2021.04.01-20210402.215253-6 to fix bug https://github.com/clj-kondo/clj-kondo/issues/1246</li>
+</ul>
+<h2 id="20210330-204234">2021.03.30-20.42.34<a class="headerlink" href="#20210330-204234" title="Permanent link">#</a></h2>
+<ul>
+<li>Bump clj-londo 2021.03.22-20210327.192113-4 - Fixes #385</li>
+<li>Add support for outgoing call hierarchy - Fixes #384</li>
+<li>Improve and fix missing completion item kinds.</li>
+</ul>
+<h2 id="20210326-234107">2021.03.26-23.41.07<a class="headerlink" href="#20210326-234107" title="Permanent link">#</a></h2>
+<ul>
+<li>Bump clj-kondo 2021.03.22-20210324.110254-3 - Fixes #382</li>
+<li>[graalvm] Fixes Unable to invoke no-args constructor for class org.eclipse.lsp4j.ShowDocumentCapabilities error.</li>
+<li>Fix/enhance keyword rename - #383</li>
+</ul>
+<h2 id="20210324-004155">2021.03.24-00.41.55<a class="headerlink" href="#20210324-004155" title="Permanent link">#</a></h2>
+<ul>
+<li>Migrate from lein to deps.edn</li>
+<li>Bump clj-kondo to 2021.03.22</li>
+<li>Fix clean-ns sorting according to symbols not brackets - Fixes #380</li>
+<li>Fix missing graalvm reflect config for CompletionItemTextEdit - Fixes #381</li>
+</ul>
+<h2 id="20210321-232919">2021.03.21-23.29.19<a class="headerlink" href="#20210321-232919" title="Permanent link">#</a></h2>
+<ul>
+<li>Add code action 'resolve macro as', it requires client to fill the chosen macro and clj-kondo config file.</li>
+<li>Bump rewrite-clj to 1.0.594-alpha</li>
+<li>Bump data.json to 2.0.1</li>
+<li>Bump lsp4j to 0.11.0</li>
+</ul>
+<h2 id="20210318-192341">2021.03.18-19.23.41<a class="headerlink" href="#20210318-192341" title="Permanent link">#</a></h2>
+<ul>
+<li>Add support for diagnostic tags: deprecated and unnecessary.</li>
+<li>Fix wrong textDocument/documentHighlight for function local-usages.</li>
+<li>Use new clj-kondo <code>copy-configs</code> flag to copy hooks during lint.</li>
+<li>Bunp clj-kondo to fix unused public linter check for <code>:exclude-when-defined-by</code></li>
+</ul>
+<h2 id="20210316-202806">2021.03.16-20.28.06<a class="headerlink" href="#20210316-202806" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix server not analyzing after a wrong code on cljs files - #367</li>
+<li>Rollback incremental didChange adding a new <code>:text-document-sync-kind</code> setting with <code>:full</code> as default.</li>
+</ul>
+<h2 id="20210314-232246">2021.03.14-23.22.46<a class="headerlink" href="#20210314-232246" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix completion inside refers, re-add support for it - Fixes #364</li>
+<li>Change range of expression functions clj-kondo diagnostics to avoid collision with function signature.</li>
+</ul>
+<h2 id="20210306-170535">2021.03.06-17.05.35<a class="headerlink" href="#20210306-170535" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix incremental didChange, debouncing distincting by uri, fixing some inconsistent file changes
+when multiple files are changed at same time (rename, iedit, etc).</li>
+<li>Make unused-public-var ignore -main public functions.</li>
+<li>Add <code>:exclude-when-defined-by</code> option to <code>unused-public-var</code> linter, check settings documentation for more information.</li>
+</ul>
+<h2 id="20210305-133547">2021.03.05-13.35.47<a class="headerlink" href="#20210305-133547" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix clojure-lsp lint crash when analyzing specific macros with clj-kondo hooks.</li>
+<li>Fix didChange for Nvim client.</li>
+<li>Add new clojure-lsp linter: unused-public-var - Fixes #359</li>
+<li>Add option to disable clj-kondo linter, check settings documentation for more details.</li>
+</ul>
+<h2 id="20210301-191854">2021.03.01-19.18.54<a class="headerlink" href="#20210301-191854" title="Permanent link">#</a></h2>
+<ul>
+<li>Bump clj-kondo fixing issues on require form not being analyzed.</li>
+<li>Fix textDocument/workspaceSymbols to use the query sent by client.</li>
+</ul>
+<h2 id="20210227-233555">2021.02.27-23.35.55<a class="headerlink" href="#20210227-233555" title="Permanent link">#</a></h2>
+<ul>
+<li>Add support to complete full qualified namespaces - Fixes #337</li>
+<li>Add <code>:log-path</code> setting to log to a custom file.</li>
+<li>Avoid exception on code actions when on cljc reader macros - Related to #346</li>
+</ul>
+<h2 id="20210226-135848">2021.02.26-13.58.48<a class="headerlink" href="#20210226-135848" title="Permanent link">#</a></h2>
+<ul>
+<li>Improve clojure-lsp config search checking always home dir considering XDG_CONFIG_HOME and project root up to system root (/) - Fixes #339.</li>
+<li>Handle incremental text changes on <code>textDocument/didChange</code> notifications following LSP protocol, improving performance for huge files.</li>
+<li>Add clj-kondo version to --version and server-info.</li>
+<li>Add new create private function code action.</li>
+</ul>
+<h2 id="20210224-142308">2021.02.24-14.23.08<a class="headerlink" href="#20210224-142308" title="Permanent link">#</a></h2>
+<ul>
+<li>Improve completion performance resolving the item only when documentation is requested</li>
+<li>Add new thread first/last all code actions</li>
+</ul>
+<h2 id="20210221-210251">2021.02.21-21.02.51<a class="headerlink" href="#20210221-210251" title="Permanent link">#</a></h2>
+<ul>
+<li>Implement support for textDocument/signatureHelp - Fixes #324</li>
+<li>Disable notify-references on didChange with a flag <code>notify-references-on-change</code>.</li>
+<li>Fix completion not working when reader macro on file - Fixes #332</li>
+</ul>
+<h2 id="20210219-230840">2021.02.19-23.08.40<a class="headerlink" href="#20210219-230840" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix duplicated symbols for cljc files on textDocument/documentSymbols - Fixes #328</li>
+<li>Add namespace require when completing a unimported namespace - Fixes #309</li>
+<li>Fix completion not working for cljc files</li>
+</ul>
+<h2 id="20210219-001927">2021.02.19-00.19.27<a class="headerlink" href="#20210219-001927" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix completion of invalid clojure core (e.g. <code>foo/</code>) - Fixes #270</li>
+</ul>
+<h2 id="20210217-170045">2021.02.17-17.00.45<a class="headerlink" href="#20210217-170045" title="Permanent link">#</a></h2>
+<ul>
+<li>Allow find all references across the project of simple keywords</li>
+<li>Allow specify custom sqlite.db location with <code>sqlite-db-path</code>, default to <code>&lt;project&gt;/.lsp/sqlite.db</code></li>
+</ul>
+<h2 id="20210214-194647">2021.02.14-19.46.47<a class="headerlink" href="#20210214-194647" title="Permanent link">#</a></h2>
+<ul>
+<li>Removing false positive logs from invalid analysis from clj-kondo macro expand analysis</li>
+<li>Fix call hierarchy when the reference was not open yet in the editor.</li>
+<li>Smart re-analyze variable/function references when arguments of the definition were updated.</li>
+<li>Rollback Macos native image compress until it works for MacOS Big Sur - #322</li>
+</ul>
+<h2 id="20210213-180419">2021.02.13-18.04.19<a class="headerlink" href="#20210213-180419" title="Permanent link">#</a></h2>
+<ul>
+<li>Bump clj-kondo to fix false-positive unresolved-vars</li>
+<li>Prioritize project analysis on all analysis during find definition - Fixes #318</li>
+<li>Compress native binaries with UPX decreasing binary size.</li>
+</ul>
+<h2 id="20210212-031312">2021.02.12-03.13.12<a class="headerlink" href="#20210212-031312" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix completion issues with graalvm native linux binaries when completing local variables.</li>
+<li>Fix completion exception when completing numbers - Fixes #310</li>
+<li>Completion inside a require suggests all available namespaces</li>
+<li>Change log pattern to <code>/tmp/clojure-lsp.&lt;TIMESTAMP&gt;.out</code> use default temp file. Should fix issues with permissions on tmp folder.</li>
+</ul>
+<h2 id="20210211-124306">2021.02.11-12.43.06<a class="headerlink" href="#20210211-124306" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix auto add ns not working for projects.</li>
+<li>New code action: Move to let</li>
+<li>New code action: Change coll to map, list, set or vector</li>
+</ul>
+<h2 id="20210210-030119">2021.02.10-03.01.19<a class="headerlink" href="#20210210-030119" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix config passed to clj-kondo during analysis - Fixes #308</li>
+</ul>
+<h2 id="20210209-182806">2021.02.09-18.28.06<a class="headerlink" href="#20210209-182806" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix auto add ns to check project root and source paths</li>
+<li>Add alias on copmletion items - Fix completion items for Calva client</li>
+</ul>
+<h2 id="20210207-225126">2021.02.07-22.51.26<a class="headerlink" href="#20210207-225126" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix install-latest-clojure-lsp.sh script - #304</li>
+<li>Fix clojure-lsp re-analysing classpath when project contains a keyword starting with a number - #305</li>
+<li>Allow clj-kondo to pick up config correctly in mono repos - #303</li>
+</ul>
+<h2 id="20210207-030431">2021.02.07-03.04.31<a class="headerlink" href="#20210207-030431" title="Permanent link">#</a></h2>
+<ul>
+<li>Make release's native binaries executable by default - #299</li>
+<li>Improve completion removing the necessity to call completion/resolveItem - #292</li>
+<li>New code action: Add suggested alias to namespaces - #302</li>
+</ul>
+<h2 id="20210205-030534">2021.02.05-03.05.34<a class="headerlink" href="#20210205-030534" title="Permanent link">#</a></h2>
+<ul>
+<li>Add support for keyword analysis (definition, references, completion, rename, hover)</li>
+<li>Reduce jar and binaries size excluding some dependencies (Need to fix a lein issue yet)</li>
+</ul>
+<h2 id="20210204-020858">2021.02.04-02.08.58<a class="headerlink" href="#20210204-020858" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix --version on graalvm native compiled binaries</li>
+</ul>
+<h2 id="20210204-010921">2021.02.04-01.09.21<a class="headerlink" href="#20210204-010921" title="Permanent link">#</a></h2>
+<ul>
+<li>Add integration tests to release process</li>
+</ul>
+<h2 id="20210202-140223">2021.02.02-14.02.23<a class="headerlink" href="#20210202-140223" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix <code>clojure-lsp</code> embedded jar binary during release CI</li>
+<li>Fix duplicate references on cljc files</li>
+</ul>
+<h2 id="20210202-030646">2021.02.02-03.06.46<a class="headerlink" href="#20210202-030646" title="Permanent link">#</a></h2>
+<ul>
+<li>Add clojure.java.io to known requires - #291</li>
+<li>Add manual System/gc after first classpath scan, it should decrease memory after the first startup</li>
+<li>Add support for Windows GraalVM compiled native binary</li>
+</ul>
+<h2 id="20210201-203752">2021.02.01-20.37.52<a class="headerlink" href="#20210201-203752" title="Permanent link">#</a></h2>
+<ul>
+<li>Add native binaries for Linux and MacOS compiled with GraalVM #267 (Experimental)</li>
+</ul>
+<h2 id="20210128-030316">2021.01.28-03.03.16<a class="headerlink" href="#20210128-030316" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix clj-kondo batch analysis when merging batchs - Fix #284</li>
+</ul>
+<h2 id="20210127-214742">2021.01.27-21.47.42<a class="headerlink" href="#20210127-214742" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix missing printlng and avoid errors for next time (this was causing issues in clients like vim coc)</li>
+</ul>
+<h2 id="20210126-223527">2021.01.26-22.35.27<a class="headerlink" href="#20210126-223527" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix document-symbol after #261 - Fixes #276</li>
+<li>Reduce memory usage on startup batch analyzing classpath via clj-kondo. - Fixes #268</li>
+</ul>
+<h2 id="20210125-225605">2021.01.25-22.56.05<a class="headerlink" href="#20210125-225605" title="Permanent link">#</a></h2>
+<ul>
+<li>Do not remove document on <code>textDocument/didClose</code>, related to #264.</li>
+<li>Fix default project-specs for shadow-cljs to use npx prefix.</li>
+<li>Fix range of <code>textDocument/hover</code> for definition usages.</li>
+<li>Fix <code>completionItem/resolve</code> broken after #261.</li>
+</ul>
+<h2 id="20210125-172205">2021.01.25-17.22.05<a class="headerlink" href="#20210125-172205" title="Permanent link">#</a></h2>
+<ul>
+<li>Remove references code-lens from <code>deftest</code> forms</li>
+<li>Fix completion for alias ns from external deps - Fixes #269</li>
+</ul>
+<h2 id="20210122-130428">2021.01.22-13.04.28<a class="headerlink" href="#20210122-130428" title="Permanent link">#</a></h2>
+<p>Huge refactor https://github.com/clojure-lsp/clojure-lsp/pull/261 which uses clj-kondo <code>analysis</code>/ <code>findings</code> output to almost all <code>clojure-lsp</code> features.</p>
+<ul>
+<li>Should significantly increase performance and startup time</li>
+<li>Should fix almost all bugs/issues with windows Users since we now rely on clj-kondo analysis</li>
+<li><strong>Remove</strong> all lint configs from <code>clojure-lsp</code> including <code>macro-defs</code>, they should be configured on <code>clj-kondo</code> side now via <code>.clj-kondo/config.edn</code></li>
+<li>Move file path on documentation to bottom</li>
+</ul>
+<h2 id="20210120-013932">2021.01.20-01.39.32<a class="headerlink" href="#20210120-013932" title="Permanent link">#</a></h2>
+<ul>
+<li>Fixes args for extract-function refactoring - Fixes #263</li>
+</ul>
+<h2 id="20210116-032820">2021.01.16-03.28.20<a class="headerlink" href="#20210116-032820" title="Permanent link">#</a></h2>
+<ul>
+<li>Check for defintions when finding references with includeDeclaration as true - Fixes #260</li>
+<li>Add custom command cursor-info to debugging clojure-lsp.</li>
+<li>Fix unnecessary new-lines on imports when executing clean-ns</li>
+</ul>
+<h2 id="20210114-231554">2021.01.14-23.15.54<a class="headerlink" href="#20210114-231554" title="Permanent link">#</a></h2>
+<ul>
+<li>Check for the whole line to add-miising-* code actions instead of expect the cursor at the ns to be required/imported - Fixes #258</li>
+<li>Return all possible add-missing-* code actions to the same line.</li>
+</ul>
+<h2 id="20210114-171910">2021.01.14-17.19.10<a class="headerlink" href="#20210114-171910" title="Permanent link">#</a></h2>
+<ul>
+<li>Fix add missing import code actions after refactor</li>
+</ul>
+<h2 id="20210114-124442">2021.01.14-12.44.42<a class="headerlink" href="#20210114-124442" title="Permanent link">#</a></h2>
+<ul>
+<li>Fixes #208</li>
+</ul>
+<h2 id="20210114-023028">2021.01.14-02.30.28<a class="headerlink" href="#20210114-023028" title="Permanent link">#</a></h2>
+<ul>
+<li>LSP 3.16: Add support for <code>codeAction/resolve</code> improving performance if client supports it</li>
+<li>Bump extend lib</li>
+<li>[CI] Remove auto release, next releases should contain more than one PR/fix</li>
+</ul>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">September 1, 2023</span>
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../api/bb-pod/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Babashka pod
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/clojure-lsp/clojure-lsp" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://clojurians.slack.com/archives/CPABC1H61" target="_blank" rel="noopener" title="clojurians.slack.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1c0-25.9 21.16-47.06 47.06-47.06h47.06v47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V315.1zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06H164.9zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06H164.9zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06h-47.06V196.9zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06V196.9zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06v-47.06h47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06 0-25.9 21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06H283.1z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.93c04032.min.js"></script>
+      <script src="../assets/javascripts/bundle.83e5331e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ['navigation.tabs'],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
