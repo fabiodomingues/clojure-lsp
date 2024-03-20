@@ -600,6 +600,41 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#20240313-131100" class="md-nav__link">
+    2024.03.13-13.11.00
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20240301-113751" class="md-nav__link">
+    2024.03.01-11.37.51
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20240201-110159" class="md-nav__link">
+    2024.02.01-11.01.59
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20231229-120927" class="md-nav__link">
+    2023.12.29-12.09.27
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20231030-162541" class="md-nav__link">
+    2023.10.30-16.25.41
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#20230806-002806" class="md-nav__link">
     2023.08.06-00.28.06
   </a>
@@ -1415,6 +1450,41 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#20240313-131100" class="md-nav__link">
+    2024.03.13-13.11.00
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20240301-113751" class="md-nav__link">
+    2024.03.01-11.37.51
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20240201-110159" class="md-nav__link">
+    2024.02.01-11.01.59
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20231229-120927" class="md-nav__link">
+    2023.12.29-12.09.27
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20231030-162541" class="md-nav__link">
+    2023.10.30-16.25.41
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#20230806-002806" class="md-nav__link">
     2023.08.06-00.28.06
   </a>
@@ -2211,6 +2281,81 @@
                 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">#</a></h1>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">#</a></h2>
 <ul>
+<li>Editor</li>
+<li>Adding require command fails for requires without alias. #1791</li>
+<li>Add require command without alias now add requires with brackets.</li>
+</ul>
+<h2 id="20240313-131100">2024.03.13-13.11.00<a class="headerlink" href="#20240313-131100" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>
+<p>Bump clj-kondo to <code>2024.03.13</code> fixing high memory usage issue.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix <code>workspace/didChangeConfiguration</code> exception causing noise on logs. #1784</li>
+</ul>
+<h2 id="20240301-113751">2024.03.01-11.37.51<a class="headerlink" href="#20240301-113751" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump clj-kondo to <code>2024.02.13-20240228.191822-15</code>.</li>
+<li>Add <code>:clojure-lsp/different-aliases</code> linter. #1770</li>
+<li>Fix unused-public-var false positives for definterface methods. #1762</li>
+<li>
+<p>Fix rename of records when usage is using an alias. #1756</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix documentation resolve not working for clients without hover markdown support.</li>
+<li>Added setting to allow requires and imports to be added within the current comment form during code action and completion: <code>:add-missing :add-to-rcf</code> #1316</li>
+<li>Fix <code>suppress-diagnostics</code> not working on top-level forms when preceded by comment. #1678 </li>
+<li>Fix add missing import feature on some corner cases for java imports. #1754</li>
+<li>Fix semantic tokens and other analysis not being applied for project files at root. #1759</li>
+<li>Add support for adding missing requires and completion results referring to JS libraries which already have an alias in the project #1587</li>
+</ul>
+<h2 id="20240201-110159">2024.02.01-11.01.59<a class="headerlink" href="#20240201-110159" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix binary not wokring on some aarch64 linux. #1748</li>
+<li>Add new <code>Project tree</code> feature via the <code>clojure/workspace/projectTree/nodes</code> custom method. #1752</li>
+<li>
+<p>Fix <code>--log-path</code> setting to work with <code>listen</code>/empty arg, starting clojure-lsp server and logging properly.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix <code>didChangeConfiguration</code> throwing exception. #1749</li>
+<li>Fix <code>rename</code> of ns causing wrong ns names because of duplicate rename actions. #1751</li>
+<li>Fix <code>range-formatting</code> throwing exceptions when unbalanced parens are sent from client. #1758</li>
+<li>Fix rename functions need to clean up LSP state or restart in some clients implementing LSP method <code>didRenameFiles</code>. #1755</li>
+<li>Fix <code>thread last all</code> failed after comment form <code>#_(...)</code>. #1745  </li>
+</ul>
+<h2 id="20231229-120927">2023.12.29-12.09.27<a class="headerlink" href="#20231229-120927" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix deep-merge of client settings with project settings.</li>
+<li>Fix <code>max-line-length</code> on clean-ns feature not respecting some lines when contains a lot of refers. #1729</li>
+<li>Bump cljfmt to 0.12.0.</li>
+<li>
+<p>Bump clj-kondo to <code>2023.12.15</code>.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Fix edn tree visualization for keys with same name in the same level. #1558</li>
+<li>Make clear when <code>hover</code> feature is in a calling and not in a specific symbol. #1281</li>
+<li>
+<p>Exclude keys that are already included in the function call from completion suggestions. #1720</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Drastically improves performance of <code>format</code> task matching <code>cljfmt</code>, avoiding analyzing the project. #1723</li>
+</ul>
+<h2 id="20231030-162541">2023.10.30-16.25.41<a class="headerlink" href="#20231030-162541" title="Permanent link">#</a></h2>
+<ul>
 <li>General</li>
 <li>Bump clj-kondo to <code>2023.10.21-20231022.204832-4</code>. </li>
 <li>Fix move-to-let/expand-let bug for multi-arity functions #1283</li>
@@ -2219,8 +2364,9 @@
 <li>Improve overall performance using GraalVM 21 PGO (Profile-Guided Optimizations).</li>
 <li>Extract the responsibility for merging clj-depend config #1265</li>
 <li>Support passing configurations to clj-depend via CLI #1694</li>
+<li>Bump clj-depend to <code>0.9.2</code></li>
 <li>
-<p>Bump clj-depend to <code>0.9.2</code></p>
+<p>Performance: remove keyword-usages elements from external analysis as they are not used for any feature and for big projects may affect memory. #1700</p>
 </li>
 <li>
 <p>Editor</p>
@@ -2236,6 +2382,8 @@
 </li>
 <li>Improve rename to avoid internal errors and show proper error messages. #1691</li>
 <li>Exclude unused-public-vars when inside a comment block.</li>
+<li>Add <code>:analysis-summary</code> field to <code>serverInfo</code> command to get information about project for performance analysis.</li>
+<li>Add <code>:analysis</code> settings, with options to disable specific analysis for better performance on huge projects. #1700</li>
 </ul>
 <h2 id="20230806-002806">2023.08.06-00.28.06<a class="headerlink" href="#20230806-002806" title="Permanent link">#</a></h2>
 <ul>
@@ -3623,7 +3771,7 @@ when multiple files are changed at same time (rename, iedit, etc).</li>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 25, 2023</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 20, 2024</span>
     
   </small>
 </div>

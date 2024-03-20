@@ -439,6 +439,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#clojure-lspdifferent-aliases" class="md-nav__link">
+    clojure-lsp/different-aliases
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -971,6 +978,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#clojure-lspdifferent-aliases" class="md-nav__link">
+    clojure-lsp/different-aliases
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1251,6 +1265,11 @@
 <td><code>[]</code></td>
 </tr>
 <tr>
+<td><code>:add-missing :add-to-rcf</code></td>
+<td>Missing requires and imports will be added to the top of the comment form for code actions and completions from within a comment form, can be <code>:ask</code>, <code>:never</code> or <code>:always</code>.</td>
+<td><code>:ask</code></td>
+</tr>
+<tr>
 <td><code>:api :exit-on-errors?</code></td>
 <td>Whether to exit the clojure-lsp process during api/cli call if any error is found, like classpath scan failure</td>
 <td><code>true</code></td>
@@ -1425,11 +1444,36 @@
 <td>Whether to use <code>^:private</code> metadata for refactorings instead of <code>defn-</code></td>
 <td><code>false</code></td>
 </tr>
+<tr>
+<td><code>:analysis</code> <code>:keywords</code> <code>:definitions</code></td>
+<td>Whether to enable keyword definitions analysis for performance.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:analysis</code> <code>:keywords</code> <code>:usages</code></td>
+<td>Whether to enable keyword usages analysis for performance.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:analysis</code> <code>:java</code> <code>:class-definitions</code></td>
+<td>Whether to enable java class definitions analysis for performance.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:analysis</code> <code>:java</code> <code>:member-definitions</code></td>
+<td>Whether to enable java member definitions analysis for performance.</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:analysis</code> <code>:symbols</code></td>
+<td>Whether to enable symbols analysis for performance.</td>
+<td><code>true</code></td>
+</tr>
 </tbody>
 </table>
 <h3 id="classpath-scan">Classpath scan<a class="headerlink" href="#classpath-scan" title="Permanent link">#</a></h3>
 <p>clojure-lsp needs to analyze the whole project and its dependencies to understand your code for most features, during the startup clojure-lsp will try to find the classpath of your project to pass to clj-kondo later.</p>
-<p>You can configure how clojure-lsp should find the classpath with the <code>project-specs</code> setting, but keep in mind that usually the <a href="https://github.com/clojure-lsp/clojure-lsp/blob/master/lib/src/clojure_lsp/classpath.clj#L169">default</a> is enough, it will also consider the <code>:source-aliases</code> setting if any to find the classpath using those aliases.</p>
+<p>You can configure how clojure-lsp should find the classpath with the <code>project-specs</code> setting, but keep in mind that usually the <a href="https://github.com/clojure-lsp/clojure-lsp/blob/master/lib/src/clojure_lsp/classpath.clj#L184">default</a> is enough, it will also consider the <code>:source-aliases</code> setting if any to find the classpath using those aliases.</p>
 <p>Supported project types at the moment are:</p>
 <ul>
 <li><code>leiningen</code>: If a <code>project.clj</code> is found at the project root, clojure-lsp will run <code>lein classpath</code> with <code>:source-aliases</code> specified if any.</li>
@@ -1443,6 +1487,7 @@
 <p>Alternatively, you can configure the <code>project-specs</code> specific for your project, for example:</p>
 <p><code>.lsp/config.edn</code>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:project-specs</span> <span class="p">[{</span><span class="ss">:project-path</span> <span class="s">&quot;deps.edn&quot;</span>
+                  <span class="ss">:env</span> <span class="p">{</span><span class="s">&quot;PATH&quot;</span> <span class="s">&quot;/some/custom/path&quot;</span><span class="p">}</span> <span class="c1">;; optional if you want to override the PATH used in the classpath-cmd</span>
                   <span class="ss">:classpath-cmd</span> <span class="p">[</span><span class="s">&quot;clojure&quot;</span> <span class="s">&quot;-A:my-custom-alias&quot;</span> <span class="s">&quot;-Spath&quot;</span><span class="p">]}]}</span>
 </code></pre></div></p>
 <p>Note that clojure-lsp will make this scan to save the cache when:</p>
@@ -1509,6 +1554,13 @@ check the <a href="https://github.com/clj-kondo/clj-kondo/blob/master/doc/config
                                            <span class="ss">:exclude-when-defined-by-regex</span> <span class="o">#</span><span class="p">{</span><span class="s">&quot;my.custom/macro-.*&quot;</span><span class="p">}</span>
                                            <span class="ss">:exclude-when-contains-meta</span> <span class="o">#</span><span class="p">{</span><span class="ss">:my-cool-meta</span><span class="p">}}}}</span>
 </code></pre></div></p>
+<h6 id="clojure-lspdifferent-aliases">clojure-lsp/different-aliases<a class="headerlink" href="#clojure-lspdifferent-aliases" title="Permanent link">#</a></h6>
+<p>Sometimes, it's desirable to use the same alias across namespaces to enhance readability and reduce cognitive load.</p>
+<p>It has the possible keys/values:</p>
+<ul>
+<li><code>:level</code> with available values: <code>:info</code>, <code>:warning</code>, <code>:error</code> or <code>:off</code> with default value of <code>:off</code>.</li>
+<li><code>:exclude-aliases</code> ignores the symbols provided in a set, example <code>#{sut}</code></li>
+</ul>
 <h4 id="clj-depend">clj-depend<a class="headerlink" href="#clj-depend" title="Permanent link">#</a></h4>
 <p>clojure-lsp uses <a href="https://github.com/clj-depend/clj-depend">clj-depend</a> when any clj-depend config is found either on clojure-lsp config or as a <code>.clj-depend/config.edn</code> file.</p>
 <p>The clj-depend config should be within the <code>:config</code> key.</p>
@@ -1659,7 +1711,7 @@ The available settings inside <code>:stubs</code> are:</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">October 25, 2023</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">March 17, 2024</span>
     
   </small>
 </div>
