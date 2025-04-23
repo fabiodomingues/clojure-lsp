@@ -1,6 +1,7 @@
 ;; All available settings and its default values
 ;; Check the settings documentation section for more details of each one.
 {:source-paths #{"src" "test"} ;; auto-resolved for deps.edn, project.clj or bb.edn projects
+ :test-locations-regex #{"_test\.clj[a-z]?$"} ;; Patterns matched with clojure.core/re-find
  :source-aliases #{:dev :test}
  :project-specs [] ;; Check the default at clojure-lsp.classpath/default-project-specs
  :source-paths-ignore-regex ["target.*"]
@@ -22,6 +23,7 @@
                 :import-classes {:classes-per-line 3} ;; -1 for all in single line
                 :refer {:max-line-length 80}}}
  :hover {:hide-file-location? false
+         :hide-signature-call? false
          :arity-on-same-line? false
          :clojuredocs true}
  :completion {:additional-edits-warning-text nil
@@ -57,5 +59,7 @@
             :java {:class-definitions true
                    :member-definitions true}
             :symbols true}
+ :otlp {:enabled false
+        :config {}} ;; map with properties to configure opentelemetry log via timbre.
  :cache-path ".lsp/.cache"
  :log-path "/tmp/clojure-lsp.*.out"}

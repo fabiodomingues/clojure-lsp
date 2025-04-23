@@ -639,6 +639,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#opentelemetry-integration" class="md-nav__link">
+    OpenTelemetry integration
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1178,6 +1185,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#opentelemetry-integration" class="md-nav__link">
+    OpenTelemetry integration
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1350,13 +1364,18 @@
 <td><code>false</code></td>
 </tr>
 <tr>
+<td><code>:hover</code> <code>:hide-signature-call?</code></td>
+<td>Whether to show the surrounding call on hover.</td>
+<td><code>false</code></td>
+</tr>
+<tr>
 <td><code>:source-paths-ignore-regex</code></td>
-<td>list of regex to filter source-paths. By default, source-paths are retrieved from classpath, and usually the classpath contains folders that are not directly project code or it's auto-generated like cljs <code>resources</code> or <code>target</code> folders but it's inside your project. Replace old <code>:ignore-classpath-directories</code> setting.</td>
+<td>list of regex to filter source-paths. By default, source-paths are retrieved from classpath , and usually the classpath contains folders that are not directly project code or it's auto-generated like cljs <code>resources</code> or <code>target</code> folders but it's inside your project. Replace old <code>:ignore-classpath-directories</code> setting. This operates on relative paths.</td>
 <td><code>["target.*"]</code></td>
 </tr>
 <tr>
 <td><code>:paths-ignore-regex</code></td>
-<td>list of regex to filter paths to be analyzed. Useful for excluding huge files or folders that may affect final analysis size and performance, like huge edn files.</td>
+<td>list of regex to filter paths to be analyzed. Useful for excluding huge files or folders that may affect final analysis size and performance, like huge edn files. These are absolute paths, so make sure that regex pattern matches fully expanded path.</td>
 <td><code>[]</code></td>
 </tr>
 <tr>
@@ -1435,6 +1454,11 @@
 <td></td>
 </tr>
 <tr>
+<td><code>:test-locations-regex</code></td>
+<td>A set of patterns (regex strings) specifying where the tests live. Patterns are matched with <a href="https://clojuredocs.org/clojure.core/re-find">clojure.core/re-find</a> against file URI strings.</td>
+<td><code>#{"_test\.clj[a-z]?$"}</code></td>
+</tr>
+<tr>
 <td><code>:text-document-sync-kind</code></td>
 <td>The sync kind during document changes, if client should send whole buffer or just related changes. Should be <code>:full</code> or <code>:incremental</code></td>
 <td><code>:full</code></td>
@@ -1468,6 +1492,11 @@
 <td><code>:analysis</code> <code>:symbols</code></td>
 <td>Whether to enable symbols analysis for performance.</td>
 <td><code>true</code></td>
+</tr>
+<tr>
+<td><code>:otlp</code></td>
+<td><a href="https://opentelemetry.io/">OpenTelemetry</a> related settings, check the <a href="#opentelemetry-integration">Opentelemetry</a> section below.</td>
+<td><code>false</code></td>
 </tr>
 </tbody>
 </table>
@@ -1541,6 +1570,7 @@ check the <a href="https://github.com/clj-kondo/clj-kondo/blob/master/doc/config
 <li><code>:exclude-when-defined-by</code> excludes this linter when your var is defined by a macro for example, like <code>#{my-ns/deftest}</code>.</li>
 <li><code>:exclude-when-defined-by-regex</code> same as above but with support for regex, like <code>#{"my-ns/.*"}</code>.</li>
 <li><code>:exclude-when-contains-meta</code> excludes this linter when your var has any of these metas, like <code>#{:my-meta}</code>.</li>
+<li><code>:ignore-test-references?</code> whether to ignore test references of a var-definition when considering if the var is unused. Useful to check functions that have tests but are not being used in the source code. Relies on Clojure-LSP's <code>:test-locations-regex</code> setting to locate test files. Default: <code>false</code>.</li>
 </ul>
 <p>Example:</p>
 <p><code>.clj-kondo/config.edn</code>
@@ -1552,7 +1582,8 @@ check the <a href="https://github.com/clj-kondo/clj-kondo/blob/master/doc/config
                                            <span class="ss">:exclude-regex</span> <span class="o">#</span><span class="p">{</span><span class="s">&quot;my-integration-tests.*&quot;</span><span class="p">}</span>
                                            <span class="ss">:exclude-when-defined-by</span> <span class="o">#</span><span class="p">{</span><span class="nv">my-ns/defflow</span><span class="p">}</span>
                                            <span class="ss">:exclude-when-defined-by-regex</span> <span class="o">#</span><span class="p">{</span><span class="s">&quot;my.custom/macro-.*&quot;</span><span class="p">}</span>
-                                           <span class="ss">:exclude-when-contains-meta</span> <span class="o">#</span><span class="p">{</span><span class="ss">:my-cool-meta</span><span class="p">}}}}</span>
+                                           <span class="ss">:exclude-when-contains-meta</span> <span class="o">#</span><span class="p">{</span><span class="ss">:my-cool-meta</span><span class="p">}</span>
+                                           <span class="ss">:ignore-test-references?</span> <span class="nv">true</span><span class="p">}}}</span>
 </code></pre></div></p>
 <h6 id="clojure-lspdifferent-aliases">clojure-lsp/different-aliases<a class="headerlink" href="#clojure-lspdifferent-aliases" title="Permanent link">#</a></h6>
 <p>Sometimes, it's desirable to use the same alias across namespaces to enhance readability and reduce cognitive load.</p>
@@ -1584,7 +1615,7 @@ check the <a href="https://github.com/clj-kondo/clj-kondo/blob/master/doc/config
 <p>Some features require know the available source paths of your project, where your code lives, clojure-lsp has some settings for that.</p>
 <ul>
 <li>
-<p>By default, clojure-lsp will infer source-paths from the classpath, excluding files that are jar and not under project-root, this usually works for most cases, if not, check next items. </p>
+<p>By default, clojure-lsp will infer source-paths from the classpath, excluding files that are jar and not under project-root, this usually works for most cases, if not, check next items.</p>
 </li>
 <li>
 <p>You can specify a <code>source-aliases</code> setting, making clojure-lsp use those alias when conmputing the classpath, e.g. <code>#{:src :test :my-alias}</code></p>
@@ -1611,15 +1642,15 @@ Check <code>;; good</code> on <a href="https://github.com/bbatsov/clojure-style-
 <p>How to indent classes inside package imports from :import form.
 Note: package imports with only one class will keep indentation: Ex: <code>[java.io File]</code></p>
 <h5 id="next-line_1"><code>next-line</code><a class="headerlink" href="#next-line_1" title="Permanent link">#</a></h5>
-<p>Keep the first class inside a package import on the next line and next children following the same indentation. Ex: </p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="ss">:import</span> 
+<p>Keep the first class inside a package import on the next line and next children following the same indentation. Ex:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="ss">:import</span>
   <span class="p">[</span><span class="nv">java.io</span>
     <span class="nv">File</span>
     <span class="nv">Foo</span><span class="p">])</span>
 </code></pre></div>
 <h5 id="same-line_1"><code>same-line</code><a class="headerlink" href="#same-line_1" title="Permanent link">#</a></h5>
-<p>Keep the first class inside a package import on the same line and next children following the same indentation. Ex: </p>
-<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="ss">:import</span> 
+<p>Keep the first class inside a package import on the same line and next children following the same indentation. Ex:</p>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="ss">:import</span>
   <span class="p">[</span><span class="nv">java.io</span> <span class="nv">File</span>
            <span class="nv">Foo</span><span class="p">])</span>
 </code></pre></div>
@@ -1668,7 +1699,7 @@ Note: package imports with only one class will keep indentation: Ex: <code>[java
 <div class="highlight"><pre><span></span><code><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">|</span><span class="p">]</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">2</span><span class="p">))</span>
 </code></pre></div>
 <h3 id="java-support">Java support<a class="headerlink" href="#java-support" title="Permanent link">#</a></h3>
-<p>At the moment, clojure-lsp supports find definition of java classes only, methods, completion and other features are not supported yet.</p>
+<p>At the moment, clojure-lsp only supports find definition of java classes and completion of fields/methods when it detects a Java class (mostly from static classes usages), other features are not supported yet.</p>
 <p>When a find-definition of a java class is triggered, clojure-lsp checks the following:</p>
 <ul>
 <li>If the java source(<code>.java</code>) is available on classpath, clojure-lsp just return that file location.</li>
@@ -1703,6 +1734,15 @@ The available settings inside <code>:stubs</code> are:</p>
 <p>clojure-lsp will generate no stubs with that, but analyze that folder and consider it as manual generated stubs.</p>
 <h3 id="changing-settings">Changing settings<a class="headerlink" href="#changing-settings" title="Permanent link">#</a></h3>
 <p><code>clojure-lsp</code> supports <code>workspace/didChangeConfiguration</code> commands to change the server settings while it is running, everything inside the <code>:settings</code> map can be changed, but not outside it (the project root for example).</p>
+<h3 id="opentelemetry-integration">OpenTelemetry integration<a class="headerlink" href="#opentelemetry-integration" title="Permanent link">#</a></h3>
+<p><code>clojure-lsp</code> has support for <a href="https://opentelemetry.io/">OpenTelemetry</a>(otlp), if configured, all logs will use the otlp logger API.</p>
+<p>To configure, set <code>:otlp :enable</code> to <code>true</code> and configure your OTLP collector via <code>:otlp :config</code> map following <a href="https://opentelemetry.io/docs/languages/java/configuration/#properties-general">otlp auto-configure settings</a>. Example:</p>
+<p><code>.lsp/config.edn</code>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="ss">:otlp</span> <span class="p">{</span><span class="ss">:enable</span> <span class="nv">true</span>
+        <span class="ss">:config</span> <span class="p">{</span><span class="s">&quot;otel.exporter.otlp.logs.protocol&quot;</span> <span class="s">&quot;http/protobuf&quot;</span>
+                 <span class="s">&quot;otel.exporter.otlp.logs.endpoint&quot;</span> <span class="s">&quot;https://my-otlp-endpoint.com/foo&quot;</span>
+                 <span class="s">&quot;otel.exporter.otlp.headers&quot;</span> <span class="s">&quot;Authorization=Bearer 123456&quot;</span><span class="p">}}}</span>
+</code></pre></div></p>
                 
                   
                     
@@ -1711,7 +1751,7 @@ The available settings inside <code>:stubs</code> are:</p>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 19, 2024</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 23, 2025</span>
     
   </small>
 </div>

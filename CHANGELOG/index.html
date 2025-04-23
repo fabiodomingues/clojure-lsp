@@ -600,6 +600,69 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#20250423-181646" class="md-nav__link">
+    2025.04.23-18.16.46
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20250327-202136" class="md-nav__link">
+    2025.03.27-20.21.36
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20250307-174236" class="md-nav__link">
+    2025.03.07-17.42.36
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20250207-161124" class="md-nav__link">
+    2025.02.07-16.11.24
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20250122-232823" class="md-nav__link">
+    2025.01.22-23.28.23
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20241108-174929" class="md-nav__link">
+    2024.11.08-17.49.29
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20240805-181600" class="md-nav__link">
+    2024.08.05-18.16.00
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20240803-152827" class="md-nav__link">
+    2024.08.03-15.28.27
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20240422-115026" class="md-nav__link">
+    2024.04.22-11.50.26
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#20240331-191013" class="md-nav__link">
     2024.03.31-19.10.13
   </a>
@@ -1457,6 +1520,69 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#20250423-181646" class="md-nav__link">
+    2025.04.23-18.16.46
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20250327-202136" class="md-nav__link">
+    2025.03.27-20.21.36
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20250307-174236" class="md-nav__link">
+    2025.03.07-17.42.36
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20250207-161124" class="md-nav__link">
+    2025.02.07-16.11.24
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20250122-232823" class="md-nav__link">
+    2025.01.22-23.28.23
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20241108-174929" class="md-nav__link">
+    2024.11.08-17.49.29
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20240805-181600" class="md-nav__link">
+    2024.08.05-18.16.00
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20240803-152827" class="md-nav__link">
+    2024.08.03-15.28.27
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20240422-115026" class="md-nav__link">
+    2024.04.22-11.50.26
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#20240331-191013" class="md-nav__link">
     2024.03.31-19.10.13
   </a>
@@ -2294,9 +2420,114 @@
                 
                 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">#</a></h1>
 <h2 id="unreleased">Unreleased<a class="headerlink" href="#unreleased" title="Permanent link">#</a></h2>
+<h2 id="20250423-181646">2025.04.23-18.16.46<a class="headerlink" href="#20250423-181646" title="Permanent link">#</a></h2>
 <ul>
 <li>General</li>
-<li>Bump clj-depend to <code>0.10.0</code>.</li>
+<li>Fix <code>unused-public-var</code> false positives when <code>:ignore-test-references? true</code>.</li>
+<li>Bump clj-kondo to <code>2025.04.07</code>.</li>
+<li>Editor</li>
+<li>Improve timbre context log.</li>
+<li>Fix suggestion for add require code action. #2017</li>
+<li>Improve find definition so it works on <code>declare</code> forms too. #1986</li>
+</ul>
+<h2 id="20250327-202136">2025.03.27-20.21.36<a class="headerlink" href="#20250327-202136" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump rewrite-clj to <code>0bb572a03c0025c01f9c36bfca2815254683fbde</code>. #1984</li>
+<li>Bump clj-kondo to <code>2025.02.21-20250314.135629-7</code>.</li>
+<li>Add support for ignoring tests references for the <code>clojure-lsp/unused-public-var</code> linter. #1878</li>
+<li>Add <code>:test-locations-regex</code> configuration to allow customizing test file detection for the <code>unused-public-var</code> linter's <code>:ignore-test-references?</code> and test code lenses. #1878</li>
+<li>Improve and standardize all logs for better troubleshooting and metrics collection.</li>
+<li>Editor</li>
+<li>Add <code>forward</code>, <code>forward-select</code>, <code>backward</code> and <code>backward-select</code> paredit actions.</li>
+<li>Show add require code action for invalid syntax codes like <code>my-alias/</code>. #1957</li>
+<li>Improve startup performance for huge projects avoiding publish empty diagnostics for every file of the project unnecessarily.</li>
+</ul>
+<h2 id="20250307-174236">2025.03.07-17.42.36<a class="headerlink" href="#20250307-174236" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump clj-kondo to <code>2025.02.20</code>.</li>
+<li>Add support for OpenTelemetry(otlp) log, enabled if configured. #1963</li>
+<li>Editor</li>
+<li>Improve paredit slurp and barf corner cases. #1973 #1976</li>
+<li>Add Semantic Tokens support for the Clojure Reader Dispatch macro <code>#_</code> (ignore next form). #1965</li>
+<li>Fix regression on previous version on snippets completion. #1978</li>
+</ul>
+<h2 id="20250207-161124">2025.02.07-16.11.24<a class="headerlink" href="#20250207-161124" title="Permanent link">#</a></h2>
+<ul>
+<li>Editor</li>
+<li>Add <code>:hover :hide-signature-call?</code> settings option to disable showing the surrounding call. #1954, @NoahTheDuke</li>
+<li>Revert #1933, which caused a regression on completion adding extra text.</li>
+<li>Fix fetching libs exception causing progress notification to be stuck. #1958</li>
+<li>Bump clj-kondo to <code>2025.01.17-20250207.105015-9</code>.</li>
+</ul>
+<h2 id="20250122-232823">2025.01.22-23.28.23<a class="headerlink" href="#20250122-232823" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump clj-kondo to <code>2025.01.16</code></li>
+<li>Bump lsp4clj to <code>1.11.0</code>.</li>
+<li>Add semantic version sorting in completion lib versions. #1913</li>
+<li>Fix internal error in range formatting. #1931</li>
+<li>
+<p>Drop support for jdk 8. #1942</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Change simple keyword completion to return all known keywords. #1920</li>
+<li>Return textEdit to CompletionItems to fix completion in Zed #1933</li>
+<li>
+<p>Restrict linked edits to namespace aliases only, and fix a few related issues #1947</p>
+</li>
+<li>
+<p>API/CLI</p>
+</li>
+<li>Add <code>:project-and-shallow-analysis</code> type to <code>dump</code> command</li>
+<li>Add <code>:diagnostics</code> to <code>dump</code> command output (successor of <code>:findings</code>)</li>
+</ul>
+<h2 id="20241108-174929">2024.11.08-17.49.29<a class="headerlink" href="#20241108-174929" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix client capability check that prevents test file creation.</li>
+<li>Fix move-form double edit problem in cljc files.</li>
+<li>Fix disabling <code>:clojure-lsp/unused-public-var</code> linter also disabling <code>:clojure-lsp/different-aliases</code></li>
+<li>Bump clj-kondo to <code>2024.09.28-20240930.094425-2</code></li>
+<li>Bump lsp4clj to <code>1.10.0</code>.</li>
+<li>Bump clojure to <code>1.12.0</code>.</li>
+<li>Bump tools.cli to <code>1.0.230</code>.</li>
+<li>Bump timbre to <code>6.6.0</code>.</li>
+<li>Bump rewrite-clj to <code>1.1.48</code>.</li>
+<li>Bump cljfmt to <code>1.13.0</code>.</li>
+<li>Bump babashka/fs to <code>0.5.22</code>.</li>
+<li>New feature: completion of lib versions on deps.edn, bb.edn and project.clj files. #1905</li>
+<li>New feature: completion of clojure lib names from clojars and mvn-central for deps.edn, bb.edn and project.clj files. #1909</li>
+</ul>
+<h2 id="20240805-181600">2024.08.05-18.16.00<a class="headerlink" href="#20240805-181600" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Fix CI for macos amd64. #1859</li>
+<li>Replace CirrusCI with Github for macos-aarch64 binary standardizing deploy process.</li>
+</ul>
+<h2 id="20240803-152827">2024.08.03-15.28.27<a class="headerlink" href="#20240803-152827" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump clj-kondo to <code>2024.08.01</code> fixing high memory usage issue.</li>
+<li>Bump Clojure to <code>1.11.3</code></li>
+<li>Fix use of <code>:filename-pattern</code> from kondo breaking references.</li>
+<li>
+<p>Add <code>api.dump</code> to the pod namespace so it can be used with babashka.</p>
+</li>
+<li>
+<p>Editor</p>
+</li>
+<li>Add <code>clojure.test/deftest</code> option to resolve macro as code action. #1850</li>
+<li>Allow starting clojure-lsp without a project root but with limited features. #1815</li>
+<li>Add code action "Add require" for namespaced keywords. #1793</li>
+</ul>
+<h2 id="20240422-115026">2024.04.22-11.50.26<a class="headerlink" href="#20240422-115026" title="Permanent link">#</a></h2>
+<ul>
+<li>General</li>
+<li>Bump clj-depend to <code>0.11.0</code>.</li>
 <li>
 <p>Fix renaming ns when one source path is a prefix of another (e.g. <code>src/clj</code> and <code>src/cljs</code>) #1805</p>
 </li>
@@ -2306,7 +2537,8 @@
 <li>Use scope location instead of name location for folding feature.</li>
 <li>Fix paredit commands to consider previous element when cursor inside a closing bracket.</li>
 <li>Fix paredit commands to move cursor after applying command.</li>
-<li>Fix corner case on paredit comamnds duplicating forms.</li>
+<li>Fix corner case on paredit commands duplicating forms.</li>
+<li>References of a var-definition now consider full quoted qualified symbols. #1804</li>
 </ul>
 <h2 id="20240331-191013">2024.03.31-19.10.13<a class="headerlink" href="#20240331-191013" title="Permanent link">#</a></h2>
 <ul>
@@ -2343,7 +2575,7 @@
 </li>
 <li>Fix documentation resolve not working for clients without hover markdown support.</li>
 <li>Added setting to allow requires and imports to be added within the current comment form during code action and completion: <code>:add-missing :add-to-rcf</code> #1316</li>
-<li>Fix <code>suppress-diagnostics</code> not working on top-level forms when preceded by comment. #1678 </li>
+<li>Fix <code>suppress-diagnostics</code> not working on top-level forms when preceded by comment. #1678</li>
 <li>Fix add missing import feature on some corner cases for java imports. #1754</li>
 <li>Fix semantic tokens and other analysis not being applied for project files at root. #1759</li>
 <li>Add support for adding missing requires and completion results referring to JS libraries which already have an alias in the project #1587</li>
@@ -2363,7 +2595,7 @@
 <li>Fix <code>rename</code> of ns causing wrong ns names because of duplicate rename actions. #1751</li>
 <li>Fix <code>range-formatting</code> throwing exceptions when unbalanced parens are sent from client. #1758</li>
 <li>Fix rename functions need to clean up LSP state or restart in some clients implementing LSP method <code>didRenameFiles</code>. #1755</li>
-<li>Fix <code>thread last all</code> failed after comment form <code>#_(...)</code>. #1745  </li>
+<li>Fix <code>thread last all</code> failed after comment form <code>#_(...)</code>. #1745</li>
 </ul>
 <h2 id="20231229-120927">2023.12.29-12.09.27<a class="headerlink" href="#20231229-120927" title="Permanent link">#</a></h2>
 <ul>
@@ -2390,7 +2622,7 @@
 <h2 id="20231030-162541">2023.10.30-16.25.41<a class="headerlink" href="#20231030-162541" title="Permanent link">#</a></h2>
 <ul>
 <li>General</li>
-<li>Bump clj-kondo to <code>2023.10.21-20231022.204832-4</code>. </li>
+<li>Bump clj-kondo to <code>2023.10.21-20231022.204832-4</code>.</li>
 <li>Fix move-to-let/expand-let bug for multi-arity functions #1283</li>
 <li>Fix <code>:dependency-scheme</code> setting for .java files from jars #1653</li>
 <li>Bump graalvm to 21.</li>
@@ -2632,7 +2864,7 @@
 <li>Fix stubs generation issue on MS-Windows, coming out of enabling all integrations tests on windows. #1211</li>
 <li>Improve MS-Windows support by fixing various path, URI and line ending issues coming out of repairing the unit tests suite on windows. #1211</li>
 <li>End dep-graph-queries experiment; clojure-lsp now uses the dep-graph to optimize queries whenever possible</li>
-<li>Bump clj-kondo to <code>2022.10.05</code>. #1226 </li>
+<li>Bump clj-kondo to <code>2022.10.05</code>. #1226</li>
 <li>Fix issue with changes being reporting with spurious and incorrect line endings on MS-Windows text files. #1211</li>
 <li>Index internal data by URI instead of filename, to minimize conversion between these formats when running queries. #1207</li>
 <li>Add support to enable trace logs on server via <code>--trace</code> flag. (For latest Emacs's lsp-mode this can be enabled easyly via <code>lsp-clojure-trace-enable</code> variable)</li>
@@ -2696,7 +2928,7 @@
 <li>Add refactoring <code>Restructure keys</code>, the inverse of <code>Destructure keys</code>. #1170</li>
 <li>Add refactorings to convert between <code>(:x m)</code> and <code>(get m :x)</code> or <code>(:y (:x m))</code> and <code>(get-in m [:x :y])</code>. #1172</li>
 <li>Add support to imported java class on completion. #1193</li>
-<li>Add new question to skip or retry classpath scan during startup if failed. </li>
+<li>Add new question to skip or retry classpath scan during startup if failed.</li>
 <li>Improve performance of processing of changed files outside editor calling clj-kondo in batch. #1205</li>
 <li>When renaming a keyword that is also a destructured key, rename its local usages too. #1192</li>
 </ul>
@@ -3804,7 +4036,7 @@ when multiple files are changed at same time (rename, iedit, etc).</li>
 <div class="md-source-date">
   <small>
     
-      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 19, 2024</span>
+      Last update: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">April 23, 2025</span>
     
   </small>
 </div>
