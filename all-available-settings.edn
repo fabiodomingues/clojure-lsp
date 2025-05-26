@@ -1,7 +1,7 @@
 ;; All available settings and its default values
 ;; Check the settings documentation section for more details of each one.
 {:source-paths #{"src" "test"} ;; auto-resolved for deps.edn, project.clj or bb.edn projects
- :test-locations-regex #{"_test\.clj[a-z]?$"} ;; Patterns matched with clojure.core/re-find
+ :test-locations-regex #{"_test\\.clj[a-z]?$"} ;; Patterns matched with clojure.core/re-find
  :source-aliases #{:dev :test}
  :project-specs [] ;; Check the default at clojure-lsp.classpath/default-project-specs
  :source-paths-ignore-regex ["target.*"]
@@ -13,7 +13,10 @@
  :linters {:clj-kondo {:level :on
                        :report-duplicates true
                        :ns-exclude-regex ""}
-           :clj-depend {:level :info}} ;; Only if any clj-depend config is found
+           :clj-depend {:level :info} ;; Only if any clj-depend config is found
+           :clojure-lsp/unused-public-var {:level :info}
+           :clojure-lsp/different-aliases {:level :off}
+           :custom {}}
  :clean {:automatically-after-ns-refactor true
          :ns-inner-blocks-indentation :next-line
          :ns-import-classes-indentation :next-line
