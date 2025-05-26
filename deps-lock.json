@@ -1601,7 +1601,7 @@
     },
     {
       "mvn-path": "org/apache/apache/14/apache-14.pom",
-      "mvn-repo": "https://repository.apache.org/content/repositories/staging/",
+      "mvn-repo": "https://repo1.maven.org/maven2/",
       "hash": "sha256-TDrLal+EZ7q+Pp5EhuNSJOIO/4IvS+21IPMxmpbclXk="
     },
     {
@@ -1731,17 +1731,17 @@
     },
     {
       "mvn-path": "org/apache/geronimo/genesis/genesis-default-flava/2.2/genesis-default-flava-2.2.pom",
-      "mvn-repo": "https://repository.apache.org/content/repositories/staging/",
+      "mvn-repo": "https://repo1.maven.org/maven2/",
       "hash": "sha256-zQU8bRAwU510rgs7CeV1Kqs52OEKztlUVjZfVqnLRs0="
     },
     {
       "mvn-path": "org/apache/geronimo/genesis/genesis-java6-flava/2.2/genesis-java6-flava-2.2.pom",
-      "mvn-repo": "https://repository.apache.org/content/repositories/staging/",
+      "mvn-repo": "https://repo1.maven.org/maven2/",
       "hash": "sha256-gEdAyNa5NrWUc7qBg1IOWYU8tTenqGHUDo6DJI0V2zk="
     },
     {
       "mvn-path": "org/apache/geronimo/genesis/genesis/2.2/genesis-2.2.pom",
-      "mvn-repo": "https://repository.apache.org/content/repositories/staging/",
+      "mvn-repo": "https://repo1.maven.org/maven2/",
       "hash": "sha256-3G66vBne1QyLt0ztEsjK0toVgPKEpbHCxRc88SCcFBM="
     },
     {
